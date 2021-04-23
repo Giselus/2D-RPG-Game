@@ -32,7 +32,15 @@ public class ControllerMenu {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToSceneLoading(ActionEvent event) throws IOException{
+    public void switchToTesting(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(Objects.requireNonNull(getClass()
+                .getResource("/resources/fxml/sceneTestScene.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToInventory(ActionEvent event) throws IOException{
         root = FXMLLoader.load(Objects.requireNonNull(getClass()
                 .getResource("/resources/fxml/sceneInventory.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -40,6 +48,7 @@ public class ControllerMenu {
         stage.setScene(scene);
         stage.show();
     }
+
     public void exitGame(ActionEvent event){
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();

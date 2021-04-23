@@ -6,8 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import sample.Items;
+
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,7 +19,8 @@ public class ControllerInventory {
     @FXML
     private final int inventoryWidth = 4;
     private final int inventoryHeight = 4;
-    @FXML private Button aa;
+    @FXML public Button chosenButton;
+    @FXML public Button aa;
     @FXML public Button ab;
     @FXML public Button ac;
     @FXML public Button ad;
@@ -32,59 +36,59 @@ public class ControllerInventory {
     @FXML public Button db;
     @FXML public Button dc;
     @FXML public Button dd;
+    @FXML Text itemDescription;
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML private Button[][] buttonInv = new Button[inventoryWidth][inventoryHeight];
 
-    private int[][] itemView = new int[inventoryWidth][inventoryHeight];
+    private Items[][] itemView = new Items[inventoryWidth][inventoryHeight];
 
-    public static TemporaryContainer tmp = new TemporaryContainer();
+    public static TemporaryChosenContainer tmp = new TemporaryChosenContainer();
 
     public void fillItemView(){
         getButtonInv();
         for(int i=0; i<inventoryHeight; i++){
             for(int j=0; j<inventoryWidth; j++){
-                int k = ThreadLocalRandom.current().nextInt(0, 3);
-                itemView[i][j] = k;
+                int k = ThreadLocalRandom.current().nextInt(0, 16);
+                itemView[i][j] = new Items(k);
             }
         }
-        changeColorOfButton();
+        updateButtons();
     }
-    void changeColorOfButton(){
+    void updateButtons(){
         for(int i=0; i<inventoryWidth; i++){
             for(int j=0; j<inventoryHeight; j++){
-                if(itemView[i][j] == 0){
-                    buttonInv[i][j].setStyle("-fx-background-color: #ff0000");
-                }
-                else if(itemView[i][j] == 1){
-                    buttonInv[i][j].setStyle("-fx-background-color: #00ff00");
-                }
-                else{
-                    buttonInv[i][j].setStyle("-fx-background-color: #0000ff");
-                }
+                int k = itemView[i][j].id;
+                buttonInv[i][j].setText("" + k);
+                buttonInv[i][j].setStyle("-fx-border-color:black");
             }
         }
+        if(tmp.hasItems){
+            chosenButton.setText("" + tmp.itemId);
+        }
     }
-    private void checkProperties(int x, int y){
+    
+    private void checkButtonsProperties(int x, int y){
         if(!tmp.hasItems){
-            if(itemView[x][y] != 0){
+            if(itemView[x][y].id != 0){
                 tmp.cordX = x;
                 tmp.cordY = y;
-                tmp.colorId = itemView[x][y];
+                tmp.itemId = itemView[x][y].id;
                 tmp.hasItems = true;
             }
+            updateButtons();
             return;
         }
         tmp.hasItems = false;
-        if (itemView[x][y] != 0) {
-            itemView[tmp.cordX][tmp.cordY] = itemView[x][y];
+        if (itemView[x][y].id != 0) {
+            itemView[tmp.cordX][tmp.cordY].id = itemView[x][y].id;
         }
         else{
-            itemView[tmp.cordX][tmp.cordY] = 0;
+            itemView[tmp.cordX][tmp.cordY].id = 0;
         }
-        itemView[x][y] = tmp.colorId;
-        changeColorOfButton();
+        itemView[x][y].id = tmp.itemId;
+        updateButtons();
     }
     public void getButtonInv(){
         buttonInv[0][0] = aa;
@@ -113,61 +117,61 @@ public class ControllerInventory {
         stage.show();
     }
 
-    private static class TemporaryContainer{
+    private static class TemporaryChosenContainer{
         Integer cordX;
         Integer cordY;
-        Integer colorId;
+        Integer itemId;
         boolean hasItems;
-        TemporaryContainer(){
+        TemporaryChosenContainer(){
             hasItems = false;
         }
     }
     public void pickItemAA(){
-        checkProperties(0, 0);
+        checkButtonsProperties(0, 0);
     }
     public void pickItemAB(){
-        checkProperties(0, 1);
+        checkButtonsProperties(0, 1);
     }
     public void pickItemAC(){
-        checkProperties(0, 2);
+        checkButtonsProperties(0, 2);
     }
     public void pickItemAD(){
-        checkProperties(0, 3);
+        checkButtonsProperties(0, 3);
     }
     public void pickItemBA(){
-        checkProperties(1, 0);
+        checkButtonsProperties(1, 0);
     }
     public void pickItemBB(){
-        checkProperties(1, 1);
+        checkButtonsProperties(1, 1);
     }
     public void pickItemBC(){
-        checkProperties(1, 2);
+        checkButtonsProperties(1, 2);
     }
     public void pickItemBD(){
-        checkProperties(1, 3);
+        checkButtonsProperties(1, 3);
     }
     public void pickItemCA(){
-        checkProperties(2, 0);
+        checkButtonsProperties(2, 0);
     }
     public void pickItemCB(){
-        checkProperties(2, 1);
+        checkButtonsProperties(2, 1);
     }
     public void pickItemCC(){
-        checkProperties(2, 2);
+        checkButtonsProperties(2, 2);
     }
     public void pickItemCD(){
-        checkProperties(2, 3);
+        checkButtonsProperties(2, 3);
     }
     public void pickItemDA(){
-        checkProperties(3, 0);
+        checkButtonsProperties(3, 0);
     }
     public void pickItemDB(){
-        checkProperties(3, 1);
+        checkButtonsProperties(3, 1);
     }
     public void pickItemDC(){
-        checkProperties(3, 2);
+        checkButtonsProperties(3, 2);
     }
     public void pickItemDD(){
-        checkProperties(3, 3);
+        checkButtonsProperties(3, 3);
     }
 }
