@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,14 +15,30 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
-        try {
-            Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/resources/fxml/sceneMenu.fxml"))));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+
+        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/resources/fxml/sceneMenu.fxml"))));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        KeyPolling.pollScene(scene);
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                float deltaTime = (float)((now - lastFrameNanos) /1e9);
+                lastFrameNanos = now;
+                tick(deltaTime);
+            }
+        };
+        timer.start();
+    }
+    private float lastFrameNanos;
+
+    private void tick(float deltaTime){
+        //Input -> logic -> rendering
+
+
+
     }
 }
