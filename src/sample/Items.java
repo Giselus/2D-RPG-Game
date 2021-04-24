@@ -10,7 +10,7 @@ public class Items {
 
     public Items(int id) {
         this.id = id;
-        if(id == 7) {
+        if(id == 8) {
             myType = type.UTILITY;
         } else if(id == 1){
             myType = type.BOOTS;
@@ -22,7 +22,7 @@ public class Items {
             myType = type.WEAPON_ONE;
         } else if(id == 5){
             myType = type.WEAPON_TWO;
-        } else if(id == 6){
+        } else if(id == 6 || id == 7){
             myType = type.TRINKET;
         } else {
             myType = type.EMPTY;

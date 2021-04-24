@@ -1,5 +1,4 @@
 package sample.controllers;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,14 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import sample.Items;
-
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
-
 public class ControllerInventory {
     @FXML
     private final int inventoryWidth = 4;
@@ -47,16 +45,16 @@ public class ControllerInventory {
 
     private final Button[][] buttonInv = new Button[inventoryWidth][inventoryHeight];
     private final Items[][] itemView = new Items[inventoryWidth][inventoryHeight];
-    @FXML private Button[] buttonWear = new Button[sizeOfCloths];
-    @FXML private Items[] equipment = new Items[sizeOfCloths];
+    @FXML private final Button[] buttonWear = new Button[sizeOfCloths];
+    @FXML private final Items[] equipment = new Items[sizeOfCloths];
 
-    private static TemporaryChosenContainer tmp = new TemporaryChosenContainer();
+    private static final TemporaryChosenContainer tmp = new TemporaryChosenContainer();
 
     public void fillItemView(){
         getButtonInv();
         for(int i=0; i<inventoryHeight; i++){
             for(int j=0; j<inventoryWidth; j++){
-                int k = ThreadLocalRandom.current().nextInt(0, 8);
+                int k = ThreadLocalRandom.current().nextInt(0, 9);
                 itemView[i][j] = new Items(k);
             }
         }
@@ -66,32 +64,33 @@ public class ControllerInventory {
         updateButtons();
     }
 
-    //to change
     void updateButtons(){
         for(int i=0; i<inventoryWidth; i++){
             for(int j=0; j<inventoryHeight; j++){
                 int k = itemView[i][j].id;
-                if(k == 4){
-                    //difficulties with reading an image
-
-//                    Image img = new Image("resources/textures/Items/Weapon1.png");
-////                    ImageView view = new ImageView(img);
-////                    view.setFitHeight(80);
-////                    view.setFitWidth(80);
-////                    buttonInv[i][j].setGraphic(view);
-                } else {
-                    buttonInv[i][j].setText("" + k);
-                }
+                String string = "/resources/textures/Items/ItemId" + k + ".png";
+                Image img = new Image((Objects.requireNonNull(getClass().getResource(string))).toString());
+                ImageView view = new ImageView(img);
+                buttonInv[i][j].setGraphic(view);
             }
         }
         for(int i=0; i<sizeOfCloths; i++){
-            buttonWear[i].setText("" + equipment[i].id);
+            int k = equipment[i].id;
+            String string = "/resources/textures/Items/ItemId" + k + ".png";
+            Image img = new Image((Objects.requireNonNull(getClass().getResource(string))).toString());
+            ImageView view = new ImageView(img);
+            buttonWear[i].setGraphic(view);
         }
+        int k;
         if(tmp.hasItems){
-            chosenButton.setText("" + tmp.itemId);
+            k = tmp.itemId;
         } else{
-            chosenButton.setText("");
+            k=0;
         }
+        String string = "/resources/textures/Items/ItemId" + k + ".png";
+        Image img = new Image((Objects.requireNonNull(getClass().getResource(string))).toString());
+        ImageView view = new ImageView(img);
+        chosenButton.setGraphic(view);
     }
     @FXML
     private void isBoot(){
