@@ -1,5 +1,4 @@
 package sample.controllers;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,10 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import sample.Main;
-
 import java.io.IOException;
 import java.util.Objects;
-
 public class ControllerMenu {
     @FXML
     private Stage stage;
@@ -52,7 +49,14 @@ public class ControllerMenu {
         stage.setScene(scene);
         stage.show();
     }
-
+    public void switchToLoading(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(Objects.requireNonNull(getClass()
+                .getResource("/resources/fxml/sceneLoadingScreen.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     public void exitGame(ActionEvent event){
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();

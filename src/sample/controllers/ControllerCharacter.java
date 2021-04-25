@@ -1,15 +1,23 @@
 package sample.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import sample.Main;
 import sample.MainCharacter;
 
+import java.io.IOException;
 import java.lang.reflect.AnnotatedArrayType;
+import java.util.Objects;
 
 public class ControllerCharacter {
     String name;
@@ -169,5 +177,14 @@ public class ControllerCharacter {
         imageView.setX(795);
         imageView.setY(98);
         idAnchorPane.getChildren().add(imageView);
+    }
+    public void switchToSceneMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
+                .getResource("/resources/fxml/sceneMenu.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        Main.controller = null;
+        stage.show();
     }
 }

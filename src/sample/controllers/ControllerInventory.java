@@ -54,12 +54,13 @@ public class ControllerInventory {
         getButtonInv();
         for(int i=0; i<inventoryHeight; i++){
             for(int j=0; j<inventoryWidth; j++){
-                int k = ThreadLocalRandom.current().nextInt(0, 9);
-                itemView[i][j] = new Items(k);
+                int k = ThreadLocalRandom.current().nextInt(0, 8);
+                int l = ThreadLocalRandom.current().nextInt(0, 3);
+                itemView[i][j] = new Items(k, l);
             }
         }
         for(int i=0; i<sizeOfCloths; i++){
-            equipment[i] = new Items(0);
+            equipment[i] = new Items(0, 0);
         }
         updateButtons();
     }
@@ -75,7 +76,7 @@ public class ControllerInventory {
         setGraphicButton(chosenButton, tmp.item);
     }
     private void clearHolder(){
-        tmp.item = new Items(0);
+        tmp.item = new Items(0, 0);
         tmp.hasItems = false;
     }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
@@ -170,7 +171,7 @@ public class ControllerInventory {
     }
     private void swapToWear(int x){
         if(equipment[x].myType == Items.type.EMPTY){
-            itemView[tmp.cordX][tmp.cordY] = new Items(0);
+            itemView[tmp.cordX][tmp.cordY] = new Items(0, 0);
             equipment[x] = tmp.item;
         } else {
             Items swap = equipment[x];
@@ -194,7 +195,7 @@ public class ControllerInventory {
             itemView[tmp.cordX][tmp.cordY] = itemView[x][y];
         }
         else{
-            itemView[tmp.cordX][tmp.cordY] = new Items(0);
+            itemView[tmp.cordX][tmp.cordY] = new Items(0, 0);
         }
         itemView[x][y] = tmp.item;
         clearHolder();
@@ -207,7 +208,7 @@ public class ControllerInventory {
         Items item;
         TemporaryChosenContainer(){
             hasItems = false;
-            item = new Items(0);
+            item = new Items(0, 0);
         }
     }
     public void getButtonInv(){

@@ -5,8 +5,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.controllers.ControllerCharacter;
 
@@ -22,7 +20,6 @@ public class Main extends Application {
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/resources/fxml/sceneMenu.fxml"));
         Parent root= loader.load();
-        //controller=loader.getController();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
