@@ -5,23 +5,27 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
-import java.util.Objects;
+import sample.controllers.ControllerCharacter;
 
 public class Main extends Application {
+    public static ControllerCharacter controller;
     public static void main(String[] args){
         Application.launch(args);
     }
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setResizable(false);
 
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/resources/fxml/sceneMenu.fxml"))));
+        stage.setResizable(false);
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/resources/fxml/sceneMenu.fxml"));
+        Parent root= loader.load();
+        //controller=loader.getController();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
         KeyPolling.pollScene(scene);
 
         AnimationTimer timer = new AnimationTimer() {
@@ -38,5 +42,8 @@ public class Main extends Application {
 
     private void tick(float deltaTime){
         //Input -> logic -> rendering
+        if(controller!=null){
+            controller.move(deltaTime);
+        }
     }
 }

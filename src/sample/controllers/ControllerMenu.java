@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import sample.Main;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -25,8 +27,10 @@ public class ControllerMenu {
         stage.show();
     }
     public void switchToSceneCreator(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass()
-                .getResource("/resources/fxml/sceneCreator.fxml")));
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/resources/fxml/characterScene.fxml"));
+        Parent root= loader.load();
+        Main.controller=loader.getController();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
