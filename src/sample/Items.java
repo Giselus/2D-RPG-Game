@@ -30,6 +30,6 @@ public class Items {
     }
     @Override
     public String toString(){
-        return "My name is " + this.id;
+        return myType.toString() + this.id;
     }
 }

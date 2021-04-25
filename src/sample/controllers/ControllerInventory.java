@@ -63,70 +63,60 @@ public class ControllerInventory {
         }
         updateButtons();
     }
-
     void updateButtons(){
         for(int i=0; i<inventoryWidth; i++){
             for(int j=0; j<inventoryHeight; j++){
-                int k = itemView[i][j].id;
-                String string = "/resources/textures/Items/ItemId" + k + ".png";
-                Image img = new Image((Objects.requireNonNull(getClass().getResource(string))).toString());
-                ImageView view = new ImageView(img);
-                buttonInv[i][j].setGraphic(view);
+                setGraphicButton(buttonInv[i][j], itemView[i][j]);
             }
         }
         for(int i=0; i<sizeOfCloths; i++){
-            int k = equipment[i].id;
-            String string = "/resources/textures/Items/ItemId" + k + ".png";
-            Image img = new Image((Objects.requireNonNull(getClass().getResource(string))).toString());
-            ImageView view = new ImageView(img);
-            buttonWear[i].setGraphic(view);
+            setGraphicButton(buttonWear[i], equipment[i]);
         }
-        int k;
-        if(tmp.hasItems){
-            k = tmp.itemId;
-        } else{
-            k=0;
-        }
-        String string = "/resources/textures/Items/ItemId" + k + ".png";
+        setGraphicButton(chosenButton, tmp.item);
+    }
+    private void clearHolder(){
+        tmp.item = new Items(0);
+        tmp.hasItems = false;
+    }
+    private void setGraphicButton(Button tmpButton, Items tmpItem){
+        String string = "/resources/textures/Items/" + tmpItem.toString() + ".png";
         Image img = new Image((Objects.requireNonNull(getClass().getResource(string))).toString());
         ImageView view = new ImageView(img);
-        chosenButton.setGraphic(view);
+        tmpButton.setGraphic(view);
     }
     @FXML
     private void isBoot(){
         if(!tmp.hasItems){
             return;
         }
-        if(tmp.tmpType.equals(Items.type.BOOTS)){
+        if(tmp.item.myType.equals(Items.type.BOOTS)){
             swapToWear(0);
         } else{
-            tmp.hasItems = false;
+            clearHolder();
         }
         updateButtons();
     }
-
     @FXML
     private void isArmor(){
         if(!tmp.hasItems){
             return;
         }
-        if(tmp.tmpType.equals(Items.type.ARMOR)){
+        if(tmp.item.myType.equals(Items.type.ARMOR)){
             swapToWear(1);
         } else{
-            tmp.hasItems = false;
+            clearHolder();
         }
         updateButtons();
     }
-
     @FXML
     private void isHelmet(){
         if(!tmp.hasItems){
             return;
         }
-        if(tmp.tmpType.equals(Items.type.HELMET)){
+        if(tmp.item.myType.equals(Items.type.HELMET)){
             swapToWear(2);
         }else{
-            tmp.hasItems = false;
+            clearHolder();
         }
         updateButtons();
     }
@@ -135,10 +125,10 @@ public class ControllerInventory {
         if(!tmp.hasItems){
             return;
         }
-        if(tmp.tmpType.equals(Items.type.WEAPON_ONE)){
+        if(tmp.item.myType.equals(Items.type.WEAPON_ONE)){
             swapToWear(3);
         }else{
-            tmp.hasItems = false;
+            clearHolder();
         }
         updateButtons();
     }
@@ -147,10 +137,10 @@ public class ControllerInventory {
         if(!tmp.hasItems){
             return;
         }
-        if(tmp.tmpType.equals(Items.type.WEAPON_TWO)){
+        if(tmp.item.myType.equals(Items.type.WEAPON_TWO)){
             swapToWear(4);
         }else{
-            tmp.hasItems = false;
+            clearHolder();
         }
         updateButtons();
     }
@@ -159,10 +149,10 @@ public class ControllerInventory {
         if(!tmp.hasItems){
             return;
         }
-        if(tmp.tmpType.equals(Items.type.TRINKET)){
+        if(tmp.item.myType.equals(Items.type.TRINKET)){
             swapToWear(5);
         }else{
-            tmp.hasItems = false;
+            clearHolder();
         }
         updateButtons();
     }
@@ -171,48 +161,54 @@ public class ControllerInventory {
         if(!tmp.hasItems){
             return;
         }
-        if(tmp.tmpType.equals(Items.type.TRINKET)){
+        if(tmp.item.myType.equals(Items.type.TRINKET)){
             swapToWear(6);
+        }else{
+            clearHolder();
         }
-        tmp.hasItems = false;
         updateButtons();
     }
     private void swapToWear(int x){
-        tmp.hasItems = false;
-        if(equipment[x].id == 0){
-            itemView[tmp.cordX][tmp.cordY].id = 0;
-            equipment[x].id = tmp.itemId;
+        if(equipment[x].myType == Items.type.EMPTY){
+            itemView[tmp.cordX][tmp.cordY] = new Items(0);
+            equipment[x] = tmp.item;
         } else {
-            int swap = equipment[x].id;
-            equipment[x].id = tmp.itemId;
-            itemView[tmp.cordX][tmp.cordY].id = swap;
+            Items swap = equipment[x];
+            equipment[x] = tmp.item;
+            itemView[tmp.cordX][tmp.cordY] = swap;
         }
+        clearHolder();
     }
     private void checkButtonsProperties(int x, int y){
         if(!tmp.hasItems){
-            if(itemView[x][y].id != 0){
+            if(itemView[x][y].myType != Items.type.EMPTY){
                 tmp.cordX = x;
                 tmp.cordY = y;
-                tmp.itemId = itemView[x][y].id;
-                tmp.tmpType = itemView[x][y].myType;
-                System.out.println(tmp.tmpType);
+                tmp.item = itemView[x][y];
                 tmp.hasItems = true;
             }
             updateButtons();
             return;
         }
-        tmp.hasItems = false;
-        if (itemView[x][y].id != 0) {
-            itemView[tmp.cordX][tmp.cordY].id = itemView[x][y].id;
-            itemView[tmp.cordX][tmp.cordY].myType = itemView[x][y].myType;
+        if (itemView[x][y].myType != Items.type.EMPTY) {
+            itemView[tmp.cordX][tmp.cordY] = itemView[x][y];
         }
         else{
-            itemView[tmp.cordX][tmp.cordY].id = 0;
-            itemView[tmp.cordX][tmp.cordY].myType = Items.type.EMPTY;
+            itemView[tmp.cordX][tmp.cordY] = new Items(0);
         }
-        itemView[x][y].id = tmp.itemId;
-        itemView[x][y].myType = tmp.tmpType;
+        itemView[x][y] = tmp.item;
+        clearHolder();
         updateButtons();
+    }
+    private static class TemporaryChosenContainer{
+        Integer cordX;
+        Integer cordY;
+        boolean hasItems;
+        Items item;
+        TemporaryChosenContainer(){
+            hasItems = false;
+            item = new Items(0);
+        }
     }
     public void getButtonInv(){
         buttonInv[0][0] = aa;
@@ -240,6 +236,7 @@ public class ControllerInventory {
         buttonWear[5] = trinket1Button;
         buttonWear[6] = trinket2Button;
     }
+
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
                 .getResource("/resources/fxml/sceneMenu.fxml")));
@@ -248,16 +245,7 @@ public class ControllerInventory {
         stage.setScene(scene);
         stage.show();
     }
-    private static class TemporaryChosenContainer{
-        Integer cordX;
-        Integer cordY;
-        Integer itemId;
-        boolean hasItems;
-        Items.type tmpType;
-        TemporaryChosenContainer(){
-            hasItems = false;
-        }
-    }
+
     public void pickItemAA(){
         checkButtonsProperties(0, 0);
     }
