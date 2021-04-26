@@ -122,8 +122,6 @@ public class ControllerCharacter {
         startSkin(((int)(frame*10))%9);
         //startHair();
         frame+=deltaTime;
-
-
     }
     //look function:
     @FXML protected void leftSkin(ActionEvent e){
@@ -150,8 +148,8 @@ public class ControllerCharacter {
         addSkin(imageViewSkin);
     }
     public void addSkin(ImageView imageView){
-        imageView.setX(800);
-        imageView.setY(100);
+        imageView.setX(625);
+        imageView.setY(97);
         idAnchorPane.getChildren().add(imageView);
     }
     @FXML protected void leftHair(ActionEvent e){
@@ -161,7 +159,6 @@ public class ControllerCharacter {
         if(hairId==0){
             //usuwanie wlosow
         }
-
     }
     @FXML protected void rightHair(ActionEvent e){
         if(hairId<10){

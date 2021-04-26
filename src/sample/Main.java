@@ -21,7 +21,9 @@ public class Main extends Application {
         loader.setLocation(getClass().getResource("/resources/fxml/sceneMenu.fxml"));
         Parent root= loader.load();
         Scene scene = new Scene(root);
+        String css=this.getClass().getResource("style_menu.css").toExternalForm();
         stage.setScene(scene);
+        scene.getStylesheets().add(css);
         stage.show();
         KeyPolling.pollScene(scene);
 
