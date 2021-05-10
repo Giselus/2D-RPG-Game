@@ -37,6 +37,13 @@ public class mainGameController {
         TileDatabase.Init();
         mapHandler.Init();
         mapHandler.setCurrentMap("test");
+        //TODO: create character
+        /*ImageFrame base = new ImageFrame(new Image(getClass().getResource("/resources/textures/Items/BOOTS0.png").toString()));
+        GameObject test = new GameObject(base,32,32);
+        ImageFrame base2 = new ImageFrame(new Image(getClass().getResource("/resources/textures/Items/BOOTS1.png").toString()));
+        ImageFrame base3 = new ImageFrame(new Image(getClass().getResource("/resources/textures/Items/BOOTS2.png").toString()));
+        test.animation = new Animation(1,128,128,base,base2,base3);
+        test.animation.Play(test);*/
     }
 
     GraphicsContext gc;
@@ -56,6 +63,13 @@ public class mainGameController {
         int size = tile.getTileSet().getTileSize();
         gc.drawImage(img, tile.getX() * size,tile.getY()*size,
                 size,size,a,b,32,32);
+    }
+
+    public void drawImage(ImageFrame frame, float xPos, float yPos){
+        gc.drawImage(frame.img,frame.left,frame.down,frame.xSize,frame.ySize,
+                xPos - Camera.instance.getX(),
+                yPos - Camera.instance.getY(),
+                frame.xSize,frame.ySize);
     }
 
     public void drawCross(int x, int y){
