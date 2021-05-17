@@ -6,47 +6,29 @@ import sample.controllers.mainGameController;
 
 import java.util.ArrayList;
 
-public class GameObject {
-
-    public static ArrayList<GameObject> updatable = new ArrayList<>();
+public class GameObject extends Updatable{
 
     public ImageFrame img;
     public float xPos, yPos;
-    private boolean active;
+    int zPos;
     public Animation animation;
 
     public GameObject(){
-        active = true;
-        updatable.add(this);
+
     }
 
-    public GameObject(ImageFrame img, float xPos, float yPos){
+    public GameObject(ImageFrame img, float xPos, float yPos, int zPos){
         this.img = img;
         this.xPos = xPos;
         this.yPos = yPos;
-        active = true;
-        updatable.add(this);
-    }
-
-    private void setActive(boolean active){
-        this.active = active;
-        if(active == true){
-            if(!updatable.contains(this)){
-                updatable.add(this);
-            }
-        }else{
-            if(updatable.contains(this)){
-                updatable.remove(this);
-            }
-        }
+        this.zPos = zPos;
     }
 
     public void Update(float deltaTime){
         if(animation != null){
             animation.Update(deltaTime);
         }
-
-        Draw();
+        RenderingManager.addToRenderQueue(this);
     }
 
     public void Draw(){

@@ -53,14 +53,16 @@ public class Animation {
             obj.yPos = yStart + yOffset;
             obj.xPos = xStart + xOffset;
 
-            obj.img = images.get(images.size()-1);
+            if(images.size() > 0)
+                obj.img = images.get(images.size()-1);
 
             Stop();
         }else{
             obj.xPos = xStart  + (time/duration * xOffset);
             obj.yPos = yStart  + (time/duration * yOffset);
 
-            obj.img = images.get( (int)(time/duration * images.size()));
+            if(images.size() > 0)
+                obj.img = images.get( (int)(time/duration * images.size()));
         }
     }
 }

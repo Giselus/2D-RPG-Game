@@ -10,13 +10,7 @@ import java.util.HashMap;
 public class mapHandler {
 
     private static HashMap<String, File> mapFiles;
-
     private static Map currentMap;
-
-    public static void Update(float deltaTime){
-        if(currentMap != null)
-            currentMap.Update(deltaTime);
-    }
 
     public static void Init(){
         mapFiles = new HashMap<>();
@@ -56,4 +50,7 @@ public class mapHandler {
         currentMap = new Map(mapFiles.get(name));
     }
 
+    public static Map getCurrentMap(){
+        return currentMap;
+    }
 }

@@ -11,19 +11,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Map {
-
-
-
     private ArrayList<Layer> layers;
-    private Camera camera;
-    private Layer selectedLayer;
     private File source;
     private String name;
 
     public Map(File source){
         this.source = source;
         layers = new ArrayList<>();
-        camera = new Camera(mainGameController.instance.getCanvas());
         loadFromFile();
     }
 
@@ -34,6 +28,10 @@ public class Map {
             name = scanner.nextLine();
             int width = scanner.nextInt();
             int height = scanner.nextInt();
+
+            Camera.instance.maxX = (width+1) * 32;
+            Camera.instance.maxY = (height+1) * 32;
+
             int layersNo = scanner.nextInt();
             for(int i = 0; i < layersNo;i++){
                 Layer layer = new Layer(width,height);
@@ -71,47 +69,29 @@ public class Map {
         }
     }
 
-    public Camera getCamera(){
-        return camera;
-    }
-
-    public void Update(float deltaTime){
-        HandleCameraMovement(deltaTime);
-        Render();
-    }
-
-    private void HandleCameraMovement(float deltaTime){
-        float deltaX = 0;
-        float deltaY = 0;
-        if(KeyPolling.isDown(KeyCode.A)){
-            deltaX += -camera.speed * deltaTime;
-        }
-        if(KeyPolling.isDown(KeyCode.D)){
-            deltaX += camera.speed * deltaTime;
-        }
-        if(KeyPolling.isDown(KeyCode.S)){
-            deltaY += camera.speed * deltaTime;
-        }
-        if(KeyPolling.isDown(KeyCode.W)){
-            deltaY += -camera.speed*deltaTime;
-        }
-        camera.addPosition(deltaX,deltaY);
-    }
-
-    private void Render(){
-        mainGameController.instance.clearCanvas();
+    public void RenderLayer(int layerNo){
+        if(layerNo > layers.size())
+            return;
+        Camera camera = Camera.instance;
         for(int x = (int)camera.getX() / 32;x <= (int)(camera.getX()+camera.width)/32;x++) {
             for(int y = (int)camera.getY()/ 32;y <= (int)(camera.getY()+camera.height)/32;y++){
-                for(Layer layer: layers) {
-                    Tile tile = layer.getTileAtPos(x, y);
-                    if (tile != null) {
-                        int size = tile.getTileSet().getTileSize();
-                        mainGameController.instance.setCanvas(tile, (int) ((x * 32) - camera.getX()), (int) ((y * 32) - camera.getY()));
-                    }
+                Layer layer = layers.get(layerNo-1);
+                Tile tile = layer.getTileAtPos(x, y);
+                if (tile != null) {
+                    int size = tile.getTileSet().getTileSize();
+                    mainGameController.instance.setCanvas(tile, (int) ((x * 32) - camera.getX()), (int) ((y * 32) - camera.getY()));
                 }
             }
         }
     }
 
+    public int getLayersNo(){
+        return layers.size();
+    }
 
+    public Layer getLayer(int id){
+        if(id > layers.size())
+            return null;
+        return layers.get(id-1);
+    }
 }
