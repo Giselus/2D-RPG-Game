@@ -28,11 +28,11 @@ public class ControllerMenu {
         loader.setLocation(getClass().getResource("/resources/fxml/characterScene.fxml"));
         Parent root= loader.load();
         Main.controller=loader.getController();
-        String css=this.getClass().getResource("style.css").toExternalForm();
+        //String css=this.getClass().getResource("style.css").toExternalForm();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        scene.getStylesheets().add(css);
+        //scene.getStylesheets().add(css);
         stage.show();
     }
     public void switchToTesting(ActionEvent event) throws IOException{
@@ -53,7 +53,7 @@ public class ControllerMenu {
     }
     public void switchToLoading(ActionEvent event) throws IOException{
         root = FXMLLoader.load(Objects.requireNonNull(getClass()
-                .getResource("/resources/fxml/sceneLoadingScreen.fxml")));
+                .getResource("/resources/fxml/sceneFight.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
