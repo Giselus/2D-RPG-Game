@@ -6,7 +6,7 @@ public class Items {
 
     public enum type{
         //0-Empty, 1-Boots, 2-Armor, 3-Helmet, 4-Weapon-one, 5-weapon-two, 6-trinket, 7-utility
-        WEAPON_ONE, WEAPON_TWO, ARMOR, HELMET, UTILITY, BOOTS, TRINKET, EMPTY
+        EMPTY, BOOTS, ARMOR, HELMET, WEAPON_ONE, WEAPON_TWO, TRINKET, UTILITY
     }
 
     public Items(int types, int id) {
@@ -32,5 +32,15 @@ public class Items {
     @Override
     public String toString(){
         return myType.toString() + this.id;
+    }
+
+    public class itemStatistic{
+        int attack;
+        int defense;
+        int luck;
+        int agility;
+        int hp;
+        int mana;
+        int stamina;
     }
 }

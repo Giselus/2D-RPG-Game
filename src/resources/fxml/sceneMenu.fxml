@@ -16,19 +16,19 @@
         </ImageView>
         <Button fx:id="buttonNewGame" layoutX="551.0" layoutY="373.0" mnemonicParsing="false" onAction="#switchToSceneCreator" prefHeight="60.0" prefWidth="179.0" text="New game">
          <font>
-            <Font name="Apple Chancery" size="20.0" />
+            <Font size="14.0" />
          </font></Button>
         <Button fx:id="buttonTesting" layoutX="552.0" layoutY="447.0" mnemonicParsing="false" onAction="#switchToTesting" prefHeight="60.0" prefWidth="179.0" text="Testing functions">
          <font>
-            <Font name="Apple Chancery" size="20.0" />
+            <Font size="14.0" />
          </font></Button>
         <Button fx:id="buttonMapGenerator" layoutX="551.0" layoutY="522.0" mnemonicParsing="false" onAction="#switchToLoading" prefHeight="60.0" prefWidth="179.0" text="Map generator">
          <font>
-            <Font name="Apple Chancery" size="20.0" />
+            <Font size="14.0" />
          </font></Button>
         <Button fx:id="buttonExitGame" layoutX="551.0" layoutY="600.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="60.0" prefWidth="179.0" text="Exit">
          <font>
-            <Font name="Apple Chancery" size="20.0" />
+            <Font size="14.0" />
          </font></Button>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
         <Text fx:id="nameOfTheGame" fill="#ddd8d8" layoutX="2.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Orelega One;" text="Game name" textAlignment="CENTER" wrappingWidth="1280.0">
