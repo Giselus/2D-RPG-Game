@@ -20,12 +20,13 @@ public class mainGameController {
             instance = this;
             TileDatabase.Init();
             mapHandler.Init();
+            new RenderingManager();
             new Camera(mapCanvas);
             ImageFrame base = new ImageFrame(new Image(getClass().getResource("/resources/textures/Items/BOOTS0.png").toString()));
-            new CharacterManager(base,0,0,3);
+            mapHandler.setCurrentMap("main");
         }
-        mapHandler.setCurrentMap("main");
-        //TODO: create character
+        RenderingManager.instance.setActive(true);
+        CharacterManager.instance.setActive(true);
 
         //GameObject test = new GameObject(base,32,32,3);
         //ImageFrame base2 = new ImageFrame(new Image(getClass().getResource("/resources/textures/Items/BOOTS1.png").toString()));

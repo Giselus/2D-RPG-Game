@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GameObject extends Updatable{
 
-    public ImageFrame img;
+    public ArrayList<ImageFrame> images;
     public float xPos, yPos;
     int zPos;
     public Animation animation;
@@ -17,8 +17,11 @@ public class GameObject extends Updatable{
 
     }
 
-    public GameObject(ImageFrame img, float xPos, float yPos, int zPos){
-        this.img = img;
+    public GameObject(float xPos, float yPos, int zPos, ImageFrame ... img){
+        images = new ArrayList<>();
+        for(ImageFrame image : img){
+            images.add(image);
+        }
         this.xPos = xPos;
         this.yPos = yPos;
         this.zPos = zPos;
@@ -28,11 +31,14 @@ public class GameObject extends Updatable{
         if(animation != null){
             animation.Update(deltaTime);
         }
-        RenderingManager.addToRenderQueue(this);
+        RenderingManager.instance.addToRenderQueue(this);
     }
 
     public void Draw(){
-        if(img != null)
-            mainGameController.instance.drawImage(img,xPos,yPos);
+        if(images != null){
+            for(ImageFrame img: images){
+                mainGameController.instance.drawImage(img,xPos,yPos);
+            }
+        }
     }
 }

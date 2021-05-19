@@ -1,12 +1,9 @@
 package sample;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.input.KeyCode;
-import javafx.util.Pair;
+
 import sample.controllers.mainGameController;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,8 +26,8 @@ public class Map {
             int width = scanner.nextInt();
             int height = scanner.nextInt();
 
-            Camera.instance.maxX = (width+1) * 32;
-            Camera.instance.maxY = (height+1) * 32;
+            Camera.instance.maxX = (width) * 32;
+            Camera.instance.maxY = (height) * 32;
 
             int layersNo = scanner.nextInt();
             for(int i = 0; i < layersNo;i++){

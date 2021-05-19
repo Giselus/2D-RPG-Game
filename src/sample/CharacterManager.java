@@ -10,8 +10,8 @@ public class CharacterManager extends GameObject{
         instance = this;
     }
 
-    public CharacterManager(ImageFrame img, int xPos, int yPos, int zPos){
-        super(img,xPos * 32,yPos * 32,zPos);
+    public CharacterManager(int xPos, int yPos, int zPos, ImageFrame ... img){
+        super(xPos * 32,yPos * 32,zPos,img);
         x = xPos;
         y = yPos;
         instance = this;

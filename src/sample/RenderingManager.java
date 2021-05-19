@@ -7,15 +7,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class RenderingManager {
+public class RenderingManager extends Updatable {
 
-    public static ArrayList<GameObject> renderQueue = new ArrayList<>();
 
-    public static void addToRenderQueue(GameObject obj){
+    public static RenderingManager instance;
+
+    public ArrayList<GameObject> renderQueue = new ArrayList<>();
+    public void addToRenderQueue(GameObject obj){
         renderQueue.add(obj);
     }
 
-    public static void Render(){
+    public RenderingManager(){
+        instance = this;
+    }
+
+    public void Update(float deltaTime){
         ArrayList<Pair<Integer,GameObject>> T = new ArrayList<>();
         for(GameObject obj : renderQueue){
             T.add(new Pair<>(obj.zPos,obj));

@@ -11,7 +11,7 @@ public class Animation {
     public float speed;
     public float time;
     public float duration;
-    private ArrayList<ImageFrame> images;
+    private ArrayList<ArrayList<ImageFrame>> images;
     private float xOffset;
     private float yOffset;
     private float xStart, yStart;
@@ -19,13 +19,17 @@ public class Animation {
 
     private GameObject obj;
 
-    public Animation(float duration, float xOffset, float yOffset, ImageFrame ... images){
+    public Animation(float duration, float xOffset, float yOffset, ArrayList < ImageFrame > ... imgs){
         this.xOffset = xOffset;
         this.yOffset = yOffset;
         this.duration = duration;
         this.images = new ArrayList<>();
-        for(ImageFrame frame : images){
-            this.images.add(frame);
+        for(ArrayList < ImageFrame > list : imgs){
+            ArrayList<ImageFrame> temp = new ArrayList<>();
+            for(ImageFrame frame : list ){
+                temp.add(frame);
+            }
+            images.add(temp);
         }
     }
 
@@ -53,16 +57,23 @@ public class Animation {
             obj.yPos = yStart + yOffset;
             obj.xPos = xStart + xOffset;
 
-            if(images.size() > 0)
-                obj.img = images.get(images.size()-1);
-
+            if(images.size() > 0) {
+                obj.images.clear();
+                for(ArrayList<ImageFrame> list: images){
+                    obj.images.add(list.get(list.size()-1));
+                }
+            }
             Stop();
         }else{
             obj.xPos = xStart  + (time/duration * xOffset);
             obj.yPos = yStart  + (time/duration * yOffset);
 
-            if(images.size() > 0)
-                obj.img = images.get( (int)(time/duration * images.size()));
+            if(images.size() > 0){
+                obj.images.clear();
+                for(ArrayList<ImageFrame> list: images){
+                    obj.images.add(list.get((int)(time/duration * list.size())));
+                }
+            }
         }
     }
 }
