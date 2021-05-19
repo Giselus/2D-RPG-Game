@@ -6,6 +6,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -122,10 +123,30 @@ public class ControllerCharacter extends Updatable {
     }
     @FXML protected void startGame(ActionEvent e){
         name=idName.getText();
-        new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
-                imgShirt,imgHair,0,0,3);
-        Main.setScene("/resources/fxml/mainGameScene.fxml");
-        this.setActive(false);
+        if(name!="" && skillPoint==0){
+
+            new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
+                    imgShirt,imgHair,0,0,3);
+            Main.setScene("/resources/fxml/mainGameScene.fxml");
+            this.setActive(false);
+        }else{
+            Alert alertWrongInfo = new Alert(Alert.AlertType.INFORMATION);
+            alertWrongInfo.setTitle("Something is wrong!");
+            alertWrongInfo.setHeaderText("Something is wrong!");
+            //alert.setHeaderText("Look, an Information Dialog");
+            if(skillPoint!=0 && name!=""){
+                alertWrongInfo.setContentText("No skills");
+                alertWrongInfo.showAndWait();
+            }
+            else if(skillPoint==0 && name==""){
+                alertWrongInfo.setContentText("No name");
+                alertWrongInfo.showAndWait();
+            }
+            else{
+                alertWrongInfo.setContentText("No name and skills");
+                alertWrongInfo.showAndWait();
+            }
+        }
     }
     float frame=0;
     @Override
