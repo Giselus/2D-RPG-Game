@@ -13,7 +13,7 @@
         <ImageView fitHeight="720.0" fitWidth="1280.0">
             <Image url="@../textures/bg3.png" />
         </ImageView>
-        <TextField layoutX="15.0" layoutY="63.0" prefHeight="40.0" prefWidth="217.0" />
+        <TextField fx:id="idName" layoutX="15.0" layoutY="63.0" prefHeight="40.0" prefWidth="217.0" />
         <Text layoutX="26.0" layoutY="44.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: bold;" text="Character name:" textAlignment="CENTER" wrappingWidth="175.0">
             <font>
                 <Font name="Apple Chancery" size="21.0" />
@@ -29,7 +29,7 @@
                 <Font name="Apple Chancery" size="25.0" />
             </font>
         </Text>
-        <Button layoutX="582.0" layoutY="459.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="88.0" text="Start" />
+        <Button layoutX="582.0" layoutY="459.0" mnemonicParsing="false" onAction="#startGame" prefHeight="49.0" prefWidth="88.0" text="Start" />
         <Button fx:id="abc" layoutX="136.0" layoutY="139.0" mnemonicParsing="false" onAction="#addPointAttack" prefHeight="33.0" prefWidth="31.0" text="+" />
         <Button layoutX="172.0" layoutY="138.0" mnemonicParsing="false" onAction="#subPointAttack" prefHeight="33.0" prefWidth="31.0" text="-" />
         <Text layoutX="40.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack">

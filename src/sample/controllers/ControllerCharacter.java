@@ -13,15 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Main;
-import sample.MainCharacter;
 
 import java.io.IOException;
-import java.lang.reflect.AnnotatedArrayType;
 import java.util.Objects;
 import java.util.Random;
 
 public class ControllerCharacter {
-    String name;
     int attack=0;
     int defense=0;
     int skillPoint=10;
@@ -42,6 +39,7 @@ public class ControllerCharacter {
     ImageView imageViewShirt;
     Image imgPants;
     ImageView imageViewPants;
+    String name;
     //----
     //image:
 //    Image img=new Image(String.valueOf(getClass().getResource("/resources/textures/character/skin/skin"+skinId+".png")));
@@ -121,9 +119,11 @@ public class ControllerCharacter {
         }
     }
     @FXML protected void startGame(ActionEvent e){
-        MainCharacter character=new MainCharacter(name,attack,defense,luck,agility,skinId,pantsId,
-                shirtId,hairId);
-        //save to file
+        name=idName.getText();
+        Main.setScene("/resources/fxml/mainGameScene.fxml");
+
+//        new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
+//                imgShirt,imgHair,0,0,3);
     }
     float frame=0;
     public void move(float deltaTime){

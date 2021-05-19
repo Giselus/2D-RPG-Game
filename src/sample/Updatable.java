@@ -1,7 +1,5 @@
 package sample;
 
-import sample.controllers.mainGameController;
-
 import java.util.ArrayList;
 
 public class Updatable {

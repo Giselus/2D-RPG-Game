@@ -9,24 +9,32 @@ import javafx.stage.Stage;
 import sample.controllers.ControllerCharacter;
 
 public class Main extends Application {
+    static Stage mainStage;
     public static ControllerCharacter controller;
     public static void main(String[] args){
         Application.launch(args);
     }
+    public static void setScene(String tmp){
+        try {
+            FXMLLoader loader=new FXMLLoader();
+            loader.setLocation(Main.class.getResource(tmp));
+            Parent root= loader.load();
+            Scene scene = new Scene(root);
+            //String css=this.getClass().getResource("style_menu.css").toExternalForm();
+            mainStage.setScene(scene);
+            //scene.getStylesheets().add(css);
+            mainStage.show();
+            KeyPolling.pollScene(scene);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
     @Override
     public void start(Stage stage) throws Exception {
-
+        mainStage=stage;
         stage.setResizable(false);
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("/resources/fxml/sceneMenu.fxml"));
-        Parent root= loader.load();
-        Scene scene = new Scene(root);
-        //String css=this.getClass().getResource("style_menu.css").toExternalForm();
-        stage.setScene(scene);
-        //scene.getStylesheets().add(css);
-        stage.show();
-        KeyPolling.pollScene(scene);
-
+        setScene("/resources/fxml/sceneMenu.fxml");
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -41,8 +49,8 @@ public class Main extends Application {
 
     private void tick(float deltaTime){
         //Input -> logic -> rendering
-        if(controller!=null){
-            controller.move(deltaTime);
+        for(Updatable obj: Updatable.updatableList){
+            obj.Update(deltaTime);
         }
     }
 }

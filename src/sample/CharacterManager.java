@@ -1,20 +1,43 @@
 package sample;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 public class CharacterManager extends GameObject{
 
     public static CharacterManager instance;
     int x, y;
+    String name;
+    int attack;
+    int defense;
+    int luck;
+    int agility;
+    int hp;
+    Image skin;
+    Image legs;
+    Image body;
+    Image hair;
     public CharacterManager(){
         instance = this;
     }
 
-    public CharacterManager(int xPos, int yPos, int zPos, ImageFrame ... img){
+    public CharacterManager(String name,int attack,int defense,int luck,
+            int agility,int hp,Image skin,Image legs,Image body,Image hair,
+                            int xPos, int yPos, int zPos, ImageFrame ... img){
         super(xPos * 32,yPos * 32,zPos,img);
         x = xPos;
         y = yPos;
         instance = this;
+        this.name=name;
+        this.attack=attack;
+        this.defense=defense;
+        this.luck=luck;
+        this.agility=agility;
+        this.hp=hp;
+        this.skin=skin;
+        this.legs=legs;
+        this.body=body;
+        this.hair=hair;
     }
 
     @Override

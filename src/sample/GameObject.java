@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import sample.controllers.mainGameController;
 
 import java.util.ArrayList;
