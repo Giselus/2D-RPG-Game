@@ -12,13 +12,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.CharacterManager;
 import sample.Main;
+import sample.Updatable;
 
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class ControllerCharacter {
+public class ControllerCharacter extends Updatable {
     int attack=0;
     int defense=0;
     int skillPoint=10;
@@ -120,13 +122,14 @@ public class ControllerCharacter {
     }
     @FXML protected void startGame(ActionEvent e){
         name=idName.getText();
+        new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
+                imgShirt,imgHair,0,0,3);
         Main.setScene("/resources/fxml/mainGameScene.fxml");
-
-//        new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
-//                imgShirt,imgHair,0,0,3);
+        this.setActive(false);
     }
     float frame=0;
-    public void move(float deltaTime){
+    @Override
+    public void Update(float deltaTime){
         deleteSkin();
         deletePants();
         deleteHair();

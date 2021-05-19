@@ -23,8 +23,14 @@ public class CharacterManager extends GameObject{
 
     public CharacterManager(String name,int attack,int defense,int luck,
             int agility,int hp,Image skin,Image legs,Image body,Image hair,
-                            int xPos, int yPos, int zPos, ImageFrame ... img){
-        super(xPos * 32,yPos * 32,zPos,img);
+                            int xPos, int yPos, int zPos){
+        super(xPos * 32,yPos * 32,zPos,new ImageFrame(skin,0,640,64,64),
+                new ImageFrame(legs,0,640,64,64),
+                new ImageFrame(body,0,640,64,64),
+                new ImageFrame(hair,0,640,64,64));
+        if(skin == null){
+            System.out.println("PROBLEM");
+        }
         x = xPos;
         y = yPos;
         instance = this;
@@ -42,11 +48,17 @@ public class CharacterManager extends GameObject{
 
     @Override
     public void Update(float deltaTime){
-
         super.Update(deltaTime);
         Camera.instance.setPosition(xPos-Camera.instance.getWidth()/2,yPos-Camera.instance.getHeight()/2);
         if(animation == null || !animation.isRunning()) {
             Map map = mapHandler.getCurrentMap();
+
+            if(KeyPolling.isDown(KeyCode.I)){
+                Main.setScene("/resources/fxml/sceneInventory.fxml");
+                Updatable.updatableList.clear();
+                return;
+            }
+
             if (KeyPolling.isDown(KeyCode.A)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x-1,y)) {
                     animation = new Animation(0.25f, -32, 0);

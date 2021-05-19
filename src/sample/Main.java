@@ -20,13 +20,11 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource(tmp));
             Parent root= loader.load();
             Scene scene = new Scene(root);
-            //String css=this.getClass().getResource("style_menu.css").toExternalForm();
             mainStage.setScene(scene);
-            //scene.getStylesheets().add(css);
             mainStage.show();
             KeyPolling.pollScene(scene);
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
 
     }

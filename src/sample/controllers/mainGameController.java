@@ -58,7 +58,7 @@ public class mainGameController {
         gc.drawImage(frame.img,frame.left,frame.down,frame.xSize,frame.ySize,
                 xPos - Camera.instance.getX(),
                 yPos - Camera.instance.getY(),
-                frame.xSize,frame.ySize);
+                32,32);
     }
 
     public void drawCross(int x, int y){
