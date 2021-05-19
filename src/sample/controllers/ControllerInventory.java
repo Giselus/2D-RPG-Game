@@ -9,11 +9,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import sample.CharacterManager;
 import sample.Items;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
+
 public class ControllerInventory {
+
     @FXML
     private final int inventoryWidth = 4;
     private final int inventoryHeight = 4;
@@ -43,35 +47,71 @@ public class ControllerInventory {
     @FXML public Button trinket1Button;
     @FXML public Button trinket2Button;
 
-    private final Button[][] buttonInv = new Button[inventoryWidth][inventoryHeight];
-    private final Items[][] itemView = new Items[inventoryWidth][inventoryHeight];
-    @FXML private final Button[] buttonWear = new Button[sizeOfCloths];
-    @FXML private final Items[] equipment = new Items[sizeOfCloths];
+    private final ArrayList<ArrayList<Button>> buttonInventory = new ArrayList<>(inventoryWidth);
+    private final ArrayList<ArrayList<Items>> itemsView = new ArrayList<>(inventoryWidth);
+    @FXML private final ArrayList<Button> buttonEquipment = new ArrayList<>(sizeOfCloths);
+    @FXML private final ArrayList<Items> equipmentView = new ArrayList<>(sizeOfCloths);
 
     private static final TemporaryChosenContainer tmp = new TemporaryChosenContainer();
 
-    public void fillItemView(){
+    @FXML public void initialize(){
+        if(CharacterManager.instance == null){
+            new CharacterManager();
+        }
+        for(int i=0; i<inventoryWidth; i++){
+            ArrayList<Button> buttonToAdd = new ArrayList<>();
+            for(int j=0; j<inventoryHeight; j++){
+                buttonToAdd.add(new Button());
+            }
+            buttonInventory.add(buttonToAdd);
+            ArrayList<Items> itemsToAdd = new ArrayList<>();
+            for(int j=0; j<4; j++){
+                itemsToAdd.add(new Items(0, 0));
+            }
+            itemsView.add(itemsToAdd);
+        }
+        for(int i=0; i< sizeOfCloths; i++){
+            buttonEquipment.add(new Button());
+            equipmentView.add(new Items(0, 0));
+        }
+        ArrayList<Items> tmp = CharacterManager.instance.inventory.getAllItems();
+        for(int i=0; i<inventoryWidth; i++){
+            for(int j=0; j<inventoryHeight; j++){
+                itemsView.get(i).set(j, tmp.get(3*i + j));
+            }
+        }
+        tmp = CharacterManager.instance.inventory.getEquippedItemsList();
+        for(int i=0; i<7; i++){
+            equipmentView.set(i, tmp.get(i));
+        }
         getButtonInv();
+        updateButtons();
+    }
+
+    public void beforeExiting(){
+        CharacterManager.instance.inventory.setAllEquippedItems(equipmentView);
+        CharacterManager.instance.inventory.setAllItemsList(itemsView);
+    }
+    public void fillItemView(){
         for(int i=0; i<inventoryHeight; i++){
             for(int j=0; j<inventoryWidth; j++){
                 int k = ThreadLocalRandom.current().nextInt(0, 8);
                 int l = ThreadLocalRandom.current().nextInt(0, 3);
-                itemView[i][j] = new Items(k, l);
+                itemsView.get(i).set(j, new Items(k, l));
             }
         }
         for(int i=0; i<sizeOfCloths; i++){
-            equipment[i] = new Items(0, 0);
+            equipmentView.set(i, new Items(0, 0));
         }
-        updateButtons();
     }
     void updateButtons(){
         for(int i=0; i<inventoryWidth; i++){
             for(int j=0; j<inventoryHeight; j++){
-                setGraphicButton(buttonInv[i][j], itemView[i][j]);
+                setGraphicButton(buttonInventory.get(i).get(j), itemsView.get(i).get(j));
             }
         }
         for(int i=0; i<sizeOfCloths; i++){
-            setGraphicButton(buttonWear[i], equipment[i]);
+            setGraphicButton(buttonEquipment.get(i), equipmentView.get(i));
         }
         setGraphicButton(chosenButton, tmp.item);
     }
@@ -170,34 +210,35 @@ public class ControllerInventory {
         updateButtons();
     }
     private void swapToWear(int x){
-        if(equipment[x].myType == Items.type.EMPTY){
-            itemView[tmp.cordX][tmp.cordY] = new Items(0, 0);
-            equipment[x] = tmp.item;
+        if(equipmentView.get(x).myType == Items.type.EMPTY){
+            itemsView.get(tmp.cordX).set(tmp.cordY, new Items(0, 0));
+            CharacterManager.instance.inventory.equipItem();
+            equipmentView.set(x, tmp.item);
         } else {
-            Items swap = equipment[x];
-            equipment[x] = tmp.item;
-            itemView[tmp.cordX][tmp.cordY] = swap;
+            Items swap = equipmentView.get(x);
+            equipmentView.set(x, tmp.item);
+            itemsView.get(tmp.cordX).set(tmp.cordY, swap);
         }
         clearHolder();
     }
     private void checkButtonsProperties(int x, int y){
         if(!tmp.hasItems){
-            if(itemView[x][y].myType != Items.type.EMPTY){
+            if(itemsView.get(x).get(y).myType != Items.type.EMPTY){
                 tmp.cordX = x;
                 tmp.cordY = y;
-                tmp.item = itemView[x][y];
+                tmp.item = itemsView.get(x).get(y);
                 tmp.hasItems = true;
             }
             updateButtons();
             return;
         }
-        if (itemView[x][y].myType != Items.type.EMPTY) {
-            itemView[tmp.cordX][tmp.cordY] = itemView[x][y];
+        if (itemsView.get(x).get(y).myType != Items.type.EMPTY) {
+            itemsView.get(tmp.cordX).set(tmp.cordY, itemsView.get(x).get(y));
         }
         else{
-            itemView[tmp.cordX][tmp.cordY] = new Items(0, 0);
+            itemsView.get(tmp.cordX).set(tmp.cordY, new Items(0, 0));
         }
-        itemView[x][y] = tmp.item;
+        itemsView.get(x).set(y, tmp.item);
         clearHolder();
         updateButtons();
     }
@@ -212,30 +253,30 @@ public class ControllerInventory {
         }
     }
     public void getButtonInv(){
-        buttonInv[0][0] = aa;
-        buttonInv[0][1] = ab;
-        buttonInv[0][2] = ac;
-        buttonInv[0][3] = ad;
-        buttonInv[1][0] = ba;
-        buttonInv[1][1] = bb;
-        buttonInv[1][2] = bc;
-        buttonInv[1][3] = bd;
-        buttonInv[2][0] = ca;
-        buttonInv[2][1] = cb;
-        buttonInv[2][2] = cc;
-        buttonInv[2][3] = cd;
-        buttonInv[3][0] = da;
-        buttonInv[3][1] = db;
-        buttonInv[3][2] = dc;
-        buttonInv[3][3] = dd;
+        buttonInventory.get(0).set(0, aa);
+        buttonInventory.get(0).set(1, ab);
+        buttonInventory.get(0).set(2, ac);
+        buttonInventory.get(0).set(3, ad);
+        buttonInventory.get(1).set(0, ba);
+        buttonInventory.get(1).set(1, bb);
+        buttonInventory.get(1).set(2, bc);
+        buttonInventory.get(1).set(3, bd);
+        buttonInventory.get(2).set(0, ca);
+        buttonInventory.get(2).set(1, cb);
+        buttonInventory.get(2).set(2, cc);
+        buttonInventory.get(2).set(3, cd);
+        buttonInventory.get(3).set(0, da);
+        buttonInventory.get(3).set(1, db);
+        buttonInventory.get(3).set(2, dc);
+        buttonInventory.get(3).set(3, dd);
 
-        buttonWear[0] = bootsButton;
-        buttonWear[1] = armorButton;
-        buttonWear[2] = helmetButton;
-        buttonWear[3] = weapon1Button;
-        buttonWear[4] = weapon2Button;
-        buttonWear[5] = trinket1Button;
-        buttonWear[6] = trinket2Button;
+        buttonEquipment.set(0, bootsButton);
+        buttonEquipment.set(1, armorButton);
+        buttonEquipment.set(2, helmetButton);
+        buttonEquipment.set(3, weapon1Button);
+        buttonEquipment.set(4, weapon2Button);
+        buttonEquipment.set(5, trinket1Button);
+        buttonEquipment.set(6, trinket2Button);
     }
 
     public void switchToSceneMenu(ActionEvent event) throws IOException {
@@ -295,4 +336,5 @@ public class ControllerInventory {
     public void pickItemDD(){
         checkButtonsProperties(3, 3);
     }
+
 }

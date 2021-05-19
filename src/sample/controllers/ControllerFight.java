@@ -22,21 +22,20 @@ public class ControllerFight {
     int enemyMaxHP = 100;
     int attack = 10;
 
-    @FXML
-    public Button useSkill;
-    public Button chosenSkill;
-    public TextArea skillDesc;
-    public Text mobHP;
-    public Text heroHP;
-    public Rectangle hpBarEnemy;
-    public Rectangle hpBarFillEnemy;
-    public Rectangle hpBar;
-    public Rectangle hpBarFill;
-    public Button skillOne;
-    public TextArea fightHistory;
-    public Button skillTwo;
-    public Button skillThree;
-    public Button skillFour;
+    @FXML public Button useSkill;
+    @FXML public Button chosenSkill;
+    @FXML public TextArea skillDesc;
+    @FXML public Text mobHP;
+    @FXML public Text heroHP;
+    @FXML public Rectangle hpBarEnemy;
+    @FXML public Rectangle hpBarFillEnemy;
+    @FXML public Rectangle hpBar;
+    @FXML public Rectangle hpBarFill;
+    @FXML public Button skillOne;
+    @FXML public TextArea fightHistory;
+    @FXML public Button skillTwo;
+    @FXML public Button skillThree;
+    @FXML public Button skillFour;
 
     public Skills skill1 = new Skills(1, 0);
     public Skills skill2 = new Skills(2, 0);
@@ -53,6 +52,7 @@ public class ControllerFight {
         } else if(s.getMyType() == Skills.skillType.BUFF){
             buffSkill(s);
         }
+        tmpSkill = null;
     }
     void takeSkill(Skills s){
         skillDesc.setText("");
@@ -61,7 +61,7 @@ public class ControllerFight {
     }
     void offensiveSkill(Skills s){
         int countDamage = (int) (s.getDamage()+attack*s.getModifier());
-        int littleRandomness = ThreadLocalRandom.current().nextInt(-countDamage/10, countDamage/10);
+        int littleRandomness = ThreadLocalRandom.current().nextInt(-countDamage/10, countDamage/10+1);
         countDamage += littleRandomness;
         fightHistory.appendText(damageToString(s, countDamage));
         if(checkEnemyHP(countDamage)){
@@ -73,7 +73,7 @@ public class ControllerFight {
         }
     }
     void buffSkill(Skills s){
-        attack += 10;
+        attack += s.getPlusAttack();
         fightHistory.appendText(buffsToString(s));
     }
     void healSkill(Skills s){
@@ -98,13 +98,13 @@ public class ControllerFight {
     String showEnemyHp(){
         return "Your enemy has " + enemyHP + " HP left.\n";
     }
-
     String showPlayerHp(){
         return "You have " + playerHP + " HP left.\n";
     }
     String winningMessage(){
         return "You won! Your enemy is dead.\n";
     }
+
     boolean checkEnemyHP(int dmg){
         enemyHP -= dmg;
         mobHP.setText(enemyHP+"/"+enemyMaxHP);
@@ -121,6 +121,7 @@ public class ControllerFight {
     String enemyAttack(){
         return "Enemy uses fireball and deals 25 damage.\n";
     }
+
     void endBattle(){
         skillOne.setDisable(true);
         skillTwo.setDisable(true);
@@ -146,14 +147,16 @@ public class ControllerFight {
             return;
         }
         actionDependsOnSkillType(tmpSkill);
-        endRound();
+        if(!endOfFight){
+            endRound();
+        }
         skillDesc.setText("");
     }
     public void endRound() {
         fightHistory.appendText("\n");
         fightHistory.appendText("Round " + roundCounter + " - Enemy turn\n");
         fightHistory.appendText(enemyAttack());
-        if(checkPlayerHP(25)){
+        if(checkPlayerHP(25+ ThreadLocalRandom.current().nextInt(-5, 6))){
             fightHistory.appendText(showPlayerHp());
         } else{
             fightHistory.appendText("You lost!\n");

@@ -17,6 +17,7 @@ public class CharacterManager extends GameObject{
     Image legs;
     Image body;
     Image hair;
+    public Inventory inventory;
     public CharacterManager(){
         instance = this;
     }
@@ -44,6 +45,13 @@ public class CharacterManager extends GameObject{
         this.legs=legs;
         this.body=body;
         this.hair=hair;
+
+        inventory = new Inventory();
+
+        //three testing lines
+        inventory.addItem(new Items(1,1));
+        inventory.addItem(new Items(2,2));
+        inventory.addItem(new Items(3,2));
     }
 
     @Override

@@ -90,15 +90,15 @@ public class Skills {
     public void setModifier(float modifier) {
         this.modifier = modifier;
     }
-
     public int getId() {
         return id;
     }
-
     public skillType getMyType(){
         return myType;
     }
-
+    public int getPlusAttack(){
+        return plusAttack;
+    }
     public int getDamage(){
         return damage;
     }

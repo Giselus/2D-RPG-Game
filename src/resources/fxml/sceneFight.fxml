@@ -18,7 +18,7 @@
          <font>
             <Font size="20.0" />
          </font></TextArea>
-      <Button fx:id="skillOne" layoutX="63.0" layoutY="221.0" mnemonicParsing="false" onAction="#one" prefHeight="65.0" prefWidth="63.0" text="1" />
+      <Button fx:id="skillOne" layoutX="63.0" layoutY="221.0" mnemonicParsing="false" onAction="#one" prefHeight="48.0" prefWidth="48.0" text="1" />
       <Button fx:id="skillTwo" layoutX="126.0" layoutY="221.0" mnemonicParsing="false" onAction="#two" prefHeight="65.0" prefWidth="63.0" text="2" />
       <Button fx:id="skillThree" layoutX="63.0" layoutY="284.0" mnemonicParsing="false" onAction="#three" prefHeight="65.0" prefWidth="63.0" text="3" />
       <Button fx:id="skillFour" layoutX="126.0" layoutY="284.0" mnemonicParsing="false" onAction="#four" prefHeight="65.0" prefWidth="63.0" text="4" />
