@@ -18,6 +18,7 @@ import sample.MainCharacter;
 import java.io.IOException;
 import java.lang.reflect.AnnotatedArrayType;
 import java.util.Objects;
+import java.util.Random;
 
 public class ControllerCharacter {
     String name;
@@ -29,11 +30,18 @@ public class ControllerCharacter {
     //look variable
     boolean flagToDelete=false;
     int skinId=1;
-    int hairId=1;
+    int hairId=0;
+    int shirtId=0;
+    int pantsId=0;
+    float epsilonHair=0;
     Image imgSkin;
     ImageView imageViewSkin;
     Image imgHair;
     ImageView imageViewHair;
+    Image imgShirt;
+    ImageView imageViewShirt;
+    Image imgPants;
+    ImageView imageViewPants;
     //----
     //image:
 //    Image img=new Image(String.valueOf(getClass().getResource("/resources/textures/character/skin/skin"+skinId+".png")));
@@ -113,25 +121,34 @@ public class ControllerCharacter {
         }
     }
     @FXML protected void startGame(ActionEvent e){
-        MainCharacter character=new MainCharacter(name,attack,defense,luck,agility);
+        MainCharacter character=new MainCharacter(name,attack,defense,luck,agility,skinId,pantsId,
+                shirtId,hairId);
         //save to file
     }
     float frame=0;
     public void move(float deltaTime){
         deleteSkin();
+        deletePants();
+        deleteHair();
+        deleteShirt();
         startSkin(((int)(frame*10))%9);
-        //startHair();
+        startHair(((int)(frame*10))%9);
+        startPants(((int)(frame*10))%9);
+        startShirt(((int)(frame*10))%9);
         frame+=deltaTime;
     }
     //look function:
+    //body
     @FXML protected void leftSkin(ActionEvent e){
-        if(skinId>1){
-            skinId--;
+        skinId--;
+        if(skinId==0){
+            skinId=7;
         }
     }
     @FXML protected void rightSkin(ActionEvent e){
-        if(skinId<7){
-            skinId++;
+        skinId++;
+        if(skinId%7==1){
+            skinId=1;
         }
         //startHair();
     }
@@ -141,7 +158,7 @@ public class ControllerCharacter {
     }
     public void startSkin(int x){
         //image:
-         imgSkin=new Image(String.valueOf(getClass().getResource("/resources/textures/character/skin/skin"+skinId+".png")));
+        imgSkin=new Image(String.valueOf(getClass().getResource("/resources/textures/character/skin/skin"+skinId+".png")));
         imageViewSkin=new ImageView(imgSkin);
         imageViewSkin.setViewport(new Rectangle2D(x*64,64*10,64,64));
         //--
@@ -152,35 +169,111 @@ public class ControllerCharacter {
         imageView.setY(97);
         idAnchorPane.getChildren().add(imageView);
     }
+    //hair:
     @FXML protected void leftHair(ActionEvent e){
-        if(hairId>0){
-            hairId--;
-        }
-        if(hairId==0){
-            //usuwanie wlosow
+        hairId--;
+        if(hairId==-1){
+            hairId=24;
         }
     }
     @FXML protected void rightHair(ActionEvent e){
-        if(hairId<10){
-            hairId++;
+        hairId++;
+        if(hairId==25){
+            hairId=0;
         }
+
     }
-    public void startHair(){
-        imgHair=new Image(String.valueOf(getClass().getResource("/resources/textures/character/hair/hair1.png")));
+    public void deleteHair(){
+        idAnchorPane.getChildren().remove(imageViewHair);
+        idAnchorPane.getChildren().remove(imageViewHair);
+    }
+    public void startHair(int x){
+        imgHair=new Image(String.valueOf(getClass().getResource("/resources/textures/character/hair/hair"+hairId+".png")));
         imageViewHair=new ImageView(imgHair);
+        imageViewHair.setViewport(new Rectangle2D(x*64,64*10,64,64));
         addHair(imageViewHair);
     }
     public void addHair(ImageView imageView){
-        imageView.setX(795);
-        imageView.setY(98);
+        imageView.setX(625.5);
+        imageView.setY(96.5);
         idAnchorPane.getChildren().add(imageView);
+    }
+    //t-shirt
+    @FXML protected void leftShirt(ActionEvent e){
+        shirtId--;
+        if(shirtId==-1){
+            shirtId=7;
+        }
+        //System.out.println(shirtId);
+    }
+    @FXML protected void rightShirt(ActionEvent e){
+        shirtId++;
+        if(shirtId==8){
+            shirtId=0;
+        }
+    }
+    public void deleteShirt(){
+        idAnchorPane.getChildren().remove(imageViewShirt);
+        idAnchorPane.getChildren().remove(imageViewShirt);
+    }
+    public void startShirt(int x){
+        imgShirt=new Image(String.valueOf(getClass().getResource("/resources/textures/character/t-shirt/t-shirt"+shirtId+".png")));
+        imageViewShirt=new ImageView(imgShirt);
+        imageViewShirt.setViewport(new Rectangle2D(x*64,64*10,64,64));
+        addHair(imageViewShirt);
+    }
+    public void addShirt(ImageView imageView){
+        imageView.setX(625.5);
+        imageView.setY(96.5);
+        idAnchorPane.getChildren().add(imageView);
+    }
+    //pants:
+    @FXML protected void leftPants(ActionEvent e){
+        pantsId--;
+        if(pantsId==-1){
+            pantsId=5;
+        }
+    }
+    @FXML protected void rightPants(ActionEvent e){
+        pantsId++;
+        if(pantsId==6){
+            pantsId=0;
+        }
+
+    }
+    public void deletePants(){
+        idAnchorPane.getChildren().remove(imageViewPants);
+        idAnchorPane.getChildren().remove(imageViewPants);
+    }
+    public void startPants(int x){
+        imgPants=new Image(String.valueOf(getClass().getResource("/resources/textures/character/pants/pants"+pantsId+".png")));
+        imageViewPants=new ImageView(imgPants);
+        imageViewPants.setViewport(new Rectangle2D(x*64,64*10,64,64));
+        addHair(imageViewPants);
+    }
+    public void addPants(ImageView imageView){
+        imageView.setX(625.5);
+        imageView.setY(96.5);
+        idAnchorPane.getChildren().add(imageView);
+    }
+    //random
+    @FXML protected void randomCharacter(ActionEvent e){
+        Random random = new Random();
+        skinId=random.nextInt(7)+1;
+        hairId=random.nextInt(26);
+        shirtId=random.nextInt(8);
+        pantsId=random.nextInt(6);
+        //System.out.println(skinId+" "+hairId+" "+shirtId+" "+pantsId);
+        //pantsId=random.nextInt(8);
     }
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
                 .getResource("/resources/fxml/sceneMenu.fxml")));
+        String css=this.getClass().getResource("style.css").toExternalForm();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        scene.getStylesheets().add(css);
         Main.controller = null;
         stage.show();
     }

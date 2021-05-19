@@ -29,7 +29,7 @@
                 <Font name="Apple Chancery" size="25.0" />
             </font>
         </Text>
-        <Button layoutX="581.0" layoutY="443.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="88.0" text="Start" />
+        <Button layoutX="582.0" layoutY="459.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="88.0" text="Start" />
         <Button fx:id="abc" layoutX="136.0" layoutY="139.0" mnemonicParsing="false" onAction="#addPointAttack" prefHeight="33.0" prefWidth="31.0" text="+" />
         <Button layoutX="172.0" layoutY="138.0" mnemonicParsing="false" onAction="#subPointAttack" prefHeight="33.0" prefWidth="31.0" text="-" />
         <Text layoutX="40.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack">
@@ -72,10 +72,32 @@
         <Button layoutX="172.0" layoutY="293.0" mnemonicParsing="false" onAction="#subPointLuck" prefHeight="33.0" prefWidth="31.0" text="-" />
       <Button layoutX="592.0" layoutY="208.0" mnemonicParsing="false" onAction="#leftSkin" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
       <Button layoutX="669.0" layoutY="208.0" mnemonicParsing="false" onAction="#rightSkin" prefHeight="40.0" prefWidth="67.0" text="Right" />
-      <Text layoutX="536.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skin" wrappingWidth="66.98876953125">
+      <Text layoutX="536.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skin" wrappingWidth="66.98876953125">
          <font>
             <Font name="Apple Chancery" size="20.0" />
          </font></Text>
-      <Button fx:id="returnMenu" layoutX="672.0" layoutY="443.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="49.0" prefWidth="88.0" text="Menu" />
+      <Button fx:id="returnMenu" layoutX="670.0" layoutY="459.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="49.0" prefWidth="88.0" text="Menu" />
+      <Text layoutX="536.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hair" wrappingWidth="66.98876953125">
+         <font>
+            <Font name="Apple Chancery" size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="592.0" layoutY="257.0" mnemonicParsing="false" onAction="#leftHair" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
+      <Button layoutX="669.0" layoutY="255.0" mnemonicParsing="false" onAction="#rightHair" prefHeight="40.0" prefWidth="67.0" text="Right" />
+      <Text layoutX="525.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T-shirt" wrappingWidth="66.98876953125">
+         <font>
+            <Font name="Apple Chancery" size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="592.0" layoutY="306.0" mnemonicParsing="false" onAction="#leftHair" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
+      <Button layoutX="669.0" layoutY="306.0" mnemonicParsing="false" onAction="#rightHair" prefHeight="40.0" prefWidth="67.0" text="Right" />
+      <Text layoutX="525.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pants" wrappingWidth="66.98876953125">
+         <font>
+            <Font name="Apple Chancery" size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="592.0" layoutY="353.0" mnemonicParsing="false" onAction="#leftPants" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
+      <Button layoutX="669.0" layoutY="353.0" mnemonicParsing="false" onAction="#rightPants" prefHeight="40.0" prefWidth="67.0" text="Right" />
+      <Button layoutX="764.0" layoutY="284.0" mnemonicParsing="false" onAction="#randomCharacter" prefHeight="49.0" prefWidth="102.0" styleClass="click" text="Random" />
     </children>
 </AnchorPane>
