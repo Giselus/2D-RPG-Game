@@ -89,8 +89,8 @@
             <Font name="Apple Chancery" size="20.0" />
          </font>
       </Text>
-      <Button layoutX="592.0" layoutY="306.0" mnemonicParsing="false" onAction="#leftHair" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
-      <Button layoutX="669.0" layoutY="306.0" mnemonicParsing="false" onAction="#rightHair" prefHeight="40.0" prefWidth="67.0" text="Right" />
+      <Button layoutX="592.0" layoutY="306.0" mnemonicParsing="false" onAction="#leftShirt" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
+      <Button layoutX="669.0" layoutY="306.0" mnemonicParsing="false" onAction="#rightShirt" prefHeight="40.0" prefWidth="67.0" text="Right" />
       <Text layoutX="525.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pants" wrappingWidth="66.98876953125">
          <font>
             <Font name="Apple Chancery" size="20.0" />
