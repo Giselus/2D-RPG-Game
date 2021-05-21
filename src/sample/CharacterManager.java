@@ -19,8 +19,15 @@ public class CharacterManager extends GameObject{
     public Image legs;
     public Image body;
     public Image hair;
-    public PlayerInventory inventory;
+    public Image helmet;
+    public Image armor;
+    public Image boots;
+    public InventoryPlayer inventory;
     public ArrayList<Skills> skills;
+    public boolean hasHelmet;
+    public boolean hasArmor;
+    public boolean hasBoots;
+
     public CharacterManager(){
         instance = this;
     }
@@ -49,11 +56,15 @@ public class CharacterManager extends GameObject{
         this.body=body;
         this.hair=hair;
 
-        inventory = new PlayerInventory(4, 4);
+        inventory = new InventoryPlayer(4, 4);
         skills = new ArrayList<>(4);
+        hasArmor = false;
+        hasHelmet = false;
+        hasBoots = false;
+
         //eight testing lines, this functions are essential for testing inventory and battle
         inventory.addItem(new Items(1,1));
-        inventory.addItem(new Items(2,2));
+        inventory.addItem(new Items(2,0));
         inventory.addItem(new Items(3,2));
         inventory.addItem(new Items(4,0));
         inventory.addItem(new Items(1,0));

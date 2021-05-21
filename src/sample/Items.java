@@ -1,5 +1,11 @@
 package sample;
 
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.util.Objects;
+
 public class Items {
     public int id;
     public type myType;
@@ -36,6 +42,16 @@ public class Items {
 
     public String getPath(){
         return "/resources/textures/Items/" + myType.toString() + id + ".png";
+    }
+
+    public ImageView getImageView(){
+        String path = getPath();
+        Image image = new Image((Objects.requireNonNull(getClass().getResource(path))).toString());
+        ImageView imageView = new ImageView(image);
+        if(myType == type.ARMOR || myType == type.BOOTS || myType == type.HELMET){
+            imageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        }
+        return imageView;
     }
     public class itemStatistic{
         int attack;

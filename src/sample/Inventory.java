@@ -54,4 +54,63 @@ public class Inventory {
             }
         }
     }
+    public void setItem(Items items, int x, int y){
+        itemsList.set(invSizeX*x + y, items);
+    }
+    public Items getItem(int x, int y){
+        return itemsList.get(invSizeX*x + y);
+    }
+    public static void swapItemsBetweenInventories(Inventory firstInv, Inventory secondInv, int x1, int y1, int x2, int y2){
+        Items itemsOne = firstInv.getItem(x1, y1);
+        Items itemsTwo = secondInv.getItem(x2, y2);
+        firstInv.setItem(itemsTwo, x1, y1);
+        secondInv.setItem(itemsOne, x2, y2);
+    }
+
+    public static void checkSlotProperties(int x, int y, ArrayList<ArrayList<Items>> itemsView, TemporaryChosenContainer temporaryChosen){
+        if(!temporaryChosen.hasItems){
+            if(itemsView.get(x).get(y).myType != Items.type.EMPTY){
+                temporaryChosen.pickEquipment(x, y, itemsView);
+            }
+            return;
+        }
+        if (itemsView.get(x).get(y).myType != Items.type.EMPTY) {
+            itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, itemsView.get(x).get(y));
+        } else {
+            itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, new Items(0, 0));
+        }
+        itemsView.get(x).set(y, temporaryChosen.item);
+        temporaryChosen.clearHolder();
+    }
+    public static class TemporaryChosenContainer{
+        public Integer cordX;
+        public Integer cordY;
+        public boolean hasItems;
+        public boolean isWearing;
+        public Integer equipmentId;
+        public Items item;
+        public TemporaryChosenContainer(){
+            hasItems = false;
+            isWearing = false;
+            item = new Items(0, 0);
+        }
+        public void pickWearing(int x, ArrayList<Items> arg){
+            hasItems = true;
+            isWearing = true;
+            equipmentId = x;
+            item = arg.get(x);
+        }
+        public void pickEquipment(int x, int y, ArrayList<ArrayList<Items>> arg){
+            hasItems = true;
+            isWearing = false;
+            cordX = x;
+            cordY = y;
+            item = arg.get(x).get(y);
+        }
+        public void clearHolder(){
+            hasItems = false;
+            isWearing = false;
+            item = new Items(0, 0);
+        }
+    }
 }

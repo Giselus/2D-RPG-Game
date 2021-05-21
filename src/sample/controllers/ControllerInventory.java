@@ -1,29 +1,22 @@
 package sample.controllers;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import sample.CharacterManager;
+import sample.Inventory;
+import sample.InventoryPlayer;
 import sample.Items;
 import sample.Main;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class ControllerInventory {
 
-    @FXML
     private final int inventoryWidth = 4;
     private final int inventoryHeight = 4;
     private final int sizeOfCloths = 7;
@@ -53,14 +46,14 @@ public class ControllerInventory {
     @FXML public Button trinket2Button;
     @FXML public AnchorPane anchorPane;
 
-
     private final ArrayList<ArrayList<Button>> buttonInventory = new ArrayList<>(inventoryWidth);
     private final ArrayList<ArrayList<Items>> itemsView = new ArrayList<>(inventoryWidth);
     @FXML private final ArrayList<Button> buttonEquipment = new ArrayList<>(sizeOfCloths);
     @FXML private final ArrayList<Items> equipmentView = new ArrayList<>(sizeOfCloths);
 
-    private static final TemporaryChosenContainer temporaryChosen = new TemporaryChosenContainer();
+    private static final Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
 
+    //this function is not essential for inventory, it can be changed
     public void addImage(Image image){
         ImageView imageViewSkin=new ImageView(image);
         imageViewSkin.setViewport(new Rectangle2D(64,64*10,64,64));
@@ -102,25 +95,104 @@ public class ControllerInventory {
         for(int i=0; i<7; i++){
             equipmentView.set(i, tmp.get(i));
         }
-        getButtonInv();
+        initializeButtons();
+        updateButtons();
+    }
+    @FXML private void isBoot(){
+        if(!temporaryChosen.hasItems){
+            InventoryPlayer.pickItemFromEquipment(0, equipmentView, temporaryChosen);
+            updateButtons();
+            return;
+        }
+        if(temporaryChosen.item.myType.equals(Items.type.BOOTS)){
+            InventoryPlayer.swapToWear(0, equipmentView, itemsView, temporaryChosen);
+        } else{
+            temporaryChosen.clearHolder();
+        }
+        updateButtons();
+    }
+    @FXML private void isArmor(){
+        if(!temporaryChosen.hasItems){
+            InventoryPlayer.pickItemFromEquipment(1, equipmentView, temporaryChosen);
+            updateButtons();
+            return;
+        }
+        if(temporaryChosen.item.myType.equals(Items.type.ARMOR)){
+            InventoryPlayer.swapToWear(1, equipmentView, itemsView, temporaryChosen);
+        } else{
+            temporaryChosen.clearHolder();
+        }
+        updateButtons();
+    }
+    @FXML private void isHelmet(){
+        if(!temporaryChosen.hasItems){
+            InventoryPlayer.pickItemFromEquipment(2, equipmentView, temporaryChosen);
+            updateButtons();
+            return;
+        }
+        if(temporaryChosen.item.myType.equals(Items.type.HELMET)){
+            InventoryPlayer.swapToWear(2, equipmentView, itemsView, temporaryChosen);
+        }else{
+            temporaryChosen.clearHolder();
+        }
+        updateButtons();
+    }
+    @FXML private void isWeaponOne(){
+        if(!temporaryChosen.hasItems){
+            InventoryPlayer.pickItemFromEquipment(3, equipmentView, temporaryChosen);
+            updateButtons();
+            return;
+        }
+        if(temporaryChosen.item.myType.equals(Items.type.WEAPON_ONE)){
+            InventoryPlayer.swapToWear(3, equipmentView, itemsView, temporaryChosen);
+        }else{
+            temporaryChosen.clearHolder();
+        }
+        updateButtons();
+    }
+    @FXML private void isWeaponTwo(){
+        if(!temporaryChosen.hasItems){
+            InventoryPlayer.pickItemFromEquipment(4, equipmentView, temporaryChosen);
+            updateButtons();
+            return;
+        }
+        if(temporaryChosen.item.myType.equals(Items.type.WEAPON_TWO)){
+            InventoryPlayer.swapToWear(4, equipmentView, itemsView, temporaryChosen);
+        }else{
+            temporaryChosen.clearHolder();
+        }
+        updateButtons();
+    }
+    @FXML private void isTrinketOne(){
+        if(!temporaryChosen.hasItems){
+            InventoryPlayer.pickItemFromEquipment(5, equipmentView, temporaryChosen);
+            updateButtons();
+            return;
+        }
+        if(temporaryChosen.item.myType.equals(Items.type.TRINKET)){
+            InventoryPlayer.swapToWear(5, equipmentView, itemsView, temporaryChosen);
+        }else{
+            temporaryChosen.clearHolder();
+        }
+        updateButtons();
+    }
+    @FXML private void isTrinketTwo(){
+        if(!temporaryChosen.hasItems){
+            InventoryPlayer.pickItemFromEquipment(6, equipmentView, temporaryChosen);
+            updateButtons();
+            return;
+        }
+        if(temporaryChosen.item.myType.equals(Items.type.TRINKET)){
+            InventoryPlayer.swapToWear(6, equipmentView, itemsView, temporaryChosen);
+        }else{
+            temporaryChosen.clearHolder();
+        }
         updateButtons();
     }
 
     public void beforeExiting(){
         CharacterManager.instance.inventory.setAllEquippedItems(equipmentView);
         CharacterManager.instance.inventory.setAllItemsList(itemsView);
-    }
-    public void fillItemView(){
-        for(int i=0; i<inventoryHeight; i++){
-            for(int j=0; j<inventoryWidth; j++){
-                int k = ThreadLocalRandom.current().nextInt(0, 8);
-                int l = ThreadLocalRandom.current().nextInt(0, 3);
-                itemsView.get(i).set(j, new Items(k, l));
-            }
-        }
-        for(int i=0; i<sizeOfCloths; i++){
-            equipmentView.set(i, new Items(0, 0));
-        }
     }
     void updateButtons(){
         for(int i=0; i<inventoryWidth; i++){
@@ -132,228 +204,25 @@ public class ControllerInventory {
             setGraphicButton(buttonEquipment.get(i), equipmentView.get(i));
         }
         setGraphicButton(chosenButton, temporaryChosen.item);
+        checkWhatIsWearing();
     }
-
+    private void checkWhatIsWearing(){
+        CharacterManager.instance.hasBoots = equipmentView.get(0).myType != Items.type.EMPTY;
+        CharacterManager.instance.hasArmor = equipmentView.get(1).myType != Items.type.EMPTY;
+        CharacterManager.instance.hasHelmet = equipmentView.get(2).myType != Items.type.EMPTY;
+    }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
-        String string = tmpItem.getPath();
-        Image img = new Image((Objects.requireNonNull(getClass().getResource(string))).toString());
-        ImageView view = new ImageView(img);
-        tmpButton.setGraphic(view);
+        tmpButton.setGraphic(tmpItem.getImageView());
     }
-    @FXML
-    private void isBoot(){
-        if(!temporaryChosen.hasItems){
-            pickItemFromEquipment(0);
-            return;
-        }
-        if(temporaryChosen.item.myType.equals(Items.type.BOOTS)){
-            swapToWear(0);
-        } else{
-            temporaryChosen.clearHolder();
-        }
-        updateButtons();
-    }
-    @FXML
-    private void isArmor(){
-        if(!temporaryChosen.hasItems){
-            pickItemFromEquipment(1);
-            return;
-        }
-        if(temporaryChosen.item.myType.equals(Items.type.ARMOR)){
-            swapToWear(1);
-        } else{
-            temporaryChosen.clearHolder();
-        }
-        updateButtons();
-    }
-    @FXML
-    private void isHelmet(){
-        if(!temporaryChosen.hasItems){
-            pickItemFromEquipment(2);
-            return;
-        }
-        if(temporaryChosen.item.myType.equals(Items.type.HELMET)){
-            swapToWear(2);
-        }else{
-            temporaryChosen.clearHolder();
-        }
-        updateButtons();
-    }
-    @FXML
-    private void isWeaponOne(){
-        if(!temporaryChosen.hasItems){
-            pickItemFromEquipment(3);
-            return;
-        }
-        if(temporaryChosen.item.myType.equals(Items.type.WEAPON_ONE)){
-            swapToWear(3);
-        }else{
-            temporaryChosen.clearHolder();
-        }
-        updateButtons();
-    }
-    @FXML
-    private void isWeaponTwo(){
-        if(!temporaryChosen.hasItems){
-            pickItemFromEquipment(4);
-            return;
-        }
-        if(temporaryChosen.item.myType.equals(Items.type.WEAPON_TWO)){
-            swapToWear(4);
-        }else{
-            temporaryChosen.clearHolder();
-        }
-        updateButtons();
-    }
-    @FXML
-    private void isTrinketOne(){
-        if(!temporaryChosen.hasItems){
-            pickItemFromEquipment(5);
-            return;
-        }
-        if(temporaryChosen.item.myType.equals(Items.type.TRINKET)){
-            swapToWear(5);
-        }else{
-            temporaryChosen.clearHolder();
-        }
-        updateButtons();
-    }
-    @FXML
-    private void isTrinketTwo(){
-        if(!temporaryChosen.hasItems){
-            pickItemFromEquipment(6);
-            return;
-        }
-        if(temporaryChosen.item.myType.equals(Items.type.TRINKET)){
-            swapToWear(6);
-        }else{
-            temporaryChosen.clearHolder();
-        }
-        updateButtons();
-    }
-    private void swapToWear(int x){
-        if(equipmentView.get(x).myType == Items.type.EMPTY){
-            itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, new Items(0, 0));
-            CharacterManager.instance.inventory.equipItem();
-            equipmentView.set(x, temporaryChosen.item);
-        } else {
-            Items swap = equipmentView.get(x);
-            equipmentView.set(x, temporaryChosen.item);
-            itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, swap);
-        }
-        temporaryChosen.clearHolder();
-    }
-    private void pickItemFromEquipment(int x){
-        if(equipmentView.get(x).myType == Items.type.EMPTY){
-            return;
-        }
-        temporaryChosen.pickWearing(x, equipmentView);
-        updateButtons();
-    }
-    private void quickUseOfItem(int x, int y){
-        if(temporaryChosen.hasItems){
-            temporaryChosen.clearHolder();
-            updateButtons();
-            return;
-        }
-        Items tempItem = itemsView.get(x).get(y);
-        int tmpValue = -1;
-        if(tempItem.myType == Items.type.EMPTY){
-            return;
-        }
-        if(tempItem.myType == Items.type.BOOTS){
-            tmpValue = 0;
-        } else if(tempItem.myType == Items.type.ARMOR){
-            tmpValue = 1;
-        } else if(tempItem.myType == Items.type.HELMET){
-            tmpValue = 2;
-        } else if(tempItem.myType == Items.type.WEAPON_ONE){
-            tmpValue = 3;
-        } else if(tempItem.myType == Items.type.WEAPON_TWO){
-            tmpValue = 4;
-        } else if (tempItem.myType == Items.type.TRINKET){
-            if(equipmentView.get(5).myType == Items.type.EMPTY){
-                tmpValue = 5;
-            } else {
-                tmpValue = 6;
-            }
-        } else {
-            return;
-        }
-        if(equipmentView.get(tmpValue).myType == Items.type.EMPTY){
-            itemsView.get(x).set(y, new Items(0, 0));
-        } else {
-            itemsView.get(x).set(y, equipmentView.get(tmpValue));
-        }
-        equipmentView.set(tmpValue, tempItem);
-        updateButtons();
-    }
-    private void checkButtonsProperties(int x, int y){
-        if(!temporaryChosen.hasItems){
-            if(itemsView.get(x).get(y).myType != Items.type.EMPTY){
-                temporaryChosen.pickEquipment(x, y, itemsView);
-            }
-            updateButtons();
-            return;
-        }
-        if(temporaryChosen.isWearing){
-            if(itemsView.get(x).get(y).myType == temporaryChosen.item.myType){
-                equipmentView.set(temporaryChosen.equipmentId, itemsView.get(x).get(y));
-                itemsView.get(x).set(y, temporaryChosen.item);
-            } else if(itemsView.get(x).get(y).myType == Items.type.EMPTY){
-                equipmentView.set(temporaryChosen.equipmentId, new Items(0, 0));
-                itemsView.get(x).set(y, temporaryChosen.item);
-            }
-        } else {
-            if (itemsView.get(x).get(y).myType != Items.type.EMPTY) {
-                itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, itemsView.get(x).get(y));
-            } else {
-                itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, new Items(0, 0));
-            }
-            itemsView.get(x).set(y, temporaryChosen.item);
-        }
-        temporaryChosen.clearHolder();
-        updateButtons();
-    }
-    private static class TemporaryChosenContainer{
-        Integer cordX;
-        Integer cordY;
-        boolean hasItems;
-        boolean isWearing;
-        Integer equipmentId;
-        Items item;
-        TemporaryChosenContainer(){
-            hasItems = false;
-            isWearing = false;
-            item = new Items(0, 0);
-        }
-        void pickWearing(int x, ArrayList<Items> arg){
-            hasItems = true;
-            isWearing = true;
-            equipmentId = x;
-            item = arg.get(x);
-        }
-        void pickEquipment(int x, int y, ArrayList<ArrayList<Items>> arg){
-            hasItems = true;
-            isWearing = false;
-            cordX = x;
-            cordY = y;
-            item = arg.get(x).get(y);
-        }
-        void clearHolder(){
-            hasItems = false;
-            isWearing = false;
-            item = new Items(0, 0);
-        }
-    }
-    public void getButtonInv(){
+    private void initializeButtons(){
         buttonInventory.get(0).set(0, aa);
         aa.setOnMousePressed(e->{
             if(e.getButton()== MouseButton.PRIMARY){
                 pickItemAA();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(0, 0);
+                InventoryPlayer.quickUseOfItem(0, 0, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(0).set(1, ab);
@@ -362,7 +231,8 @@ public class ControllerInventory {
                 pickItemAB();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(0, 1);
+                InventoryPlayer.quickUseOfItem(0, 1, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(0).set(2, ac);
@@ -371,7 +241,8 @@ public class ControllerInventory {
                 pickItemAC();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(0, 2);
+                InventoryPlayer.quickUseOfItem(0, 2, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(0).set(3, ad);
@@ -380,7 +251,8 @@ public class ControllerInventory {
                 pickItemAD();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(0, 3);
+                InventoryPlayer.quickUseOfItem(0, 3, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(1).set(0, ba);
@@ -389,7 +261,8 @@ public class ControllerInventory {
                 pickItemBA();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(1, 0);
+                InventoryPlayer.quickUseOfItem(1, 0, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(1).set(1, bb);
@@ -398,7 +271,8 @@ public class ControllerInventory {
                 pickItemBB();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(1, 1);
+                InventoryPlayer.quickUseOfItem(1, 1, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(1).set(2, bc);
@@ -407,7 +281,8 @@ public class ControllerInventory {
                 pickItemBC();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(1, 2);
+                InventoryPlayer.quickUseOfItem(1, 2, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(1).set(3, bd);
@@ -416,7 +291,8 @@ public class ControllerInventory {
                 pickItemBD();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(1, 3);
+                InventoryPlayer.quickUseOfItem(1, 3, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(2).set(0, ca);
@@ -425,7 +301,8 @@ public class ControllerInventory {
                 pickItemCA();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(2, 0);
+                InventoryPlayer.quickUseOfItem(2, 0, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(2).set(1, cb);
@@ -434,7 +311,8 @@ public class ControllerInventory {
                 pickItemCB();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(2, 1);
+                InventoryPlayer.quickUseOfItem(2, 1, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(2).set(2, cc);
@@ -443,7 +321,8 @@ public class ControllerInventory {
                 pickItemCC();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(2, 2);
+                InventoryPlayer.quickUseOfItem(2, 2, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(2).set(3, cd);
@@ -452,7 +331,8 @@ public class ControllerInventory {
                 pickItemCD();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(2, 3);
+                InventoryPlayer.quickUseOfItem(2, 3, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(3).set(0, da);
@@ -461,7 +341,8 @@ public class ControllerInventory {
                 pickItemDA();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(3, 0);
+                InventoryPlayer.quickUseOfItem(3, 0, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(3).set(1, db);
@@ -470,7 +351,8 @@ public class ControllerInventory {
                 pickItemDB();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(3, 1);
+                InventoryPlayer.quickUseOfItem(3, 1, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(3).set(2, dc);
@@ -479,7 +361,8 @@ public class ControllerInventory {
                 pickItemDC();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(3, 2);
+                InventoryPlayer.quickUseOfItem(3, 2, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
         buttonInventory.get(3).set(3, dd);
@@ -488,7 +371,8 @@ public class ControllerInventory {
                 pickItemDD();
             }
             if(e.getButton() == MouseButton.SECONDARY){
-                quickUseOfItem(3, 3);
+                InventoryPlayer.quickUseOfItem(3, 3, equipmentView, itemsView, temporaryChosen);
+                updateButtons();
             }
         });
 
@@ -507,51 +391,67 @@ public class ControllerInventory {
     }
 
     public void pickItemAA(){
-        checkButtonsProperties(0, 0);
+        InventoryPlayer.checkSlotProperties(0, 0, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemAB(){
-        checkButtonsProperties(0, 1);
+        InventoryPlayer.checkSlotProperties(0, 1, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemAC(){
-        checkButtonsProperties(0, 2);
+        InventoryPlayer.checkSlotProperties(0, 2, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemAD(){
-        checkButtonsProperties(0, 3);
+        InventoryPlayer.checkSlotProperties(0, 3, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemBA(){
-        checkButtonsProperties(1, 0);
+        InventoryPlayer.checkSlotProperties(1, 0, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemBB(){
-        checkButtonsProperties(1, 1);
+        InventoryPlayer.checkSlotProperties(1, 1, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemBC(){
-        checkButtonsProperties(1, 2);
+        InventoryPlayer.checkSlotProperties(1, 2, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemBD(){
-        checkButtonsProperties(1, 3);
+        InventoryPlayer.checkSlotProperties(1, 3, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemCA(){
-        checkButtonsProperties(2, 0);
+        InventoryPlayer.checkSlotProperties(2, 0, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemCB(){
-        checkButtonsProperties(2, 1);
+        InventoryPlayer.checkSlotProperties(2, 1, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemCC(){
-        checkButtonsProperties(2, 2);
+        InventoryPlayer.checkSlotProperties(2, 2, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemCD(){
-        checkButtonsProperties(2, 3);
+        InventoryPlayer.checkSlotProperties(2, 3, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemDA(){
-        checkButtonsProperties(3, 0);
+        InventoryPlayer.checkSlotProperties(3, 0, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemDB(){
-        checkButtonsProperties(3, 1);
+        InventoryPlayer.checkSlotProperties(3, 1, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemDC(){
-        checkButtonsProperties(3, 2);
+        InventoryPlayer.checkSlotProperties(3, 2, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
     public void pickItemDD(){
-        checkButtonsProperties(3, 3);
+        InventoryPlayer.checkSlotProperties(3, 3, itemsView, temporaryChosen, equipmentView);
+        updateButtons();
     }
 }
