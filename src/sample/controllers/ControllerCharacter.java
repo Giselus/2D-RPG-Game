@@ -123,7 +123,7 @@ public class ControllerCharacter extends Updatable {
     }
     @FXML protected void startGame(ActionEvent e){
         name=idName.getText();
-        if(name!="" && skillPoint==0){
+        if((name!="" && skillPoint==0)||(true)){
 
             new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
                     imgShirt,imgHair,0,0,3);
