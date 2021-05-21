@@ -291,6 +291,60 @@ public class ControllerCharacter extends Updatable {
         //System.out.println(skinId+" "+hairId+" "+shirtId+" "+pantsId);
         //pantsId=random.nextInt(8);
     }
+    //clearCharacter
+    @FXML protected void clearCharacter(ActionEvent e){
+        skinId=1;
+        hairId=0;
+        shirtId=0;
+        pantsId=0;
+    }
+    //clearStats
+    @FXML protected void clearStats(ActionEvent e){
+        attack=0;
+        defense=0;
+        skillPoint=10;
+        luck=0;
+        agility=0;
+        idSkillPoint.setText(String.valueOf(skillPoint));
+        idAttackPoint.setText(String.valueOf(attack));
+        idDefensePoint.setText(String.valueOf(defense));
+        idAgilityPoint.setText(String.valueOf(agility));
+        idLuckPoint.setText(String.valueOf(luck));
+    }
+    //randomStats
+    @FXML protected void randomStats(ActionEvent e){
+        //clear
+        attack=0;
+        defense=0;
+        skillPoint=10;
+        luck=0;
+        agility=0;
+        while(skillPoint>0){
+            Random randomPoint = new Random();
+            int choice;
+            choice=randomPoint.nextInt(4)+1;
+            if(choice==1){
+                //attack
+                attack++;
+            }
+            else if(choice==2){
+                defense++;
+            }
+            else if(choice==3){
+                agility++;
+            }
+            else{
+                luck++;
+            }
+            skillPoint--;
+        }
+        //randomPoint=null;
+        idSkillPoint.setText(String.valueOf(skillPoint));
+        idAttackPoint.setText(String.valueOf(attack));
+        idDefensePoint.setText(String.valueOf(defense));
+        idAgilityPoint.setText(String.valueOf(agility));
+        idLuckPoint.setText(String.valueOf(luck));
+    }
     //roration character
     @FXML protected void leftRotate(ActionEvent e){
         position=9;
