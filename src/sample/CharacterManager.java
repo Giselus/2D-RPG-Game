@@ -104,6 +104,7 @@ public class CharacterManager extends GameObject{
                     animation = new Animation(0.25f, 0, -32);
                     animation.Play(this);
                     y--;
+                    //skin=
                 }
             }
         }

@@ -99,5 +99,10 @@
       <Button layoutX="592.0" layoutY="353.0" mnemonicParsing="false" onAction="#leftPants" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
       <Button layoutX="669.0" layoutY="353.0" mnemonicParsing="false" onAction="#rightPants" prefHeight="40.0" prefWidth="67.0" text="Right" />
       <Button layoutX="764.0" layoutY="284.0" mnemonicParsing="false" onAction="#randomCharacter" prefHeight="49.0" prefWidth="102.0" styleClass="click" text="Random" />
+        <!--Arrow-->
+        <Button layoutX="736.0" layoutY="103.0" mnemonicParsing="false" onAction="#leftRotate" prefHeight="32.0" prefWidth="56.0" styleClass="click" text="Left" />
+      <Button layoutX="765.0" layoutY="73.0" mnemonicParsing="false" onAction="#backRotate" prefHeight="29.0" prefWidth="56.0" styleClass="click" text="Back" />
+      <Button layoutX="793.0" layoutY="103.0" mnemonicParsing="false" onAction="#rightRotate" prefHeight="32.0" prefWidth="56.0" styleClass="click" text="Right" />
+      <Button layoutX="764.0" layoutY="136.0" mnemonicParsing="false" onAction="#frontRotate" prefHeight="32.0" prefWidth="56.0" styleClass="click" text="Front" />
     </children>
 </AnchorPane>

@@ -34,6 +34,7 @@ public class ControllerCharacter extends Updatable {
     int shirtId=0;
     int pantsId=0;
     float epsilonHair=0;
+    int position=10;
     Image imgSkin;
     ImageView imageViewSkin;
     Image imgHair;
@@ -123,6 +124,7 @@ public class ControllerCharacter extends Updatable {
     }
     @FXML protected void startGame(ActionEvent e){
         name=idName.getText();
+        //position=10;
         if((name!="" && skillPoint==0)||(true)){
 
             new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
@@ -184,7 +186,7 @@ public class ControllerCharacter extends Updatable {
         //image:
         imgSkin=new Image(String.valueOf(getClass().getResource("/resources/textures/character/skin/skin"+skinId+".png")));
         imageViewSkin=new ImageView(imgSkin);
-        imageViewSkin.setViewport(new Rectangle2D(x*64,64*10,64,64));
+        imageViewSkin.setViewport(new Rectangle2D(x*64,64*position,64,64));
         //--
         addSkin(imageViewSkin);
     }
@@ -214,7 +216,7 @@ public class ControllerCharacter extends Updatable {
     public void startHair(int x){
         imgHair=new Image(String.valueOf(getClass().getResource("/resources/textures/character/hair/hair"+hairId+".png")));
         imageViewHair=new ImageView(imgHair);
-        imageViewHair.setViewport(new Rectangle2D(x*64,64*10,64,64));
+        imageViewHair.setViewport(new Rectangle2D(x*64,64*position,64,64));
         addHair(imageViewHair);
     }
     public void addHair(ImageView imageView){
@@ -243,7 +245,7 @@ public class ControllerCharacter extends Updatable {
     public void startShirt(int x){
         imgShirt=new Image(String.valueOf(getClass().getResource("/resources/textures/character/t-shirt/t-shirt"+shirtId+".png")));
         imageViewShirt=new ImageView(imgShirt);
-        imageViewShirt.setViewport(new Rectangle2D(x*64,64*10,64,64));
+        imageViewShirt.setViewport(new Rectangle2D(x*64,64*position,64,64));
         addHair(imageViewShirt);
     }
     public void addShirt(ImageView imageView){
@@ -263,7 +265,6 @@ public class ControllerCharacter extends Updatable {
         if(pantsId==6){
             pantsId=0;
         }
-
     }
     public void deletePants(){
         idAnchorPane.getChildren().remove(imageViewPants);
@@ -272,7 +273,7 @@ public class ControllerCharacter extends Updatable {
     public void startPants(int x){
         imgPants=new Image(String.valueOf(getClass().getResource("/resources/textures/character/pants/pants"+pantsId+".png")));
         imageViewPants=new ImageView(imgPants);
-        imageViewPants.setViewport(new Rectangle2D(x*64,64*10,64,64));
+        imageViewPants.setViewport(new Rectangle2D(x*64,64*position,64,64));
         addHair(imageViewPants);
     }
     public void addPants(ImageView imageView){
@@ -289,6 +290,19 @@ public class ControllerCharacter extends Updatable {
         pantsId=random.nextInt(6);
         //System.out.println(skinId+" "+hairId+" "+shirtId+" "+pantsId);
         //pantsId=random.nextInt(8);
+    }
+    //roration character
+    @FXML protected void leftRotate(ActionEvent e){
+        position=9;
+    }
+    @FXML protected void rightRotate(ActionEvent e){
+        position=11;
+    }
+    @FXML protected void frontRotate(ActionEvent e){
+        position=10;
+    }
+    @FXML protected void backRotate(ActionEvent e){
+        position=8;
     }
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
