@@ -1,6 +1,7 @@
 package sample.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import sample.CharacterManager;
@@ -47,6 +49,8 @@ public class ControllerInventory {
     @FXML public Button weapon2Button;
     @FXML public Button trinket1Button;
     @FXML public Button trinket2Button;
+    @FXML public AnchorPane anchorPane;
+
 
     private final ArrayList<ArrayList<Button>> buttonInventory = new ArrayList<>(inventoryWidth);
     private final ArrayList<ArrayList<Items>> itemsView = new ArrayList<>(inventoryWidth);
@@ -55,11 +59,21 @@ public class ControllerInventory {
 
     private static final TemporaryChosenContainer temporaryChosen = new TemporaryChosenContainer();
 
+    public void addImage(Image image){
+        ImageView imageViewSkin=new ImageView(image);
+        imageViewSkin.setViewport(new Rectangle2D(64,64*10,64,64));
+        imageViewSkin.setX(608);
+        imageViewSkin.setY(294);
+        anchorPane.getChildren().add(imageViewSkin);
+    }
     @FXML public void initialize(){
         if(CharacterManager.instance == null){
             new CharacterManager();
         }
-
+        addImage(CharacterManager.instance.skin);
+        addImage(CharacterManager.instance.legs);
+        addImage(CharacterManager.instance.body);
+        addImage(CharacterManager.instance.hair);
         for(int i=0; i<inventoryWidth; i++){
             ArrayList<Button> buttonToAdd = new ArrayList<>();
             for(int j=0; j<inventoryHeight; j++){
@@ -543,5 +557,4 @@ public class ControllerInventory {
     public void pickItemDD(){
         checkButtonsProperties(3, 3);
     }
-
 }

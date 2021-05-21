@@ -15,10 +15,10 @@ public class CharacterManager extends GameObject{
     int luck;
     int agility;
     int hp;
-    Image skin;
-    Image legs;
-    Image body;
-    Image hair;
+    public Image skin;
+    public Image legs;
+    public Image body;
+    public Image hair;
     public PlayerInventory inventory;
     public ArrayList<Skills> skills;
     public CharacterManager(){
