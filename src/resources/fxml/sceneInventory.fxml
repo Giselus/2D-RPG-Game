@@ -9,24 +9,24 @@
   <ImageView fitHeight="720.0" fitWidth="1280.0">
     <Image url="@../textures/bg4.png" />
   </ImageView>
-  <Button fx:id="aa" layoutX="890.0" layoutY="338.0" mnemonicParsing="false" onAction="#pickItemAA" prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="aa" layoutX="890.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
   <Button layoutX="624.0" layoutY="610.0" mnemonicParsing="false" onAction="#fillItemView" text="RANDOM" />
   <Button layoutX="28.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="12.0" prefWidth="21.0" text="X" />
-  <Button fx:id="ab" layoutX="968.0" layoutY="338.0" mnemonicParsing="false" onAction="#pickItemAB" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ac" layoutX="1048.0" layoutY="338.0" mnemonicParsing="false" onAction="#pickItemAC" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ad" layoutX="1128.0" layoutY="338.0" mnemonicParsing="false" onAction="#pickItemAD" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ba" layoutX="890.0" layoutY="418.0" mnemonicParsing="false" onAction="#pickItemBA" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="bb" layoutX="970.0" layoutY="418.0" mnemonicParsing="false" onAction="#pickItemBB" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="bc" layoutX="1048.0" layoutY="418.0" mnemonicParsing="false" onAction="#pickItemBC" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="bd" layoutX="1128.0" layoutY="418.0" mnemonicParsing="false" onAction="#pickItemBD" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ca" layoutX="890.0" layoutY="498.0" mnemonicParsing="false" onAction="#pickItemCA" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="da" layoutX="890.0" layoutY="578.0" mnemonicParsing="false" onAction="#pickItemDA" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="cb" layoutX="970.0" layoutY="498.0" mnemonicParsing="false" onAction="#pickItemCB" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="cc" layoutX="1050.0" layoutY="498.0" mnemonicParsing="false" onAction="#pickItemCC" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="cd" layoutX="1128.0" layoutY="498.0" mnemonicParsing="false" onAction="#pickItemCD" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="db" layoutX="970.0" layoutY="578.0" mnemonicParsing="false" onAction="#pickItemDB" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="dc" layoutX="1050.0" layoutY="578.0" mnemonicParsing="false" onAction="#pickItemDC" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="dd" layoutX="1128.0" layoutY="578.0" mnemonicParsing="false" onAction="#pickItemDD" prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="ab" layoutX="968.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="ac" layoutX="1048.0" layoutY="338.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="ad" layoutX="1128.0" layoutY="338.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="ba" layoutX="890.0" layoutY="418.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="bb" layoutX="970.0" layoutY="418.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="bc" layoutX="1048.0" layoutY="418.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="bd" layoutX="1128.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="ca" layoutX="890.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="da" layoutX="890.0" layoutY="578.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="cb" layoutX="970.0" layoutY="498.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="cc" layoutX="1050.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="cd" layoutX="1128.0" layoutY="498.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="db" layoutX="970.0" layoutY="578.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="dc" layoutX="1050.0" layoutY="578.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
+  <Button fx:id="dd" layoutX="1128.0" layoutY="578.0" mnemonicParsing="false"  prefHeight="80.0" prefWidth="80.0" />
   <Button fx:id="chosenButton" layoutX="624.0" layoutY="441.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
   <Button fx:id="bootsButton" layoutX="1008.0" layoutY="235.0" mnemonicParsing="false" onAction="#isBoot" prefHeight="80.0" prefWidth="80.0" />
   <Button fx:id="armorButton" layoutX="1008.0" layoutY="155.0" mnemonicParsing="false" onAction="#isArmor" prefHeight="80.0" prefWidth="80.0" />

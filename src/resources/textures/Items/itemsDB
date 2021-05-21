@@ -1,8 +1,9 @@
-0, 0
-1, 0
+//type/id/name/attack/defense/luck/agility/hp/mana/stamina
+0:0:Empty:0:0:0:0:0:0:0
+1:0:Elves boots:0:10:10:15:0:10
 1, 1
 1, 2
-2, 0
+2:0:Hwang:0:40:0:0:30:0:10
 2, 1
 2, 2
 3, 0

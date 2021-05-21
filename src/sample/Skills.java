@@ -122,4 +122,8 @@ public class Skills {
         System.out.println(to_return.toString());
         return to_return.toString();
     }
+
+    public String getPath(){
+        return "src/resources/textures/SkillsIcons/" + myType.toString() + id + ".png";
+    }
 }

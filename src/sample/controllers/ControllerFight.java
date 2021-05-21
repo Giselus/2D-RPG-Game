@@ -3,12 +3,21 @@ package sample.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import sample.CharacterManager;
 import sample.Skills;
+
+import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ControllerFight {
+
+
+
     int roundCounter = 1;
     boolean endOfFight = false;
     //we have to read this data from different class, hard coded values right now
@@ -31,19 +40,33 @@ public class ControllerFight {
     @FXML public Rectangle hpBarFillEnemy;
     @FXML public Rectangle hpBar;
     @FXML public Rectangle hpBarFill;
-    @FXML public Button skillOne;
     @FXML public TextArea fightHistory;
-    @FXML public Button skillTwo;
-    @FXML public Button skillThree;
-    @FXML public Button skillFour;
+    @FXML public ImageView skill_one;
+    @FXML public ImageView skill_two;
+    @FXML public ImageView skill_three;
+    @FXML public ImageView skill_four;
 
-    public Skills skill1 = new Skills(1, 0);
-    public Skills skill2 = new Skills(2, 0);
-    public Skills skill3 = new Skills(1, 1);
-    public Skills skill4 = new Skills(1, 2);
-
+    public ArrayList<Skills> skillsList;
     public static Skills tmpSkill;
 
+    public void initialize(){
+        if(CharacterManager.instance == null){
+            new CharacterManager();
+        }
+        skillsList = new ArrayList<>(4);
+        for(int i=0; i<4; i++){
+            skillsList.add(CharacterManager.instance.skills.get(i));
+        }
+        skill_one.setImage(getImageForSkill(skillsList.get(0)));
+        skill_two.setImage(getImageForSkill(skillsList.get(1)));
+        skill_three.setImage(getImageForSkill(skillsList.get(2)));
+        skill_four.setImage(getImageForSkill(skillsList.get(3)));
+    }
+
+    Image getImageForSkill(Skills skill){
+        File file = new File(skill.getPath());
+        return new Image(file.toURI().toString());
+    }
     void actionDependsOnSkillType(Skills s){
         if(s.getMyType() == Skills.skillType.OFFENSIVE){
             offensiveSkill(s);
@@ -123,22 +146,22 @@ public class ControllerFight {
     }
 
     void endBattle(){
-        skillOne.setDisable(true);
-        skillTwo.setDisable(true);
-        skillThree.setDisable(true);
-        skillFour.setDisable(true);
+        skill_one.setDisable(true);
+        skill_two.setDisable(true);
+        skill_three.setDisable(true);
+        skill_four.setDisable(true);
     }
     public void one() {
-        takeSkill(skill1);
+        takeSkill(skillsList.get(0));
     }
     public void two() {
-        takeSkill(skill2);
+        takeSkill(skillsList.get(1));
     }
     public void three() {
-        takeSkill(skill3);
+        takeSkill(skillsList.get(2));
     }
     public void four(){
-        takeSkill(skill4);
+        takeSkill(skillsList.get(3));
     }
 
     @FXML

@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
+import java.util.ArrayList;
+
 public class CharacterManager extends GameObject{
 
     public static CharacterManager instance;
@@ -17,7 +19,8 @@ public class CharacterManager extends GameObject{
     Image legs;
     Image body;
     Image hair;
-    public Inventory inventory;
+    public PlayerInventory inventory;
+    public ArrayList<Skills> skills;
     public CharacterManager(){
         instance = this;
     }
@@ -46,12 +49,19 @@ public class CharacterManager extends GameObject{
         this.body=body;
         this.hair=hair;
 
-        inventory = new Inventory();
-
-        //three testing lines
+        inventory = new PlayerInventory(4, 4);
+        skills = new ArrayList<>(4);
+        //eight testing lines, this functions are essential for testing inventory and battle
         inventory.addItem(new Items(1,1));
         inventory.addItem(new Items(2,2));
         inventory.addItem(new Items(3,2));
+        inventory.addItem(new Items(4,0));
+        inventory.addItem(new Items(1,0));
+        skills.add(new Skills(1, 0));
+        skills.add(new Skills(2, 0));
+        skills.add(new Skills(1, 1));
+        skills.add(new Skills(1, 2));
+        //end of testing lines
     }
 
     @Override
@@ -66,7 +76,11 @@ public class CharacterManager extends GameObject{
                 Updatable.updatableList.clear();
                 return;
             }
-
+            if(KeyPolling.isDown(KeyCode.F)){
+                Main.setScene("/resources/fxml/sceneFight.fxml");
+                Updatable.updatableList.clear();
+                return;
+            }
             if (KeyPolling.isDown(KeyCode.A)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x-1,y)) {
                     animation = new Animation(0.25f, -32, 0);
