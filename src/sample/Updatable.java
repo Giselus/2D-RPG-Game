@@ -29,4 +29,6 @@ public class Updatable {
 
     }
 
+    public void LateUpdate(float deltaTime){}
+
 }

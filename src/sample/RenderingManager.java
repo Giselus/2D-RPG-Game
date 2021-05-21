@@ -21,7 +21,7 @@ public class RenderingManager extends Updatable {
         instance = this;
     }
 
-    public void Update(float deltaTime){
+    public void LateUpdate(float deltaTime){
         ArrayList<Pair<Integer,GameObject>> T = new ArrayList<>();
         for(GameObject obj : renderQueue){
             T.add(new Pair<>(obj.zPos,obj));

@@ -28,6 +28,10 @@ public class Main extends Application {
         }
 
     }
+    static boolean toClear = false;
+    public static void clearUptadables(){
+        toClear = true;
+    }
     @Override
     public void start(Stage stage) throws Exception {
         mainStage=stage;
@@ -48,7 +52,20 @@ public class Main extends Application {
     private void tick(float deltaTime){
         //Input -> logic -> rendering
         for(Updatable obj: Updatable.updatableList){
+            if(toClear){
+                Updatable.updatableList.clear();
+                toClear = false;
+                break;
+            }
             obj.Update(deltaTime);
+        }
+        for(Updatable obj: Updatable.updatableList){
+            if(toClear){
+                Updatable.updatableList.clear();
+                toClear = false;
+                break;
+            }
+            obj.LateUpdate(deltaTime);
         }
     }
 }

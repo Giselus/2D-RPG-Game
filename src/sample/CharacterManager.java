@@ -72,13 +72,13 @@ public class CharacterManager extends GameObject{
             Map map = mapHandler.getCurrentMap();
 
             if(KeyPolling.isDown(KeyCode.I)){
+                Main.clearUptadables();
                 Main.setScene("/resources/fxml/sceneInventory.fxml");
-                Updatable.updatableList.clear();
                 return;
             }
             if(KeyPolling.isDown(KeyCode.F)){
+                Main.clearUptadables();
                 Main.setScene("/resources/fxml/sceneFight.fxml");
-                Updatable.updatableList.clear();
                 return;
             }
             if (KeyPolling.isDown(KeyCode.A)) {
@@ -104,7 +104,6 @@ public class CharacterManager extends GameObject{
                     animation = new Animation(0.25f, 0, -32);
                     animation.Play(this);
                     y--;
-                    //skin=
                 }
             }
         }

@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import sample.CharacterManager;
 import sample.Items;
+import sample.Main;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -501,12 +503,7 @@ public class ControllerInventory {
 
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         beforeExiting();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
-                .getResource("/resources/fxml/sceneMenu.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Main.setScene("/resources/fxml/mainGameScene.fxml");
     }
 
     public void pickItemAA(){
