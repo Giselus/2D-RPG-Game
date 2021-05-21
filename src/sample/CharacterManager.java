@@ -28,6 +28,8 @@ public class CharacterManager extends GameObject{
     public boolean hasArmor;
     public boolean hasBoots;
 
+    //test_line
+    public ContainerForNpc interactiveChest;
     public CharacterManager(){
         instance = this;
     }
@@ -62,7 +64,10 @@ public class CharacterManager extends GameObject{
         hasHelmet = false;
         hasBoots = false;
 
-        //eight testing lines, this functions are essential for testing inventory and battle
+        //testing lines, this functions are essential for testing inventory and battle
+        interactiveChest = new ContainerForNpc(0, 0, 4, 4);
+        interactiveChest.inventory.addItem(new Items(1, 2));
+        interactiveChest.inventory.addItem(new Items(3, 0));
         inventory.addItem(new Items(1,1));
         inventory.addItem(new Items(2,0));
         inventory.addItem(new Items(3,2));
@@ -89,7 +94,7 @@ public class CharacterManager extends GameObject{
             }
             if(KeyPolling.isDown(KeyCode.F)){
                 Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneFight.fxml");
+                Main.setScene("/resources/fxml/sceneContainer.fxml");
                 return;
             }
             if (KeyPolling.isDown(KeyCode.A)) {
