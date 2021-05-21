@@ -18,7 +18,7 @@ public class ControllerMenu {
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass()
                 .getResource("/resources/fxml/sceneMenu.fxml")));
-        String css=this.getClass().getResource("style.css").toExternalForm();
+        String css=this.getClass().getResource("styleCharacter.css").toExternalForm();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -30,10 +30,13 @@ public class ControllerMenu {
         loader.setLocation(getClass().getResource("/resources/fxml/characterScene.fxml"));
         Parent root= loader.load();
         Main.controller=loader.getController();
-        //String css=this.getClass().getResource("style.css").toExternalForm();
+        //String css=this.getClass().getResource("styleCharacter.css").toExternalForm();
+        String css = this.getClass().getResource("/resources/style/styleCharacter.css").toExternalForm();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        scene.getStylesheets().add(css);
         //scene.getStylesheets().add(css);
         stage.show();
     }
