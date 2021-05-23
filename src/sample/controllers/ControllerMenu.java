@@ -53,7 +53,9 @@ public class ControllerMenu {
                 .getResource("/resources/fxml/sceneInventory.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        String css = this.getClass().getResource("resources/style/styleInventory.css").toExternalForm();
         stage.setScene(scene);
+        scene.getStylesheets().add(css);
         stage.show();
     }
     public void switchToLoading(ActionEvent event) throws IOException{

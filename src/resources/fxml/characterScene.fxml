@@ -30,7 +30,7 @@
             </font>
         </Text>
         <Button layoutX="582.0" layoutY="459.0" mnemonicParsing="false" onAction="#startGame" prefHeight="49.0" prefWidth="88.0" text="Start" />
-        <Button fx:id="abc" layoutX="136.0" layoutY="139.0" mnemonicParsing="false" onAction="#addPointAttack" prefHeight="33.0" prefWidth="31.0" text="+" />
+        <Button fx:id="abc" layoutX="136.0" layoutY="139.0" mnemonicParsing="false" onAction="#addPointAttack"  prefHeight="33.0" prefWidth="31.0" text="+" />
         <Button layoutX="172.0" layoutY="138.0" mnemonicParsing="false" onAction="#subPointAttack" prefHeight="33.0" prefWidth="31.0" text="-" />
         <Text layoutX="40.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack">
          <font>
@@ -70,7 +70,7 @@
          </font></Text>
         <Button layoutX="137.0" layoutY="293.0" mnemonicParsing="false" onAction="#addPointLuck" prefHeight="32.0" prefWidth="31.0" text="+" />
         <Button layoutX="172.0" layoutY="293.0" mnemonicParsing="false" onAction="#subPointLuck" prefHeight="33.0" prefWidth="31.0" text="-" />
-      <Button layoutX="592.0" fx:id="leftSkin" layoutY="208.0" mnemonicParsing="false" onAction="#leftSkin" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
+      <Button fx:id="leftSkin" layoutX="592.0" layoutY="208.0" mnemonicParsing="false" onAction="#leftSkin" prefHeight="40.0" prefWidth="67.0" styleClass="click" text="Left" />
       <Button layoutX="669.0" layoutY="208.0" mnemonicParsing="false" onAction="#rightSkin" prefHeight="40.0" prefWidth="67.0" text="Right" />
       <Text layoutX="536.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skin" wrappingWidth="66.98876953125">
          <font>

@@ -361,11 +361,11 @@ public class ControllerCharacter extends Updatable {
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
                 .getResource("/resources/fxml/sceneMenu.fxml")));
-        String css=this.getClass().getResource("styleCharacter.css").toExternalForm();
+        //String css=this.getClass().getResource("styleCharacter.css").toExternalForm();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        scene.getStylesheets().add(css);
+       // scene.getStylesheets().add(css);
         Main.controller = null;
         stage.show();
     }

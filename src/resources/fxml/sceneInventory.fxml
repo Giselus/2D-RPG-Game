@@ -5,6 +5,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerInventory">
   <ImageView fitHeight="720.0" fitWidth="1280.0">
@@ -36,4 +38,96 @@
   <Button fx:id="trinket1Button" layoutX="928.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketOne" prefHeight="80.0" prefWidth="80.0" />
   <Button fx:id="trinket2Button" layoutX="1088.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketTwo" prefHeight="80.0" prefWidth="80.0" />
    <Rectangle fx:id="characterBackground" arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="162.0" layoutX="576.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="128.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="166.0" layoutX="471.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" width="348.0" />
+   <Text layoutX="493.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="599.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dorian" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="495.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gold:" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="587.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="420" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="398.0" layoutX="67.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   <Text layoutX="80.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack: " wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="185.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="75.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defense:" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="185.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="76.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agility:" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="185.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="182.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="76.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Luck:" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="73.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina:" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="183.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="78.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana:" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="182.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="497.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hp:" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
+   <Text layoutX="582.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100" wrappingWidth="86.07197570800781">
+      <font>
+         <Font name="Apple Chancery" size="20.0" />
+      </font>
+   </Text>
 </AnchorPane>

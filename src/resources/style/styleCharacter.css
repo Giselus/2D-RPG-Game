@@ -1,3 +1,19 @@
 .button{
     -fx-background-radius: 50px;
+    -fx-border-color: black;
+    -fx-border-radius:50px;
+    -fx-background-color:#d99c4c;
+    -fx-cursor:hand;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+.button:hover{
+    -fx-background-color:#cc9449;
+}
+.text-field{
+    -fx-background-color:#d99c4c;
+    -fx-font-size: 20px;
+    -fx-border-color: black;
+    -fx-border-radius:10px;
+    -fx-background-radius: 10px;
 }
