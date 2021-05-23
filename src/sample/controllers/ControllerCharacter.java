@@ -27,6 +27,8 @@ public class ControllerCharacter extends Updatable {
     int skillPoint=10;
     int luck;
     int agility;
+    int mana=0;
+    int stamina=0;
     //look variable
     boolean flagToDelete=false;
     int skinId=1;
@@ -56,6 +58,8 @@ public class ControllerCharacter extends Updatable {
     @FXML private Text idDefensePoint;
     @FXML private Text idLuckPoint;
     @FXML private Text idAgilityPoint;
+    @FXML private Text idManaPoint;
+    @FXML private Text idStaminaPoint;
     @FXML private AnchorPane idAnchorPane;
     @FXML public void addPointAttack(ActionEvent e){
         if(skillPoint>0){
@@ -122,12 +126,44 @@ public class ControllerCharacter extends Updatable {
             idLuckPoint.setText(String.valueOf(luck));
         }
     }
+    @FXML protected void addPointMana(ActionEvent e){
+        if(skillPoint>0){
+            skillPoint--;
+            mana++;
+            idSkillPoint.setText(String.valueOf(skillPoint));
+            idManaPoint.setText(String.valueOf(mana));
+        }
+    }
+    @FXML protected void subPointMana(ActionEvent e){
+        if(mana>0){
+            mana--;
+            skillPoint++;
+            idSkillPoint.setText(String.valueOf(skillPoint));
+            idManaPoint.setText(String.valueOf(mana));
+        }
+    }
+    @FXML protected void addPointStamine(ActionEvent e){
+        if(skillPoint>0){
+            skillPoint--;
+            stamina++;
+            idSkillPoint.setText(String.valueOf(skillPoint));
+            idStaminaPoint.setText(String.valueOf(stamina));
+        }
+    }
+    @FXML protected void subPointStamine(ActionEvent e){
+        if(stamina>0){
+            stamina--;
+            skillPoint++;
+            idSkillPoint.setText(String.valueOf(skillPoint));
+            idStaminaPoint.setText(String.valueOf(stamina));
+        }
+    }
     @FXML protected void startGame(ActionEvent e){
         name=idName.getText();
         //position=10;
         if((name!="" && skillPoint==0)||(true)){
 
-            new CharacterManager(name,attack,defense,luck,agility,100,imgSkin,imgPants,
+            new CharacterManager(name,attack,defense,luck,agility,mana,stamina,100,imgSkin,imgPants,
                     imgShirt,imgHair,0,0,3);
             Main.setScene("/resources/fxml/mainGameScene.fxml");
             this.setActive(false);
@@ -207,7 +243,6 @@ public class ControllerCharacter extends Updatable {
         if(hairId==25){
             hairId=0;
         }
-
     }
     public void deleteHair(){
         idAnchorPane.getChildren().remove(imageViewHair);
@@ -305,11 +340,16 @@ public class ControllerCharacter extends Updatable {
         skillPoint=10;
         luck=0;
         agility=0;
+        mana=0;
+        stamina=0;
         idSkillPoint.setText(String.valueOf(skillPoint));
         idAttackPoint.setText(String.valueOf(attack));
         idDefensePoint.setText(String.valueOf(defense));
         idAgilityPoint.setText(String.valueOf(agility));
         idLuckPoint.setText(String.valueOf(luck));
+        idManaPoint.setText(String.valueOf(mana));
+        idStaminaPoint.setText(String.valueOf(stamina));
+
     }
     //randomStats
     @FXML protected void randomStats(ActionEvent e){
@@ -319,10 +359,12 @@ public class ControllerCharacter extends Updatable {
         skillPoint=10;
         luck=0;
         agility=0;
+        stamina=0;
+        mana=0;
         while(skillPoint>0){
             Random randomPoint = new Random();
             int choice;
-            choice=randomPoint.nextInt(4)+1;
+            choice=randomPoint.nextInt(6)+1;
             if(choice==1){
                 //attack
                 attack++;
@@ -333,8 +375,13 @@ public class ControllerCharacter extends Updatable {
             else if(choice==3){
                 agility++;
             }
-            else{
+            else if(choice==4){
                 luck++;
+            }
+            else if(choice==5){
+                mana++;
+            }else{
+                stamina++;
             }
             skillPoint--;
         }
@@ -344,6 +391,8 @@ public class ControllerCharacter extends Updatable {
         idDefensePoint.setText(String.valueOf(defense));
         idAgilityPoint.setText(String.valueOf(agility));
         idLuckPoint.setText(String.valueOf(luck));
+        idManaPoint.setText(String.valueOf(mana));
+        idStaminaPoint.setText(String.valueOf(stamina));
     }
     //roration character
     @FXML protected void leftRotate(ActionEvent e){

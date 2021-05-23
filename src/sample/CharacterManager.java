@@ -15,6 +15,8 @@ public class CharacterManager extends GameObject{
     int luck;
     int agility;
     int hp;
+    int mana;
+    int stamina;
     public Image skin;
     public Image legs;
     public Image body;
@@ -35,7 +37,7 @@ public class CharacterManager extends GameObject{
     }
 
     public CharacterManager(String name,int attack,int defense,int luck,
-            int agility,int hp,Image skin,Image legs,Image body,Image hair,
+            int agility,int mana,int stamina,int hp,Image skin,Image legs,Image body,Image hair,
                             int xPos, int yPos, int zPos){
         super(xPos * 32,yPos * 32,zPos,new ImageFrame(skin,0,640,64,64),
                 new ImageFrame(legs,0,640,64,64),
@@ -53,11 +55,12 @@ public class CharacterManager extends GameObject{
         this.luck=luck;
         this.agility=agility;
         this.hp=hp;
+        this.mana=mana;
+        this.stamina=stamina;
         this.skin=skin;
         this.legs=legs;
         this.body=body;
         this.hair=hair;
-
         inventory = new InventoryPlayer(4, 4);
         skills = new ArrayList<>(4);
         hasArmor = false;

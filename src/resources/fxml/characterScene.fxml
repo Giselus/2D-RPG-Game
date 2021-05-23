@@ -30,7 +30,7 @@
             </font>
         </Text>
         <Button layoutX="582.0" layoutY="459.0" mnemonicParsing="false" onAction="#startGame" prefHeight="49.0" prefWidth="88.0" text="Start" />
-        <Button fx:id="abc" layoutX="136.0" layoutY="139.0" mnemonicParsing="false" onAction="#addPointAttack"  prefHeight="33.0" prefWidth="31.0" text="+" />
+        <Button fx:id="abc" layoutX="136.0" layoutY="139.0" mnemonicParsing="false" onAction="#addPointAttack" prefHeight="33.0" prefWidth="31.0" text="+" />
         <Button layoutX="172.0" layoutY="138.0" mnemonicParsing="false" onAction="#subPointAttack" prefHeight="33.0" prefWidth="31.0" text="-" />
         <Text layoutX="40.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack">
          <font>
@@ -60,7 +60,7 @@
          <font>
             <Font size="20.0" />
          </font></Text>
-        <Text layoutX="48.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Luck">
+        <Text layoutX="42.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Luck">
          <font>
             <Font name="Apple Chancery" size="20.0" />
          </font></Text>
@@ -106,7 +106,31 @@
       <Button layoutX="764.0" layoutY="136.0" mnemonicParsing="false" onAction="#frontRotate" prefHeight="32.0" prefWidth="56.0" styleClass="click" text="Front" />
         <!--Arrow-->
         <Button layoutX="764.0" layoutY="336.0" mnemonicParsing="false" onAction="#clearCharacter" prefHeight="49.0" prefWidth="102.0" styleClass="click" text="Clear" />
-      <Button layoutX="62.0" layoutY="351.0" mnemonicParsing="false" onAction="#randomStats" prefHeight="49.0" prefWidth="102.0" styleClass="click" text="Random" />
-      <Button layoutX="62.0" layoutY="410.0" mnemonicParsing="false" onAction="#clearStats" prefHeight="49.0" prefWidth="102.0" styleClass="click" text="Clear" />
+      <Button layoutX="63.0" layoutY="444.0" mnemonicParsing="false" onAction="#randomStats" prefHeight="49.0" prefWidth="102.0" styleClass="click" text="Random" />
+      <Button layoutX="63.0" layoutY="508.0" mnemonicParsing="false" onAction="#clearStats" prefHeight="49.0" prefWidth="102.0" styleClass="click" text="Clear" />
+      <Text layoutX="42.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana">
+         <font>
+            <Font name="Apple Chancery" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="idManaPoint" layoutX="107.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="26.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina">
+         <font>
+            <Font name="Apple Chancery" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="idStaminaPoint" layoutX="107.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="136.0" layoutY="337.0" mnemonicParsing="false" onAction="#addPointMana" prefHeight="32.0" prefWidth="31.0" text="+" />
+      <Button layoutX="136.0" layoutY="377.0" mnemonicParsing="false" onAction="#addPointStamine" prefHeight="32.0" prefWidth="31.0" text="+" />
+      <Button layoutX="172.0" layoutY="337.0" mnemonicParsing="false" onAction="#subPointMana" prefHeight="33.0" prefWidth="31.0" text="-" />
+      <Button layoutX="172.0" layoutY="377.0" mnemonicParsing="false" onAction="#subPointStamine" prefHeight="33.0" prefWidth="31.0" text="-" />
     </children>
 </AnchorPane>

@@ -45,7 +45,6 @@ public class ControllerInventory {
     @FXML public Button trinket1Button;
     @FXML public Button trinket2Button;
     @FXML public AnchorPane anchorPane;
-
     private final ArrayList<ArrayList<Button>> buttonInventory = new ArrayList<>(inventoryWidth);
     private final ArrayList<ArrayList<Items>> itemsView = new ArrayList<>(inventoryWidth);
     @FXML private final ArrayList<Button> buttonEquipment = new ArrayList<>(sizeOfCloths);
