@@ -17,7 +17,9 @@ public class CharacterManager extends GameObject{
     public int hp;
     public int current_hp;
     public int mana;
+    public int current_mana;
     public int stamina;
+    public int current_stamina;
     public Image skin;
     public Image legs;
     public Image body;
@@ -81,12 +83,13 @@ public class CharacterManager extends GameObject{
         inventory.addItem(new Items(3,2));
         inventory.addItem(new Items(4,0));
         inventory.addItem(new Items(1,0));
+        inventory.addItem(new Items(7,0));
         skills.add(new Skills(1, 0));
         skills.add(new Skills(2, 0));
         skills.add(new Skills(1, 1));
         skills.add(new Skills(1, 2));
         this.hp=150;
-        current_hp=100;
+        current_hp=150;
         //end of testing lines
     }
 

@@ -9,7 +9,6 @@ import java.util.Objects;
 public class Items {
     public int id;
     public type myType;
-    public itemStatistic itemStats;
     public enum type{
         //0-Empty, 1-Boots, 2-Armor, 3-Helmet, 4-Weapon-one, 5-weapon-two, 6-trinket, 7-utility
         EMPTY, BOOTS, ARMOR, HELMET, WEAPON_ONE, WEAPON_TWO, TRINKET, UTILITY
@@ -52,14 +51,5 @@ public class Items {
             imageView.setViewport(new Rectangle2D(64,64*10,64,64));
         }
         return imageView;
-    }
-    public class itemStatistic{
-        int attack;
-        int defense;
-        int luck;
-        int agility;
-        int hp;
-        int mana;
-        int stamina;
     }
 }

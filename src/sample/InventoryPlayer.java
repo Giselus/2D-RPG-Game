@@ -64,6 +64,9 @@ public class InventoryPlayer extends Inventory{
                 tmpValue = 6;
             }
         } else {
+            CharacterManager.instance.current_hp += 50;
+            CharacterManager.instance.current_hp = Math.min(CharacterManager.instance.current_hp, CharacterManager.instance.hp);
+            itemsView.get(x).set(y, new Items(0, 0));
             return;
         }
         if(equipmentView.get(tmpValue).myType == Items.type.EMPTY){

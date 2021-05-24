@@ -1,36 +1,29 @@
 package sample.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import sample.CharacterManager;
+import sample.Combat;
+import sample.Main;
 import sample.Skills;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class ControllerFight {
 
-
-
     int roundCounter = 1;
     boolean endOfFight = false;
+    boolean wonFight;
     //we have to read this data from different class, hard coded values right now
-    int playerMana = 100;
-    int playerMaxMana = 100;
-    int playerStamina = 100;
-    int playerMaxStamina = 100;
-    int playerHP = 100;
-    int playerMaxHP = 100;
-    int enemyHP = 100;
-    int enemyMaxHP = 100;
-    int attack = 10;
-
+    Combat.combatStats player;
+    Combat.combatStats enemy;
+    @FXML public Button exitButton;
     @FXML public Button useSkill;
     @FXML public Button chosenSkill;
     @FXML public TextArea skillDesc;
@@ -49,31 +42,29 @@ public class ControllerFight {
     public ArrayList<Skills> skillsList;
     public static Skills tmpSkill;
 
-    public void initialize(){
-        if(CharacterManager.instance == null){
-            new CharacterManager();
-        }
+
+    @FXML public void initialize(){
+        exitButton.setDisable(true);
         skillsList = new ArrayList<>(4);
         for(int i=0; i<4; i++){
             skillsList.add(CharacterManager.instance.skills.get(i));
         }
-        skill_one.setImage(getImageForSkill(skillsList.get(0)));
-        skill_two.setImage(getImageForSkill(skillsList.get(1)));
-        skill_three.setImage(getImageForSkill(skillsList.get(2)));
-        skill_four.setImage(getImageForSkill(skillsList.get(3)));
-    }
-
-    Image getImageForSkill(Skills skill){
-        File file = new File(skill.getPath());
-        return new Image(file.toURI().toString());
+        skill_one.setImage(Skills.getImageForSkill(skillsList.get(0)));
+        skill_two.setImage(Skills.getImageForSkill(skillsList.get(1)));
+        skill_three.setImage(Skills.getImageForSkill(skillsList.get(2)));
+        skill_four.setImage(Skills.getImageForSkill(skillsList.get(3)));
+        player = new Combat.combatStats(true);
+        enemy = new Combat.combatStats();
+        checkEnemyHP(0);
+        checkPlayerHP(0);
     }
     void actionDependsOnSkillType(Skills s){
         if(s.getMyType() == Skills.skillType.OFFENSIVE){
-            offensiveSkill(s);
+            offensiveSkill(s, player, enemy);
         } else if(s.getMyType() == Skills.skillType.HEAL) {
-            healSkill(s);
+            healSkill(s, player);
         } else if(s.getMyType() == Skills.skillType.BUFF){
-            buffSkill(s);
+            buffSkill(s, player);
         }
         tmpSkill = null;
     }
@@ -82,74 +73,72 @@ public class ControllerFight {
         tmpSkill = s;
         skillDesc.appendText(tmpSkill.toString());
     }
-    void offensiveSkill(Skills s){
-        int countDamage = (int) (s.getDamage()+attack*s.getModifier());
-        int littleRandomness = ThreadLocalRandom.current().nextInt(-countDamage/10, countDamage/10+1);
-        countDamage += littleRandomness;
-        fightHistory.appendText(damageToString(s, countDamage));
-        if(checkEnemyHP(countDamage)){
-            fightHistory.appendText(showEnemyHp());
+    void offensiveSkill(Skills s, Combat.combatStats user, Combat.combatStats def) {
+        int countDamage = Combat.countDamage(user.attack, user.luck, def.defense, s);
+        if(Combat.hitLanded(user.agility, def.agility)){
+            fightHistory.appendText(Combat.damageToString(s, countDamage));
+            if(checkEnemyHP(countDamage)){
+                fightHistory.appendText(Combat.showEnemyHp(enemy.HP));
+            } else {
+                endOfFight = true;
+                wonFight = true;
+                endBattle();
+                fightHistory.appendText(Combat.winningMessage());
+            }
         } else {
-            endOfFight = true;
-            endBattle();
-            fightHistory.appendText(winningMessage());
+            fightHistory.appendText("You missed!\n");
         }
     }
-    void buffSkill(Skills s){
-        attack += s.getPlusAttack();
-        fightHistory.appendText(buffsToString(s));
-    }
-    void healSkill(Skills s){
-        playerHP += s.getPlusHealth();
-        if(playerHP > playerMaxHP){
-            playerHP = playerMaxHP;
+    void enemyOffensiveSkill(Skills s, Combat.combatStats user, Combat.combatStats def) {
+        int countDamage = Combat.countDamage(user.attack, user.luck, def.defense, s);
+        if(Combat.hitLanded(user.agility, def.agility)){
+            fightHistory.appendText(Combat.EdamageToString(s, countDamage));
+            if(checkPlayerHP(countDamage)){
+                fightHistory.appendText(Combat.showPlayerHp(player.HP));
+            } else {
+                endOfFight = true;
+                wonFight = false;
+                endBattle();
+                fightHistory.appendText(Combat.losingMessage());
+            }
+        } else {
+            fightHistory.appendText("Enemy missed!\n");
         }
-        fightHistory.appendText(healAmount(s));
-        hpBarFill.setWidth((double)(200/playerMaxHP) * playerHP);
-        fightHistory.appendText(showPlayerHp());
     }
-
-    String healAmount(Skills s){
-        return "You are using " + s.getNameOfSkill() + " and feel that your wounds are healing. You restore "+ s.getPlusHealth() +" HP.\n";
+    void buffSkill(Skills s, Combat.combatStats user){
+        user.attack += s.getPlusAttack();
+        fightHistory.appendText(Combat.buffsToString(s));
     }
-    String buffsToString(Skills s){
-        return "You are using "+ s.getNameOfSkill() +" and feel stronger. Your attack increases.\n";
+    void healSkill(Skills s, Combat.combatStats user){
+        user.HP += s.getPlusHealth();
+        user.stamina += s.getPlusStamina();
+        user.mana += s.getPlusMana();
+        user.HP = Math.min(user.HP, user.maxHP);
+        user.stamina = Math.min(user.stamina, user.maxStamina);
+        user.mana = Math.max(user.mana, user.maxMana);
+        fightHistory.appendText(Combat.healAmount(s));
+        checkPlayerHP(0);
+        fightHistory.appendText(Combat.showPlayerHp(player.HP));
     }
-    String damageToString(Skills s, int damage){
-        return "You are using " + s.getNameOfSkill() + " and you are dealing " + damage +" damage.\n";
-    }
-    String showEnemyHp(){
-        return "Your enemy has " + enemyHP + " HP left.\n";
-    }
-    String showPlayerHp(){
-        return "You have " + playerHP + " HP left.\n";
-    }
-    String winningMessage(){
-        return "You won! Your enemy is dead.\n";
-    }
-
     boolean checkEnemyHP(int dmg){
-        enemyHP -= dmg;
-        mobHP.setText(enemyHP+"/"+enemyMaxHP);
-        hpBarFillEnemy.setWidth((double)(200/enemyMaxHP) * enemyHP);
-        return enemyHP > 0;
+        enemy.HP -= dmg;
+        mobHP.setText(enemy.HP+"/"+enemy.maxHP);
+        hpBarFillEnemy.setWidth((double)(200f/enemy.maxHP) * enemy.HP);
+        return enemy.HP > 0;
     }
-
     boolean checkPlayerHP(int dmg){
-        playerHP -= dmg;
-        heroHP.setText(playerHP+"/"+playerMaxHP);
-        hpBarFill.setWidth((double)(200/playerMaxHP) * playerHP);
-        return playerHP > 0;
+        player.HP -= dmg;
+        heroHP.setText(player.HP+"/"+player.maxHP);
+        hpBarFill.setWidth((double)(200f/player.maxHP) * player.HP);
+        return player.HP > 0;
     }
-    String enemyAttack(){
-        return "Enemy uses fireball and deals 25 damage.\n";
-    }
-
     void endBattle(){
         skill_one.setDisable(true);
         skill_two.setDisable(true);
         skill_three.setDisable(true);
         skill_four.setDisable(true);
+        player.saveStats();
+        exitButton.setDisable(false);
     }
     public void one() {
         takeSkill(skillsList.get(0));
@@ -164,8 +153,7 @@ public class ControllerFight {
         takeSkill(skillsList.get(3));
     }
 
-    @FXML
-    void useSkillNow(){
+    @FXML void useSkillNow() {
         if(tmpSkill == null){
             return;
         }
@@ -178,17 +166,15 @@ public class ControllerFight {
     public void endRound() {
         fightHistory.appendText("\n");
         fightHistory.appendText("Round " + roundCounter + " - Enemy turn\n");
-        fightHistory.appendText(enemyAttack());
-        if(checkPlayerHP(25+ ThreadLocalRandom.current().nextInt(-5, 6))){
-            fightHistory.appendText(showPlayerHp());
-        } else{
-            fightHistory.appendText("You lost!\n");
-            endBattle();
-            endOfFight = true;
+        enemyOffensiveSkill(skillsList.get(0), enemy, player);
+        if(endOfFight){
             return;
         }
         fightHistory.appendText("\n");
         roundCounter++;
         fightHistory.appendText("Round " + roundCounter + " - Player turn\n");
+    }
+    public void switchToSceneMenu() throws IOException {
+        Main.setScene("/resources/fxml/mainGameScene.fxml");
     }
 }
