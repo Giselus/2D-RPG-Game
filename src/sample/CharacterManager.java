@@ -11,7 +11,7 @@ public class CharacterManager extends GameObject{
     int x, y;
     String name;
     public int attack;
-    int defense;
+    public int defense;
     public int luck;
     public int agility;
     public int hp;
@@ -105,7 +105,7 @@ public class CharacterManager extends GameObject{
             }
             if(KeyPolling.isDown(KeyCode.F)){
                 Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneFight.fxml");
+                Main.setScene("/resources/fxml/sceneContainer.fxml");
                 return;
             }
             if (KeyPolling.isDown(KeyCode.A)) {

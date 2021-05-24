@@ -2,11 +2,13 @@ package sample.controllers;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
+import javafx.scene.text.Text;
 import sample.CharacterManager;
 import sample.Inventory;
 import sample.InventoryPlayer;
@@ -45,6 +47,26 @@ public class ControllerInventory {
     @FXML public Button trinket1Button;
     @FXML public Button trinket2Button;
     @FXML public AnchorPane anchorPane;
+    //skilsLabel:
+     @FXML public Text attackLabel;
+     @FXML public Text defenseLabel;
+     @FXML public Text agilityLabel;
+     @FXML public Text staminaLabel;
+     @FXML public Text luckLabel;
+     @FXML public Text manaLabel;
+     @FXML public Text nameLabel;
+     @FXML public Text goldLabel;
+     //endskillsLabel
+    //Image
+    Image helmetImg;
+    Image armorImg;
+    Image bootsImg;
+    //endImage
+    //ImageView
+    ImageView helmetImageView;
+    ImageView armorImageView;
+    ImageView bootsImageView;
+    //endImageView
     private final ArrayList<ArrayList<Button>> buttonInventory = new ArrayList<>(inventoryWidth);
     private final ArrayList<ArrayList<Items>> itemsView = new ArrayList<>(inventoryWidth);
     @FXML private final ArrayList<Button> buttonEquipment = new ArrayList<>(sizeOfCloths);
@@ -53,6 +75,16 @@ public class ControllerInventory {
     private static final Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
 
     //this function is not essential for inventory, it can be changed
+    public void addSkils(){
+        attackLabel.setText(String.valueOf(CharacterManager.instance.attack));
+        defenseLabel.setText(String.valueOf(CharacterManager.instance.defense));
+        agilityLabel.setText(String.valueOf(CharacterManager.instance.agility));
+        luckLabel.setText(String.valueOf(CharacterManager.instance.luck));
+        manaLabel.setText(String.valueOf(CharacterManager.instance.mana));
+        staminaLabel.setText(String.valueOf(CharacterManager.instance.stamina));
+        //nameLabel.setText(String.valueOf(CharacterManager.instance.name));
+
+    }
     public void addImage(Image image){
         ImageView imageViewSkin=new ImageView(image);
         imageViewSkin.setViewport(new Rectangle2D(64,64*10,64,64));
@@ -60,10 +92,44 @@ public class ControllerInventory {
         imageViewSkin.setY(294);
         anchorPane.getChildren().add(imageViewSkin);
     }
+    public void addImageHelemet(Image image){
+        helmetImageView=new ImageView(image);
+        helmetImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        helmetImageView.setX(608);
+        helmetImageView.setY(294);
+        anchorPane.getChildren().add(helmetImageView);
+    }
+    public void addImageArmor(Image image){
+        armorImageView=new ImageView(image);
+        armorImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        armorImageView.setX(608);
+        armorImageView.setY(294);
+        anchorPane.getChildren().add(armorImageView);
+    }
+    public void addImageBoots(Image image){
+        bootsImageView=new ImageView(image);
+        bootsImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        bootsImageView.setX(608);
+        bootsImageView.setY(294);
+        anchorPane.getChildren().add(bootsImageView);
+    }
+    public void deleteItems(){
+        anchorPane.getChildren().remove(helmetImageView);
+        anchorPane.getChildren().remove(armorImageView);
+        anchorPane.getChildren().remove(bootsImageView);
+//        if(!CharacterManager.instance.hasHelmet){
+//            helmetImageView.imageProperty().set(null);
+//            //idAnchorPane.getChildren().remove(imageViewSkin);
+//        }
+    }
     @FXML public void initialize(){
         if(CharacterManager.instance == null){
             new CharacterManager();
         }
+        helmetImageView=new ImageView();
+        helmetImageView=new ImageView();
+        armorImageView=new ImageView();
+        bootsImageView=new ImageView();
         addImage(CharacterManager.instance.skin);
         addImage(CharacterManager.instance.legs);
         addImage(CharacterManager.instance.body);
@@ -96,6 +162,7 @@ public class ControllerInventory {
         }
         initializeButtons();
         updateButtons();
+        addSkils();
     }
     @FXML private void isBoot(){
         if(!temporaryChosen.hasItems){
@@ -205,6 +272,16 @@ public class ControllerInventory {
         setGraphicButton(chosenButton, temporaryChosen.item);
         checkWhatIsWearing();
     }
+    private void wearItems(){
+        deleteItems();
+        helmetImg=new Image(String.valueOf(getClass().getResource(CharacterManager.instance.helmetOn.getPath())));
+        armorImg=new Image(String.valueOf(getClass().getResource(CharacterManager.instance.armorOn.getPath())));
+        bootsImg=new Image(String.valueOf(getClass().getResource(CharacterManager.instance.bootsOn.getPath())));
+        addImageHelemet(helmetImg);
+        addImageArmor(armorImg);
+        addImageBoots(bootsImg);
+        System.out.println(CharacterManager.instance.helmetOn.getPath());
+    }
     private void checkWhatIsWearing(){
         CharacterManager.instance.hasBoots = equipmentView.get(0).myType != Items.type.EMPTY;
         CharacterManager.instance.bootsOn = equipmentView.get(0);
@@ -212,6 +289,7 @@ public class ControllerInventory {
         CharacterManager.instance.armorOn = equipmentView.get(1);
         CharacterManager.instance.hasHelmet = equipmentView.get(2).myType != Items.type.EMPTY;
         CharacterManager.instance.helmetOn = equipmentView.get(2);
+        wearItems();
     }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
         tmpButton.setGraphic(tmpItem.getImageView());
