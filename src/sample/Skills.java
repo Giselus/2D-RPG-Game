@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.image.Image;
+
 import java.io.File;
 import java.util.Scanner;
 
@@ -80,7 +82,12 @@ public class Skills {
         }
         return "";
     }
-
+    public int getPlusStamina(){
+        return plusStamina;
+    }
+    public int getPlusMana(){
+        return plusMana;
+    }
     public int getPlusHealth(){
         return plusHealth;
     }
@@ -125,5 +132,9 @@ public class Skills {
 
     public String getPath(){
         return "src/resources/textures/SkillsIcons/" + myType.toString() + id + ".png";
+    }
+    public static Image getImageForSkill(Skills skill){
+        File file = new File(skill.getPath());
+        return new Image(file.toURI().toString());
     }
 }

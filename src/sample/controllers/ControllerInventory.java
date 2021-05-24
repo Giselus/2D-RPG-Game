@@ -255,7 +255,6 @@ public class ControllerInventory {
         }
         updateButtons();
     }
-
     public void beforeExiting(){
         CharacterManager.instance.inventory.setAllEquippedItems(equipmentView);
         CharacterManager.instance.inventory.setAllItemsList(itemsView);
@@ -455,7 +454,6 @@ public class ControllerInventory {
                 updateButtons();
             }
         });
-
         buttonEquipment.set(0, bootsButton);
         buttonEquipment.set(1, armorButton);
         buttonEquipment.set(2, helmetButton);
@@ -468,7 +466,6 @@ public class ControllerInventory {
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         beforeExiting();
         Main.setScene("/resources/fxml/mainGameScene.fxml");
-
     }
 
     public void pickItemAA(){

@@ -31,5 +31,6 @@
       <ImageView fx:id="skill_two" fitHeight="48.0" fitWidth="48.0" layoutX="108.0" layoutY="270.0" onMouseClicked="#two" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="skill_three" fitHeight="48.0" fitWidth="48.0" layoutX="60.0" layoutY="318.0" onMouseClicked="#three" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="skill_four" fitHeight="48.0" fitWidth="48.0" layoutX="108.0" layoutY="318.0" onMouseClicked="#four" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="exitButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="24.0" prefWidth="18.0" text="X" />
    </children>
 </AnchorPane>
