@@ -396,25 +396,42 @@ public class ControllerCharacter extends Updatable {
     }
     //roration character
     @FXML protected void leftRotate(ActionEvent e){
-        position=9;
+        if(position==10){
+            position=9;
+        }
+        else if(position==9){
+            position=8;
+        }
+        else if(position==8){
+            position=11;
+        }
+        else if(position==11){
+            position=10;
+        }
+       //position=9;
     }
     @FXML protected void rightRotate(ActionEvent e){
-        position=11;
-    }
-    @FXML protected void frontRotate(ActionEvent e){
-        position=10;
-    }
-    @FXML protected void backRotate(ActionEvent e){
-        position=8;
+        if(position==10){
+            position=11;
+        }
+        else if(position==11){
+            position=8;
+        }
+        else if(position==8){
+            position=9;
+        }
+        else if(position==9){
+            position=10;
+        }
     }
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass()
                 .getResource("/resources/fxml/sceneMenu.fxml")));
-        //String css=this.getClass().getResource("styleCharacter.css").toExternalForm();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-       // scene.getStylesheets().add(css);
+        String css=this.getClass().getResource("/resources/style/styleMenu.css").toExternalForm();
+        scene.getStylesheets().add(css);
         Main.controller = null;
         stage.show();
     }

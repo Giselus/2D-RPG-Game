@@ -387,6 +387,7 @@ public class ControllerInventory {
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         beforeExiting();
         Main.setScene("/resources/fxml/mainGameScene.fxml");
+
     }
 
     public void pickItemAA(){

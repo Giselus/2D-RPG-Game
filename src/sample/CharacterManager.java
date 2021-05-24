@@ -93,6 +93,7 @@ public class CharacterManager extends GameObject{
             if(KeyPolling.isDown(KeyCode.I)){
                 Main.clearUptadables();
                 Main.setScene("/resources/fxml/sceneInventory.fxml");
+
                 return;
             }
             if(KeyPolling.isDown(KeyCode.F)){
