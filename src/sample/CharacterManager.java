@@ -20,6 +20,9 @@ public class CharacterManager extends GameObject{
     public int current_mana;
     public int stamina;
     public int current_stamina;
+
+    public ArrayList<Image> basicImages;
+
     public Image skin;
     public Image legs;
     public Image body;
@@ -74,6 +77,14 @@ public class CharacterManager extends GameObject{
         hasHelmet = false;
         hasBoots = false;
 
+        basicImages = new ArrayList<>();
+        basicImages.add(skin);
+        basicImages.add(legs);
+        basicImages.add(body);
+        basicImages.add(hair);
+
+        GenerateAnimations();
+
         //testing lines, this functions are essential for testing inventory and battle
         interactiveChest = new ContainerForNpc(0, 0, 4, 4);
         interactiveChest.inventory.addItem(new Items(1, 2));
@@ -93,17 +104,73 @@ public class CharacterManager extends GameObject{
         //end of testing lines
     }
 
+    Animation left,right,down,up;
+
+    public void GenerateAnimations(){
+        float duration = 0.5f;
+        left = new Animation(duration, -32, 0, CreateAnimation(9));
+        left.imageDuration = duration * 2f;
+        left.continuous = true;
+        right = new Animation(duration, 32, 0, CreateAnimation(11));
+        right.imageDuration = duration * 2f;
+        right.continuous = true;
+        down = new Animation(duration, 0, 32, CreateAnimation(10));
+        down.imageDuration = duration * 2f;
+        down.continuous = true;
+        up = new Animation(duration, 0, -32, CreateAnimation(8));
+        up.imageDuration = duration * 2f;
+        up.continuous = true;
+    }
+
+    public void RefreshImages(){
+        basicImages.clear();
+        basicImages.add(skin);
+        basicImages.add(legs);
+        basicImages.add(body);
+        basicImages.add(hair);
+        if(helmet != null)
+            basicImages.add(helmet);
+        if(armor != null)
+            basicImages.add(armor);
+        if(boots != null)
+            basicImages.add(boots);
+        GenerateAnimations();
+    }
+
+    public ArrayList<ImageFrame>[] CreateAnimation(int row){
+        ArrayList<ImageFrame>[] T = new ArrayList[basicImages.size()];
+        int id = 0;
+        for(Image img: basicImages){
+            ArrayList<ImageFrame> temp = new ArrayList<>();
+            for(int i = 0; i < 9;i++){
+                temp.add(new ImageFrame(img,i*64, row*64,64,64));
+            }
+            T[id] = temp;
+            id++;
+        }
+        return T;
+    }
+    private void ResetExcept(Animation animation){
+        if(left != animation)
+            left.Reset();
+        if(right != animation)
+            right.Reset();
+        if(down != animation)
+            down.Reset();
+        if(up != animation)
+            up.Reset();
+    }
     @Override
     public void Update(float deltaTime){
         super.Update(deltaTime);
-        Camera.instance.setPosition(xPos-Camera.instance.getWidth()/2,yPos-Camera.instance.getHeight()/2);
+        float zoom = Camera.instance.zoom;
+        Camera.instance.setPosition(xPos-Camera.instance.getWidth()/2/zoom,yPos-Camera.instance.getHeight()/2/zoom);
         if(animation == null || !animation.isRunning()) {
             Map map = mapHandler.getCurrentMap();
 
             if(KeyPolling.isDown(KeyCode.I)){
                 Main.clearUptadables();
                 Main.setScene("/resources/fxml/sceneInventory.fxml");
-
                 return;
             }
             if(KeyPolling.isDown(KeyCode.F)){
@@ -111,27 +178,32 @@ public class CharacterManager extends GameObject{
                 Main.setScene("/resources/fxml/sceneContainer.fxml");
                 return;
             }
+            float duration = 3f;
             if (KeyPolling.isDown(KeyCode.A)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x-1,y)) {
-                    animation = new Animation(0.25f, -32, 0);
+                    animation = left;
+                    ResetExcept(animation);
                     animation.Play(this);
                     x--;
                 }
             } else if (KeyPolling.isDown(KeyCode.D)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x+1,y)) {
-                    animation = new Animation(0.25f, 32, 0);
+                    animation = right;
+                    ResetExcept(animation);
                     animation.Play(this);
                     x++;
                 }
             } else if (KeyPolling.isDown(KeyCode.S)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x,y+1)) {
-                    animation = new Animation(0.25f,0,32);
+                    animation = down;
+                    ResetExcept(animation);
                     animation.Play(this);
                     y++;
                 }
             } else if (KeyPolling.isDown(KeyCode.W)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x,y-1)) {
-                    animation = new Animation(0.25f, 0, -32);
+                    animation = up;
+                    ResetExcept(animation);
                     animation.Play(this);
                     y--;
                 }

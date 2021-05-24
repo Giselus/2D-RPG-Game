@@ -70,13 +70,14 @@ public class Map {
         if(layerNo > layers.size())
             return;
         Camera camera = Camera.instance;
-        for(int x = (int)camera.getX() / 32;x <= (int)(camera.getX()+camera.width)/32;x++) {
-            for(int y = (int)camera.getY()/ 32;y <= (int)(camera.getY()+camera.height)/32;y++){
+        for(int x = (int)camera.getX() / 32;x <= (int)(camera.getX()+camera.width/camera.zoom)/32;x++) {
+            for(int y = (int)camera.getY()/ 32;y <= (int)(camera.getY()+camera.height/camera.zoom)/32;y++){
                 Layer layer = layers.get(layerNo-1);
                 Tile tile = layer.getTileAtPos(x, y);
                 if (tile != null) {
                     int size = tile.getTileSet().getTileSize();
-                    mainGameController.instance.setCanvas(tile, (int) ((x * 32) - camera.getX()), (int) ((y * 32) - camera.getY()));
+                    mainGameController.instance.setCanvas(tile,
+                            (int) ((x * 32) - camera.getX()), (int) ((y * 32) - camera.getY()));
                 }
             }
         }

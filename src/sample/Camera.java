@@ -13,6 +13,7 @@ public class Camera{
     public double maxX = 32000;
     public double maxY = 32000;
     public float speed = 90;
+    public float zoom = 2f;
     public Camera(Canvas can){
         instance = this;
         width = can.getWidth();
@@ -32,10 +33,10 @@ public class Camera{
             this.x = minX;
         if(this.y < minY)
             this.y = minY;
-        if(this.x > maxX - width)
-            this.x = maxX - width;
-        if(this.y > maxY - height)
-            this.y = maxY - height;
+        if(this.x > maxX - width / zoom)
+            this.x = maxX - width / zoom;
+        if(this.y > maxY - height / zoom)
+            this.y = maxY - height / zoom;
         //TODO: Fix bounds
     }
     public double getX() {

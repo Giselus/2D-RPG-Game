@@ -39,21 +39,24 @@ public class mainGameController {
         gc.clearRect(0,0,mapCanvas.getWidth(),mapCanvas.getHeight());
     }
 
-    public void setCanvas(Tile tile, int a, int b){
+    public void setCanvas(Tile tile, float a, float b){
+        float zoom = Camera.instance.zoom;
         Image img = tile.getTileSet().getImage();
         int size = tile.getTileSet().getTileSize();
         gc.drawImage(img, tile.getX() * size,tile.getY()*size,
-                size,size,a,b,32,32);
+                size,size,a*zoom,b*zoom,32* zoom,32 * zoom);
     }
 
     public void drawImage(ImageFrame frame, float xPos, float yPos){
+        float zoom = Camera.instance.zoom;
         gc.drawImage(frame.img,frame.left,frame.down,frame.xSize,frame.ySize,
-                xPos - Camera.instance.getX(),
-                yPos - Camera.instance.getY(),
-                32,32);
+                (xPos - Camera.instance.getX()) * zoom,
+                (yPos - Camera.instance.getY()) * zoom,
+                32 * zoom,32 * zoom);
     }
 
     public void drawCross(int x, int y){
+        //TODO: Take camera zoom
         gc = mapCanvas.getGraphicsContext2D();
         Image img = new Image(getClass().getResource("/resources/textures/mark.png").toString());
         int size = 32;
