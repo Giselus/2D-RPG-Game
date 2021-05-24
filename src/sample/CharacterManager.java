@@ -10,13 +10,14 @@ public class CharacterManager extends GameObject{
     public static CharacterManager instance;
     int x, y;
     String name;
-    int attack;
+    public int attack;
     int defense;
-    int luck;
-    int agility;
-    int hp;
-    int mana;
-    int stamina;
+    public int luck;
+    public int agility;
+    public int hp;
+    public int current_hp;
+    public int mana;
+    public int stamina;
     public Image skin;
     public Image legs;
     public Image body;
@@ -24,6 +25,9 @@ public class CharacterManager extends GameObject{
     public Image helmet;
     public Image armor;
     public Image boots;
+    public Items bootsOn;
+    public Items armorOn;
+    public Items helmetOn;
     public InventoryPlayer inventory;
     public ArrayList<Skills> skills;
     public boolean hasHelmet;
@@ -61,6 +65,7 @@ public class CharacterManager extends GameObject{
         this.legs=legs;
         this.body=body;
         this.hair=hair;
+        this.current_hp=hp;
         inventory = new InventoryPlayer(4, 4);
         skills = new ArrayList<>(4);
         hasArmor = false;
@@ -80,6 +85,8 @@ public class CharacterManager extends GameObject{
         skills.add(new Skills(2, 0));
         skills.add(new Skills(1, 1));
         skills.add(new Skills(1, 2));
+        this.hp=150;
+        current_hp=100;
         //end of testing lines
     }
 
@@ -98,7 +105,7 @@ public class CharacterManager extends GameObject{
             }
             if(KeyPolling.isDown(KeyCode.F)){
                 Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneContainer.fxml");
+                Main.setScene("/resources/fxml/sceneFight.fxml");
                 return;
             }
             if (KeyPolling.isDown(KeyCode.A)) {

@@ -207,8 +207,11 @@ public class ControllerInventory {
     }
     private void checkWhatIsWearing(){
         CharacterManager.instance.hasBoots = equipmentView.get(0).myType != Items.type.EMPTY;
+        CharacterManager.instance.bootsOn = equipmentView.get(0);
         CharacterManager.instance.hasArmor = equipmentView.get(1).myType != Items.type.EMPTY;
+        CharacterManager.instance.armorOn = equipmentView.get(1);
         CharacterManager.instance.hasHelmet = equipmentView.get(2).myType != Items.type.EMPTY;
+        CharacterManager.instance.helmetOn = equipmentView.get(2);
     }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
         tmpButton.setGraphic(tmpItem.getImageView());
