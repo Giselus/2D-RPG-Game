@@ -10,6 +10,7 @@ import sample.controllers.ControllerCharacter;
 
 public class Main extends Application {
     static Stage mainStage;
+    static String styleCss;
     public static ControllerCharacter controller;
     public static void main(String[] args){
         Application.launch(args);
@@ -35,8 +36,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         mainStage=stage;
+        //styleCss=
         stage.setResizable(false);
         setScene("/resources/fxml/sceneMenu.fxml");
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
