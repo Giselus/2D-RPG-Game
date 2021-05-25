@@ -1,0 +1,28 @@
+type:id:name:attack:defense:luck:agility:hp:mana:stamina
+0:0:Empty:0:0:0:0:0:0:0:0
+1:0:Steel Boots:0:20:0:0:20:0:10:0
+1:1:Farmers shoes:0:5:0:0:0:20:0
+1:2:Elves boots:0:5:15:15:0:10:0
+1:3:Hwang shoes:0:30:10:10:50:0:20:0
+2:0:Hwang armor:0:60:15:10:75:0:15:0
+2:1:Sorcerer armor:15:15:15:15:0:30:0:0
+2:2:Chain mail:0:50:0:0:75:0:0:0
+2:3:Farmer cloths:0:10:0:10:0:0:15:0
+2:4:Knight's mail:0:45:0:0:60:0:10:0
+3:0:Elves hood:0:5:15:15:0:10:0
+3:1:Hwang helmet:0:30:10:10:50:0:20:0
+3:2:Knight's helmet:0:20:0:0:20:0:10:0
+3:3:Farmer hat:0:0:5:5:0:0:20:0
+3:4:Chain helmet:0:15:0:0:20:0:10:0
+4:0:Wooden sword:10:0:0:0:0:0:0:0
+4:1:Glevias:25:0:5:0:0:0:0:0
+4:2:FMS:40:0:10:10:0:0:0:0
+5:0:Squire's shield:0:15:0:0:20:0:0:0
+5:1:Hwang shield:0:50:15:0:100:0:0:0
+5:2:Void shield:15:20:15:0:0:30:0:0
+6:0:Monk's rope:0:0:5:5:0:10:10:0
+6:1:Queen's ring:0:0:15:0:20:20:0:0
+6:2:Hourglass:0:0:20:10:0:0:20:0
+7:0:Empty:0:0:0:0:0:0:0:0
+7:1:Empty:0:0:0:0:0:0:0:0
+7:2:Empty:0:0:0:0:0:0:0:0
