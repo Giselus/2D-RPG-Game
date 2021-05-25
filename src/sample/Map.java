@@ -1,21 +1,51 @@
 package sample;
 
 
+import javafx.util.Pair;
 import sample.controllers.mainGameController;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Map {
+
+    public enum EventType{
+        STEP,
+        PICK,
+        DISTANCE_PICK
+    }
+    public interface Event{
+        void apply();
+    }
+
     private ArrayList<Layer> layers;
     private File source;
     private String name;
+    public HashMap<String, Pair<EventType,Event>> events;
+
+    private static HashMap<String, Event> eventsMethods;
 
     public Map(File source){
+        if(eventsMethods == null){
+            eventsMethods = new HashMap<>();
+            eventsMethods.put("main", this::mainEvents);
+        }
         this.source = source;
         layers = new ArrayList<>();
+        events = new HashMap<>();
         loadFromFile();
+        eventsMethods.get(name).apply();
+    }
+
+    private void mainEvents(){
+        events = new HashMap<>();
+
+        events.put("ladderUp", new Pair<>(EventType.STEP,() -> CharacterManager.instance.zPos = 4));
+        events.put("ladderDown", new Pair<>(EventType.STEP,() -> CharacterManager.instance.zPos = 3));
+        events.put("caveEntrance", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
+        events.put("grave", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
     }
 
     private void loadFromFile(){

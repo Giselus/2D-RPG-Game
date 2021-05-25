@@ -39,6 +39,15 @@ public class CharacterManager extends GameObject{
     public boolean hasArmor;
     public boolean hasBoots;
 
+    enum Direction{
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    }
+
+    Direction lookingDirection;
+
     //test_line
     public ContainerForNpc interactiveChest;
     public CharacterManager(){
@@ -55,8 +64,8 @@ public class CharacterManager extends GameObject{
         if(skin == null){
             System.out.println("PROBLEM");
         }
-        x = xPos;
-        y = yPos;
+        lastX = x = xPos;
+        lastY = y = yPos;
         instance = this;
         this.name=name;
         this.attack=attack;
@@ -107,7 +116,7 @@ public class CharacterManager extends GameObject{
     Animation left,right,down,up;
 
     public void GenerateAnimations(){
-        float duration = 0.5f;
+        float duration = 0.2f;
         left = new Animation(duration, -32, 0, CreateAnimation(9));
         left.imageDuration = duration * 2f;
         left.continuous = true;
@@ -160,6 +169,7 @@ public class CharacterManager extends GameObject{
         if(up != animation)
             up.Reset();
     }
+    int lastX, lastY;
     @Override
     public void Update(float deltaTime){
         super.Update(deltaTime);
@@ -168,6 +178,60 @@ public class CharacterManager extends GameObject{
         if(animation == null || !animation.isRunning()) {
             Map map = mapHandler.getCurrentMap();
 
+            //Handling events
+            String eventCode = null;
+            String tmp = null;
+            if(lastX != x || lastY != y){
+                if(map.getLayer(zPos).getEvent(x,y) != null) {
+                    tmp = map.getLayer(zPos).getEvent(x, y);
+                    if(map.events.get(tmp).getKey() == Map.EventType.STEP)
+                        eventCode = tmp;
+                }
+                lastX = x;
+                lastY = y;
+            }else {
+                if(KeyPolling.isDown(KeyCode.SPACE)){
+                    if(map.getLayer(zPos).getEvent(x,y) != null) {
+                        tmp = map.getLayer(zPos).getEvent(x, y);
+                        if(map.events.get(tmp).getKey() == Map.EventType.PICK)
+                            eventCode = tmp;
+                    }
+                    switch(lookingDirection){
+                        case LEFT:
+                            if(map.getLayer(zPos).getEvent(x-1,y) != null) {
+                                tmp = map.getLayer(zPos).getEvent(x-1, y);
+                                if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
+                                    eventCode = tmp;
+                            }
+                            break;
+                        case RIGHT:
+                            if(map.getLayer(zPos).getEvent(x+1,y) != null) {
+                                tmp = map.getLayer(zPos).getEvent(x+1, y);
+                                if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
+                                    eventCode = tmp;
+                            }
+                            break;
+                        case UP:
+                            if(map.getLayer(zPos).getEvent(x,y-1) != null) {
+                                tmp = map.getLayer(zPos).getEvent(x, y-1);
+                                if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
+                                    eventCode = tmp;
+                            }
+                            break;
+                        case DOWN:
+                            if(map.getLayer(zPos).getEvent(x,y+1) != null) {
+                                tmp = map.getLayer(zPos).getEvent(x, y+1);
+                                if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
+                                    eventCode = tmp;
+                            }
+                            break;
+                    }
+                }
+            }
+            if(eventCode != null){
+                map.events.get(eventCode).getValue().apply();
+                return;
+            }
             if(KeyPolling.isDown(KeyCode.I)){
                 Main.clearUptadables();
                 Main.setScene("/resources/fxml/sceneInventory.fxml");
@@ -185,6 +249,7 @@ public class CharacterManager extends GameObject{
                     ResetExcept(animation);
                     animation.Play(this);
                     x--;
+                    lookingDirection = Direction.LEFT;
                 }
             } else if (KeyPolling.isDown(KeyCode.D)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x+1,y)) {
@@ -192,6 +257,7 @@ public class CharacterManager extends GameObject{
                     ResetExcept(animation);
                     animation.Play(this);
                     x++;
+                    lookingDirection = Direction.RIGHT;
                 }
             } else if (KeyPolling.isDown(KeyCode.S)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x,y+1)) {
@@ -199,6 +265,7 @@ public class CharacterManager extends GameObject{
                     ResetExcept(animation);
                     animation.Play(this);
                     y++;
+                    lookingDirection = Direction.DOWN;
                 }
             } else if (KeyPolling.isDown(KeyCode.W)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x,y-1)) {
@@ -206,10 +273,9 @@ public class CharacterManager extends GameObject{
                     ResetExcept(animation);
                     animation.Play(this);
                     y--;
+                    lookingDirection = Direction.UP;
                 }
             }
         }
-        //TODO: Handle events
     }
-
 }
