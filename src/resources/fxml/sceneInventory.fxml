@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,125 +10,173 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerInventory">
-  <ImageView fitHeight="720.0" fitWidth="1280.0">
-    <Image url="@../textures/bg4.png" />
-  </ImageView>
-  <Button fx:id="aa" layoutX="890.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button layoutX="28.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="12.0" prefWidth="21.0" text="X" />
-  <Button fx:id="ab" layoutX="968.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ac" layoutX="1048.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ad" layoutX="1128.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ba" layoutX="890.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="bb" layoutX="970.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="bc" layoutX="1048.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="bd" layoutX="1128.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="ca" layoutX="890.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="da" layoutX="890.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="cb" layoutX="970.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="cc" layoutX="1050.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="cd" layoutX="1128.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="db" layoutX="970.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="dc" layoutX="1050.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="dd" layoutX="1128.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="chosenButton" layoutX="600.0" layoutY="477.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="bootsButton" layoutX="1008.0" layoutY="235.0" mnemonicParsing="false" onAction="#isBoot" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="armorButton" layoutX="1008.0" layoutY="155.0" mnemonicParsing="false" onAction="#isArmor" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="helmetButton" layoutX="1008.0" layoutY="75.0" mnemonicParsing="false" onAction="#isHelmet" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="weapon1Button" layoutX="928.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponOne" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="weapon2Button" layoutX="1088.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponTwo" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="trinket1Button" layoutX="928.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketOne" prefHeight="80.0" prefWidth="80.0" />
-  <Button fx:id="trinket2Button" layoutX="1088.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketTwo" prefHeight="80.0" prefWidth="80.0" />
-   <Rectangle fx:id="characterBackground" arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="162.0" layoutX="576.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="128.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="166.0" layoutX="471.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" width="348.0" />
-   <Text layoutX="493.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="nameLabel" layoutX="599.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dorian" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="495.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gold:" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="goldLabel" layoutX="587.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="420" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="398.0" layoutX="67.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-   <Text layoutX="80.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack: " wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="attackLabel" layoutX="185.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="75.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defense:" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="defenseLabel" layoutX="185.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="76.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agility:" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="agilityLabel" layoutX="185.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="luckLabel" layoutX="182.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="76.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Luck:" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="73.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina:" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="staminaLabel" layoutX="183.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="78.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana:" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="manaLabel" layoutX="182.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="497.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hp:" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="582.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100" wrappingWidth="86.07197570800781">
-      <font>
-         <Font name="Apple Chancery" size="20.0" />
-      </font>
-   </Text>
+    <ImageView fitHeight="720.0" fitWidth="1280.0">
+        <Image url="@../textures/bg4.png" />
+    </ImageView>
+    <Button fx:id="aa" layoutX="890.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolaa" />
+      </tooltip></Button>
+    <Button layoutX="28.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="12.0" prefWidth="21.0" text="X" />
+    <Button fx:id="ab" layoutX="968.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolab" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="ac" layoutX="1048.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolac" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="ad" layoutX="1128.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolad" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="ba" layoutX="890.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolba" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="bb" layoutX="970.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolbb" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="bc" layoutX="1048.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolbc" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="bd" layoutX="1128.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolbd" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="ca" layoutX="890.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolca" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="da" layoutX="890.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolda" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="cb" layoutX="970.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolcb" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="cc" layoutX="1050.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolcc" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="cd" layoutX="1128.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="toolcd" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="db" layoutX="970.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="tooldb" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="dc" layoutX="1050.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="tooldc" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="dd" layoutX="1128.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="tooldd" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="chosenButton" layoutX="600.0" layoutY="477.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="bootsButton" layoutX="1008.0" layoutY="235.0" mnemonicParsing="false" onAction="#isBoot" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="armorButton" layoutX="1008.0" layoutY="155.0" mnemonicParsing="false" onAction="#isArmor" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="helmetButton" layoutX="1008.0" layoutY="75.0" mnemonicParsing="false" onAction="#isHelmet" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="weapon1Button" layoutX="928.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponOne" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="weapon2Button" layoutX="1088.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponTwo" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="trinket1Button" layoutX="928.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketOne" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="trinket2Button" layoutX="1088.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketTwo" prefHeight="80.0" prefWidth="80.0" />
+    <Rectangle fx:id="characterBackground" arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="162.0" layoutX="576.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="128.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="166.0" layoutX="471.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" width="348.0" />
+    <Text layoutX="493.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="nameLabel" layoutX="599.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dorian" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="495.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gold:" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="goldLabel" layoutX="587.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="420" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="398.0" layoutX="67.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+    <Text layoutX="80.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack: " wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="attackLabel" layoutX="185.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="75.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defense:" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="defenseLabel" layoutX="185.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="76.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agility:" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="agilityLabel" layoutX="185.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="luckLabel" layoutX="182.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="76.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Luck:" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="73.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina:" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="staminaLabel" layoutX="183.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="78.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana:" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text fx:id="manaLabel" layoutX="182.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="497.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hp:" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
+    <Text layoutX="582.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100/100" wrappingWidth="86.07197570800781">
+        <font>
+            <Font name="Apple Chancery" size="20.0" />
+        </font>
+    </Text>
 </AnchorPane>

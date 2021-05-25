@@ -9,7 +9,7 @@ public class CharacterManager extends GameObject{
 
     public static CharacterManager instance;
     int x, y;
-    String name;
+    public String name;
     public int attack;
     public int defense;
     public int luck;
@@ -20,7 +20,6 @@ public class CharacterManager extends GameObject{
     public int current_mana;
     public int stamina;
     public int current_stamina;
-
     public ArrayList<Image> basicImages;
 
     public Image skin;

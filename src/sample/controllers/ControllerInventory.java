@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -47,6 +48,22 @@ public class ControllerInventory {
     @FXML public Button trinket1Button;
     @FXML public Button trinket2Button;
     @FXML public AnchorPane anchorPane;
+    @FXML public Tooltip toolaa;
+    @FXML public Tooltip toolab;
+    @FXML public Tooltip toolac;
+    @FXML public Tooltip toolad;
+    @FXML public Tooltip toolba;
+    @FXML public Tooltip toolbb;
+    @FXML public Tooltip toolbc;
+    @FXML public Tooltip toolbd;
+    @FXML public Tooltip toolca;
+    @FXML public Tooltip toolcb;
+    @FXML public Tooltip toolcc;
+    @FXML public Tooltip toolcd;
+    @FXML public Tooltip toolda;
+    @FXML public Tooltip tooldb;
+    @FXML public Tooltip tooldc;
+    @FXML public Tooltip tooldd;
     //skilsLabel:
      @FXML public Text attackLabel;
      @FXML public Text defenseLabel;
@@ -71,9 +88,8 @@ public class ControllerInventory {
     private final ArrayList<ArrayList<Items>> itemsView = new ArrayList<>(inventoryWidth);
     @FXML private final ArrayList<Button> buttonEquipment = new ArrayList<>(sizeOfCloths);
     @FXML private final ArrayList<Items> equipmentView = new ArrayList<>(sizeOfCloths);
-
+    int licznik=0;
     private static final Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
-
     //this function is not essential for inventory, it can be changed
     public void addSkils(){
         attackLabel.setText(String.valueOf(CharacterManager.instance.attack));
@@ -122,7 +138,27 @@ public class ControllerInventory {
 //            //idAnchorPane.getChildren().remove(imageViewSkin);
 //        }
     }
+    //tooltip
+    public void tooltipAdd(){
+        toolaa.setText(itemsView.get(0).get(0).myStatistics.toString());
+        toolab.setText(itemsView.get(0).get(1).myStatistics.toString());
+        toolac.setText(itemsView.get(0).get(2).myStatistics.toString());
+        toolad.setText(itemsView.get(0).get(3).myStatistics.toString());
+        toolba.setText(itemsView.get(1).get(0).myStatistics.toString());
+        toolbb.setText(itemsView.get(1).get(1).myStatistics.toString());
+        toolbc.setText(itemsView.get(1).get(2).myStatistics.toString());
+        toolbd.setText(itemsView.get(1).get(3).myStatistics.toString());
+        toolca.setText(itemsView.get(2).get(0).myStatistics.toString());
+        toolcb.setText(itemsView.get(2).get(1).myStatistics.toString());
+        toolcc.setText(itemsView.get(2).get(2).myStatistics.toString());
+        toolcd.setText(itemsView.get(2).get(3).myStatistics.toString());
+        toolda.setText(itemsView.get(3).get(0).myStatistics.toString());
+        tooldb.setText(itemsView.get(3).get(1).myStatistics.toString());
+        tooldc.setText(itemsView.get(3).get(2).myStatistics.toString());
+        tooldd.setText(itemsView.get(3).get(3).myStatistics.toString());
+    }
     @FXML public void initialize(){
+        nameLabel.setText(String.valueOf(CharacterManager.instance.name));
         if(CharacterManager.instance == null){
             new CharacterManager();
         }
@@ -130,6 +166,7 @@ public class ControllerInventory {
         helmetImageView=new ImageView();
         armorImageView=new ImageView();
         bootsImageView=new ImageView();
+
         addImage(CharacterManager.instance.skin);
         addImage(CharacterManager.instance.legs);
         addImage(CharacterManager.instance.body);
@@ -255,6 +292,7 @@ public class ControllerInventory {
         }
         updateButtons();
     }
+
     public void beforeExiting(){
         CharacterManager.instance.inventory.setAllEquippedItems(equipmentView);
         CharacterManager.instance.inventory.setAllItemsList(itemsView);
@@ -288,6 +326,7 @@ public class ControllerInventory {
         CharacterManager.instance.armorOn = equipmentView.get(1);
         CharacterManager.instance.hasHelmet = equipmentView.get(2).myType != Items.type.EMPTY;
         CharacterManager.instance.helmetOn = equipmentView.get(2);
+        tooltipAdd();
         wearItems();
     }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
@@ -454,6 +493,7 @@ public class ControllerInventory {
                 updateButtons();
             }
         });
+
         buttonEquipment.set(0, bootsButton);
         buttonEquipment.set(1, armorButton);
         buttonEquipment.set(2, helmetButton);
@@ -466,6 +506,7 @@ public class ControllerInventory {
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         beforeExiting();
         Main.setScene("/resources/fxml/mainGameScene.fxml");
+
     }
 
     public void pickItemAA(){
@@ -532,4 +573,5 @@ public class ControllerInventory {
         InventoryPlayer.checkSlotProperties(3, 3, itemsView, temporaryChosen, equipmentView);
         updateButtons();
     }
+
 }

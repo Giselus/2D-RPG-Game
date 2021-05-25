@@ -15,7 +15,7 @@ public class Items {
         //0-Empty, 1-Boots, 2-Armor, 3-Helmet, 4-Weapon-one, 5-weapon-two, 6-trinket, 7-utility
         EMPTY, BOOTS, ARMOR, HELMET, WEAPON_ONE, WEAPON_TWO, TRINKET, UTILITY
     }
-    itemStats myStatistics;
+    public itemStats myStatistics;
 
     public Items(int types, int id) {
         this.id = id;
@@ -103,7 +103,33 @@ public class Items {
 
         @Override
         public String toString(){
-            return "";
+            StringBuilder result=new StringBuilder();
+            if(!name.equals("EMPTY")){
+                result.append(name).append("\n");
+            }
+            if(attack!=0){
+                result.append("Attack: ").append(attack).append("\n");
+            }
+            if(defense!=0){
+                result.append("Defense: ").append(defense).append("\n");
+            }
+            if(luck!=0){
+                result.append("Luck: ").append(luck).append("\n");
+            }
+            if(agility!=0){
+                result.append("Agility: ").append(agility).append("\n");
+            }
+            if(hp!=0){
+                result.append("Health points: ").append(hp).append("\n");
+            }
+            if(mana!=0){
+                result.append("Mana: ").append(mana).append("\n");
+            }
+            if(stamina!=0){
+                result.append("Stamina: ").append(stamina).append("\n");
+            }
+            return result.toString();
+
         }
     }
 }
