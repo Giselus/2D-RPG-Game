@@ -92,12 +92,12 @@ public class ControllerInventory {
     private static final Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
     //this function is not essential for inventory, it can be changed
     public void addSkils(){
-        attackLabel.setText(String.valueOf(CharacterManager.instance.attack));
-        defenseLabel.setText(String.valueOf(CharacterManager.instance.defense));
-        agilityLabel.setText(String.valueOf(CharacterManager.instance.agility));
-        luckLabel.setText(String.valueOf(CharacterManager.instance.luck));
-        manaLabel.setText(String.valueOf(CharacterManager.instance.mana));
-        staminaLabel.setText(String.valueOf(CharacterManager.instance.stamina));
+        attackLabel.setText(String.valueOf(CharacterManager.instance.attack+CharacterManager.instance.attackItems));
+        defenseLabel.setText(String.valueOf(CharacterManager.instance.defense+CharacterManager.instance.defenseItems));
+        agilityLabel.setText(String.valueOf(CharacterManager.instance.agility+CharacterManager.instance.agilityItems));
+        luckLabel.setText(String.valueOf(CharacterManager.instance.luck+CharacterManager.instance.agilityItems));
+        manaLabel.setText(String.valueOf(CharacterManager.instance.mana+CharacterManager.instance.manaItems));
+        staminaLabel.setText(String.valueOf(CharacterManager.instance.stamina+CharacterManager.instance.staminaItems));
         //nameLabel.setText(String.valueOf(CharacterManager.instance.name));
 
     }
@@ -159,6 +159,11 @@ public class ControllerInventory {
     }
     @FXML public void initialize(){
         nameLabel.setText(String.valueOf(CharacterManager.instance.name));
+//        String css=this.getClass().getResource("/resources/style/styleInventory.css").toExternalForm();
+//        Main.mainStage.setScene(Main.mainScene);
+//        Main.mainScene.getStylesheets().add(css);
+//        Main.mainStage.show();
+        System.out.println(Main.mainScene);
         if(CharacterManager.instance == null){
             new CharacterManager();
         }
@@ -308,6 +313,8 @@ public class ControllerInventory {
         }
         setGraphicButton(chosenButton, temporaryChosen.item);
         checkWhatIsWearing();
+        runEq();
+        addSkils();
     }
     private void wearItems(){
         deleteItems();
@@ -331,6 +338,24 @@ public class ControllerInventory {
     }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
         tmpButton.setGraphic(tmpItem.getImageView());
+    }
+    public void runEq(){
+        CharacterManager.instance.attackItems=0;
+        CharacterManager.instance.defenseItems=0;
+        CharacterManager.instance.agilityItems=0;
+        CharacterManager.instance.luckItems=0;
+        CharacterManager.instance.staminaItems=0;
+        CharacterManager.instance.manaItems=0;
+        CharacterManager.instance.hpItems=0;
+        for(Items item: equipmentView){
+            CharacterManager.instance.attackItems+=item.myStatistics.attack;
+            CharacterManager.instance.defenseItems+=item.myStatistics.defense;
+            CharacterManager.instance.luckItems+=item.myStatistics.luck;
+            CharacterManager.instance.agilityItems+=item.myStatistics.agility;
+            CharacterManager.instance.manaItems+=item.myStatistics.mana;
+            CharacterManager.instance.staminaItems+=item.myStatistics.stamina;
+            CharacterManager.instance.hpItems+=item.myStatistics.hp;
+        }
     }
     private void initializeButtons(){
         buttonInventory.get(0).set(0, aa);
@@ -505,7 +530,7 @@ public class ControllerInventory {
 
     public void switchToSceneMenu(ActionEvent event) throws IOException {
         beforeExiting();
-        Main.setScene("/resources/fxml/mainGameScene.fxml");
+        Main.setScene("/resources/fxml/mainGameScene.fxml","");
 
     }
 

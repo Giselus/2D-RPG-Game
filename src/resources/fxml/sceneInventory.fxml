@@ -10,71 +10,71 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerInventory">
-    <ImageView fitHeight="720.0" fitWidth="1280.0">
+    <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="-10.0" layoutY="3.0">
         <Image url="@../textures/bg4.png" />
     </ImageView>
-    <Button fx:id="aa" layoutX="890.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="aa" layoutX="868.0" layoutY="333.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolaa" />
       </tooltip></Button>
     <Button layoutX="28.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="12.0" prefWidth="21.0" text="X" />
-    <Button fx:id="ab" layoutX="968.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="ab" layoutX="958.0" layoutY="333.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolab" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="ac" layoutX="1048.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="ac" layoutX="1048.0" layoutY="333.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolac" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="ad" layoutX="1128.0" layoutY="338.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="ad" layoutX="1138.0" layoutY="333.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolad" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="ba" layoutX="890.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="ba" layoutX="868.0" layoutY="419.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolba" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="bb" layoutX="970.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="bb" layoutX="958.0" layoutY="419.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolbb" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="bc" layoutX="1048.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="bc" layoutX="1048.0" layoutY="419.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolbc" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="bd" layoutX="1128.0" layoutY="418.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="bd" layoutX="1138.0" layoutY="419.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolbd" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="ca" layoutX="890.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="ca" layoutX="868.0" layoutY="507.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolca" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="da" layoutX="890.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="da" layoutX="868.0" layoutY="593.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolda" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="cb" layoutX="970.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="cb" layoutX="958.0" layoutY="507.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolcb" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="cc" layoutX="1050.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="cc" layoutX="1048.0" layoutY="507.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolcc" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="cd" layoutX="1128.0" layoutY="498.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="cd" layoutX="1138.0" layoutY="507.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolcd" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="db" layoutX="970.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="db" layoutX="958.0" layoutY="593.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="tooldb" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="dc" layoutX="1050.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="dc" layoutX="1048.0" layoutY="593.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="tooldc" text="Empty Tooltip" />
       </tooltip></Button>
-    <Button fx:id="dd" layoutX="1128.0" layoutY="578.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0">
+    <Button fx:id="dd" layoutX="1138.0" layoutY="593.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="tooldd" text="Empty Tooltip" />
       </tooltip></Button>

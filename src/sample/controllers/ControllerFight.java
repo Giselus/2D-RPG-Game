@@ -175,6 +175,6 @@ public class ControllerFight {
         fightHistory.appendText("Round " + roundCounter + " - Player turn\n");
     }
     public void switchToSceneMenu() throws IOException {
-        Main.setScene("/resources/fxml/mainGameScene.fxml");
+        Main.setScene("/resources/fxml/mainGameScene.fxml","");
     }
 }

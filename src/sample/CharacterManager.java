@@ -21,7 +21,14 @@ public class CharacterManager extends GameObject{
     public int stamina;
     public int current_stamina;
     public ArrayList<Image> basicImages;
-
+    //addValue
+    public int attackItems;
+    public int defenseItems;
+    public int luckItems;
+    public int agilityItems;
+    public int manaItems;
+    public int staminaItems;
+    public int hpItems;
     public Image skin;
     public Image legs;
     public Image body;
@@ -233,12 +240,17 @@ public class CharacterManager extends GameObject{
             }
             if(KeyPolling.isDown(KeyCode.I)){
                 Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneInventory.fxml");
+                Main.setScene("/resources/fxml/sceneInventory.fxml","/resources/style/styleInventory.css");
                 return;
             }
             if(KeyPolling.isDown(KeyCode.F)){
                 Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneContainer.fxml");
+                Main.setScene("/resources/fxml/sceneContainer.fxml","/resources/style/styleInventory.css");
+                return;
+            }
+            if(KeyPolling.isDown(KeyCode.G)){
+                Main.clearUptadables();
+                Main.setScene("/resources/fxml/sceneFight.fxml","");
                 return;
             }
             float duration = 3f;

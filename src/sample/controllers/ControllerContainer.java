@@ -111,7 +111,7 @@ public class ControllerContainer {
     }
     public void switchToSceneMenu(){
         beforeExiting();
-        Main.setScene("/resources/fxml/mainGameScene.fxml");
+        Main.setScene("/resources/fxml/mainGameScene.fxml","");
     }
     private void setupButtons(){
         buttonInventory.get(0).set(0, aa);
