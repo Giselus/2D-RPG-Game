@@ -7,5 +7,4 @@
 }
 .button:hover{
     -fx-background-color: #e5bc1c;
-    -fx-rotate:5px;
 }

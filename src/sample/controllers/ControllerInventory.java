@@ -83,6 +83,10 @@ public class ControllerInventory {
     ImageView helmetImageView;
     ImageView armorImageView;
     ImageView bootsImageView;
+    ImageView hairImageView;
+    ImageView skinImageView;
+    ImageView legsImageView;
+    ImageView shirtImageView;
     //endImageView
     private final ArrayList<ArrayList<Button>> buttonInventory = new ArrayList<>(inventoryWidth);
     private final ArrayList<ArrayList<Items>> itemsView = new ArrayList<>(inventoryWidth);
@@ -101,34 +105,64 @@ public class ControllerInventory {
         //nameLabel.setText(String.valueOf(CharacterManager.instance.name));
 
     }
-    public void addImage(Image image){
-        ImageView imageViewSkin=new ImageView(image);
-        imageViewSkin.setViewport(new Rectangle2D(64,64*10,64,64));
+//    public void addImage(Image image){
+//        ImageView imageViewSkin=new ImageView(image);
+//        imageViewSkin.setViewport(new Rectangle2D(64,64*10,64,64));
+//        imageViewSkin.setX(608);
+//        imageViewSkin.setY(294);
+//        anchorPane.getChildren().add(imageViewSkin);
+//    }
+//    public void addImageHelemet(Image image){
+//        helmetImageView=new ImageView(image);
+//        helmetImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+//        helmetImageView.setX(608);
+//        helmetImageView.setY(294);
+//        anchorPane.getChildren().add(helmetImageView);
+//        //usuwanie fryzury
+//        anchorPane.getChildren().remove(hairImageView);
+//    }
+//    public void addImageArmor(Image image){
+//        armorImageView=new ImageView(image);
+//        armorImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+//        armorImageView.setX(608);
+//        armorImageView.setY(294);
+//        anchorPane.getChildren().add(armorImageView);
+//    }
+//    public void addImageBoots(Image image){
+//        bootsImageView=new ImageView(image);
+//        bootsImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+//        bootsImageView.setX(608);
+//        bootsImageView.setY(294);
+//        anchorPane.getChildren().add(bootsImageView);
+//    }
+public void addPlayer(){
+        deleteItems();
+        deleteBody();
+    addImageView(skinImageView);
+    addImageView(legsImageView);
+    if(equipmentView.get(2).myType== Items.type.HELMET){
+        helmetImageView=equipmentView.get(2).getImageView();
+        addImageView(helmetImageView);
+    } else {
+        addImageView(hairImageView);
+    }
+    if(equipmentView.get(1).myType== Items.type.ARMOR){
+        armorImageView=equipmentView.get(1).getImageView();
+        addImageView(armorImageView);
+    } else {
+        addImageView(shirtImageView);
+    }
+    if(equipmentView.get(0).myType==Items.type.BOOTS){
+        bootsImageView=equipmentView.get(0).getImageView();
+        addImageView(bootsImageView);
+    }
+}
+    public void addImageView(ImageView imageViewSkin){
         imageViewSkin.setX(608);
         imageViewSkin.setY(294);
         anchorPane.getChildren().add(imageViewSkin);
     }
-    public void addImageHelemet(Image image){
-        helmetImageView=new ImageView(image);
-        helmetImageView.setViewport(new Rectangle2D(64,64*10,64,64));
-        helmetImageView.setX(608);
-        helmetImageView.setY(294);
-        anchorPane.getChildren().add(helmetImageView);
-    }
-    public void addImageArmor(Image image){
-        armorImageView=new ImageView(image);
-        armorImageView.setViewport(new Rectangle2D(64,64*10,64,64));
-        armorImageView.setX(608);
-        armorImageView.setY(294);
-        anchorPane.getChildren().add(armorImageView);
-    }
-    public void addImageBoots(Image image){
-        bootsImageView=new ImageView(image);
-        bootsImageView.setViewport(new Rectangle2D(64,64*10,64,64));
-        bootsImageView.setX(608);
-        bootsImageView.setY(294);
-        anchorPane.getChildren().add(bootsImageView);
-    }
+
     public void deleteItems(){
         anchorPane.getChildren().remove(helmetImageView);
         anchorPane.getChildren().remove(armorImageView);
@@ -137,6 +171,12 @@ public class ControllerInventory {
 //            helmetImageView.imageProperty().set(null);
 //            //idAnchorPane.getChildren().remove(imageViewSkin);
 //        }
+    }
+    public void deleteBody(){
+        anchorPane.getChildren().remove(hairImageView);
+        anchorPane.getChildren().remove(shirtImageView);
+        anchorPane.getChildren().remove(legsImageView);
+        anchorPane.getChildren().remove(skinImageView);
     }
     //tooltip
     public void tooltipAdd(){
@@ -157,12 +197,21 @@ public class ControllerInventory {
         tooldc.setText(itemsView.get(3).get(2).myStatistics.toString());
         tooldd.setText(itemsView.get(3).get(3).myStatistics.toString());
     }
+
     @FXML public void initialize(){
         nameLabel.setText(String.valueOf(CharacterManager.instance.name));
-//        String css=this.getClass().getResource("/resources/style/styleInventory.css").toExternalForm();
-//        Main.mainStage.setScene(Main.mainScene);
-//        Main.mainScene.getStylesheets().add(css);
-//        Main.mainStage.show();
+        hairImageView=new ImageView(CharacterManager.instance.hair);
+        skinImageView=new ImageView(CharacterManager.instance.skin);
+        legsImageView=new ImageView(CharacterManager.instance.legs);
+        shirtImageView=new ImageView(CharacterManager.instance.body);
+        hairImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        skinImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        legsImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        shirtImageView.setViewport(new Rectangle2D(64,64*10,64,64));
+        addImageView(skinImageView);
+        addImageView(legsImageView);
+        addImageView(shirtImageView);
+        addImageView(hairImageView);
         System.out.println(Main.mainScene);
         if(CharacterManager.instance == null){
             new CharacterManager();
@@ -172,10 +221,7 @@ public class ControllerInventory {
         armorImageView=new ImageView();
         bootsImageView=new ImageView();
 
-        addImage(CharacterManager.instance.skin);
-        addImage(CharacterManager.instance.legs);
-        addImage(CharacterManager.instance.body);
-        addImage(CharacterManager.instance.hair);
+
         for(int i=0; i<inventoryWidth; i++){
             ArrayList<Button> buttonToAdd = new ArrayList<>();
             for(int j=0; j<inventoryHeight; j++){
@@ -206,6 +252,7 @@ public class ControllerInventory {
         updateButtons();
         addSkils();
     }
+
     @FXML private void isBoot(){
         if(!temporaryChosen.hasItems){
             InventoryPlayer.pickItemFromEquipment(0, equipmentView, temporaryChosen);
@@ -315,15 +362,13 @@ public class ControllerInventory {
         checkWhatIsWearing();
         runEq();
         addSkils();
+        addPlayer();
     }
     private void wearItems(){
         deleteItems();
         helmetImg=new Image(String.valueOf(getClass().getResource(CharacterManager.instance.helmetOn.getPath())));
         armorImg=new Image(String.valueOf(getClass().getResource(CharacterManager.instance.armorOn.getPath())));
         bootsImg=new Image(String.valueOf(getClass().getResource(CharacterManager.instance.bootsOn.getPath())));
-        addImageHelemet(helmetImg);
-        addImageArmor(armorImg);
-        addImageBoots(bootsImg);
         CharacterManager.instance.boots = bootsImg;
         CharacterManager.instance.armor = armorImg;
         CharacterManager.instance.helmet = helmetImg;
@@ -339,6 +384,9 @@ public class ControllerInventory {
         CharacterManager.instance.helmetOn = equipmentView.get(2);
         tooltipAdd();
         wearItems();
+        if(CharacterManager.instance.hasHelmet){
+
+        }
     }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
         tmpButton.setGraphic(tmpItem.getImageView());

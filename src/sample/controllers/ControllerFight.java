@@ -209,17 +209,24 @@ public class ControllerFight {
     }
     public void one() {
         takeSkill(skillsList.get(0));
+        useSkillNow();
     }
     public void two() {
         takeSkill(skillsList.get(1));
+        useSkillNow();
     }
     public void three() {
         takeSkill(skillsList.get(2));
+        useSkillNow();
     }
     public void four(){
         takeSkill(skillsList.get(3));
+        useSkillNow();
     }
-    public void five() {takeSkill(new Skills(2, 1));}
+    public void five() {
+        takeSkill(new Skills(2, 1));
+        useSkillNow();
+    }
 
     @FXML void useSkillNow() {
         if(tmpSkill == null){

@@ -85,3 +85,20 @@
  .text-area .content{
       -fx-background-color: black;
   }
+  #exitButton{
+       -fx-background-color:#e36668;
+       -fx-background-radius:50px;
+       -fx-border-radius:50px;
+  }
+  #exitButton:hover{
+    -fx-background-color:#f48889;
+  }
+  #useSkill{
+    -fx-background-color:#c9945b;
+    -fx-border-color: #000;
+    -fx-border-size:0;
+    -fx-border-width:0;
+  }
+  #useSkill:hover{
+    -fx-background-color:#d9956c;
+  }
