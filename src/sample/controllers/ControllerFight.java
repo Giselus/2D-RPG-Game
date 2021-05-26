@@ -9,13 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import sample.CharacterManager;
-import sample.Combat;
-import sample.Main;
-import sample.Skills;
+import sample.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ControllerFight {
 
@@ -59,6 +58,7 @@ public class ControllerFight {
         skill_four.setImage(Skills.getImageForSkill(skillsList.get(3)));
         skill_rest.setImage(Skills.getImageForSkill(new Skills(2, 1)));
         addPlayer();
+        addEnemy();
         player = new Combat.combatStats(true);
         enemy = new Combat.combatStats();
         checkEnemyHP(0);
@@ -72,6 +72,12 @@ public class ControllerFight {
         manaBar.setText("Mana: "+player.mana + "/" + player.maxMana);
         attackBar.setText("Attack: "+player.attack);
         defenseBar.setText("Defense: "+player.defense);
+    }
+    public void addEnemy(){
+        ImageView imageViewSkin = getEnemyImage();
+        imageViewSkin.setX(778);
+        imageViewSkin.setY(290);
+        anchorPane.getChildren().add(imageViewSkin);
     }
     public void addPlayer(){
         addImage(CharacterManager.instance.skin);
@@ -102,7 +108,14 @@ public class ControllerFight {
         imageViewSkin.setY(300);
         anchorPane.getChildren().add(imageViewSkin);
     }
-
+    public ImageView getEnemyImage(){
+        String path = "src/resources/textures/Enemies/Boss1.png";
+        File file = new File(path);
+        Image abc = new Image(file.toURI().toString());
+        ImageView imageView= new ImageView(abc);
+        imageView.setViewport(new Rectangle2D(0,0,96,96));
+        return imageView;
+    }
     void actionDependsOnSkillType(Skills s){
         if(s.getMyType() == Skills.skillType.OFFENSIVE){
             offensiveSkill(s, player, enemy);
@@ -114,9 +127,7 @@ public class ControllerFight {
         tmpSkill = null;
     }
     void takeSkill(Skills s){
-        //skillDesc.setText("");
         tmpSkill = s;
-        //skillDesc.appendText(tmpSkill.toString());
     }
     void offensiveSkill(Skills s, Combat.combatStats user, Combat.combatStats def) {
         int countDamage = Combat.countDamage(user.attack, user.luck, def.defense, s);
