@@ -104,10 +104,10 @@ public class CharacterManager extends GameObject{
         interactiveChest = new ContainerForNpc(0, 0, 4, 4);
         interactiveChest.inventory.addItem(new Items(1, 2));
         interactiveChest.inventory.addItem(new Items(3, 0));
-        inventory.addItem(new Items(1,1));
+        inventory.addItem(new Items(1,0));
         inventory.addItem(new Items(2,0));
         inventory.addItem(new Items(3,2));
-        inventory.addItem(new Items(4,0));
+        inventory.addItem(new Items(4,2));
         inventory.addItem(new Items(1,0));
         inventory.addItem(new Items(7,0));
         skills.add(new Skills(1, 0));
@@ -116,6 +116,10 @@ public class CharacterManager extends GameObject{
         skills.add(new Skills(1, 2));
         this.hp=150;
         current_hp=150;
+        //this.stamina=100;
+        current_stamina=this.stamina*10 + 100;
+        //this.mana = 100;
+        current_mana=this.mana*10 + 100;
         //end of testing lines
     }
 

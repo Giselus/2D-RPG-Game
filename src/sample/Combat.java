@@ -22,6 +22,12 @@ public class Combat {
         return randoms <= Math.min(900 + result, 990);
     }
 
+    public static boolean enoughMana(combatStats user, Skills skills){
+        return user.mana >= skills.costMana;
+    }
+    public static boolean enoughStamina(combatStats user, Skills skills){
+        return user.stamina >= skills.costStamina;
+    }
     public static String healAmount(Skills s){
         return "You are using " + s.getNameOfSkill() + " and feel that your wounds are healing. You restore "+ s.getPlusHealth() +" HP.\n";
     }
@@ -73,16 +79,16 @@ public class Combat {
             this.isUser = false;
         }
         public combatStats(boolean tmp){
-            this.agility = CharacterManager.instance.agility;
-            this.attack = CharacterManager.instance.attack;
-            this.defense = CharacterManager.instance.defense;
+            this.agility = CharacterManager.instance.agility+CharacterManager.instance.agilityItems;
+            this.attack = CharacterManager.instance.attack+CharacterManager.instance.attackItems;
+            this.defense = CharacterManager.instance.defense+CharacterManager.instance.defenseItems;
             this.stamina = CharacterManager.instance.current_stamina;
-            this.luck = CharacterManager.instance.luck;
+            this.luck = CharacterManager.instance.luck+CharacterManager.instance.luckItems;
             this.mana = CharacterManager.instance.current_mana;
             this.HP = CharacterManager.instance.current_hp;
-            this.maxHP = CharacterManager.instance.hp;
-            this.maxMana = CharacterManager.instance.mana;
-            this.maxStamina = CharacterManager.instance.stamina;
+            this.maxHP = CharacterManager.instance.hp+CharacterManager.instance.hpItems;
+            this.maxMana = CharacterManager.instance.mana*10+CharacterManager.instance.manaItems*10 + 100;
+            this.maxStamina = CharacterManager.instance.stamina*10 + CharacterManager.instance.staminaItems*10 + 100;
             this.isUser = true;
         }
 

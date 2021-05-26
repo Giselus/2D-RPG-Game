@@ -82,6 +82,12 @@ public class Skills {
         }
         return "";
     }
+    public int getCostMana(){
+        return costMana;
+    }
+    public int getCostStamina(){
+        return costStamina;
+    }
     public int getPlusStamina(){
         return plusStamina;
     }
@@ -121,12 +127,30 @@ public class Skills {
             to_return.append("Attack - ").append(damage).append("\n");
         } else if(myType == skillType.HEAL){
             to_return.append(nameOfSkill).append(" - ").append(myType).append("\n");
-            to_return.append("Heal - ").append(plusHealth).append("\n");
+            if(plusHealth > 0){
+                to_return.append("Heal - ").append(plusHealth).append("\n");
+            }
+            if(plusMana > 0){
+                to_return.append("Mana - ").append(plusMana).append("\n");
+            }
+            if(plusStamina > 0){
+                to_return.append("Stamina - ").append(plusStamina).append("\n");
+            }
         } else if(myType == skillType.BUFF){
             to_return.append(nameOfSkill).append(" - ").append(myType).append("\n");
-            to_return.append("Bonus attack - ").append(plusAttack).append("\n");
+            if(plusAttack > 0){
+                to_return.append("Bonus attack - ").append(plusAttack).append("\n");
+            }
+            if(plusDefense > 0){
+                to_return.append("Bonus defense - ").append(plusDefense).append("\n");
+            }
         }
-        System.out.println(to_return.toString());
+        if(costMana >0){
+            to_return.append("Mana cost - ").append(costMana).append("\n");
+        }
+        if(costStamina > 0){
+            to_return.append("Stamina cost - ").append(costStamina).append("\n");
+        }
         return to_return.toString();
     }
 
