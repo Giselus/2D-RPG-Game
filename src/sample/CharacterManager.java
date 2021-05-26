@@ -101,14 +101,19 @@ public class CharacterManager extends GameObject{
 
         //testing lines, this functions are essential for testing inventory and battle
         interactiveChest = new ContainerForNpc(0, 0, 4, 4);
-        interactiveChest.inventory.addItem(new Items(1, 2));
-        interactiveChest.inventory.addItem(new Items(3, 0));
-        inventory.addItem(new Items(1,0));
-        inventory.addItem(new Items(2,0));
-        inventory.addItem(new Items(3,2));
-        inventory.addItem(new Items(4,2));
-        inventory.addItem(new Items(1,0));
-        inventory.addItem(new Items(7,0));
+        interactiveChest.inventory.addItem(new Items(2, 0));
+        interactiveChest.inventory.addItem(new Items(3, 1));
+        interactiveChest.inventory.addItem(new Items(1, 3));
+//        inventory.addItem(new Items(1,0));
+//        inventory.addItem(new Items(2,0));
+//        inventory.addItem(new Items(3,2));
+//        inventory.addItem(new Items(4,2));
+//        inventory.addItem(new Items(1,0));
+//        inventory.addItem(new Items(7,0));
+        inventory.addItem(new Items(1, 1));
+        inventory.addItem(new Items(2, 3));
+        inventory.addItem(new Items(3, 3));
+        inventory.addItem(new Items(4, 0));
         skills.add(new Skills(1, 0));
         skills.add(new Skills(2, 0));
         skills.add(new Skills(1, 1));
