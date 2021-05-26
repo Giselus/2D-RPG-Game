@@ -8,21 +8,24 @@ public class GameObject extends Updatable{
 
     public ArrayList<ImageFrame> images;
     public float xPos, yPos;
-    int zPos;
+    int x,y;
+    int z;
     public Animation animation;
 
     public GameObject(){
 
     }
 
-    public GameObject(float xPos, float yPos, int zPos, ImageFrame ... img){
+    public GameObject(int x, int y, int z, ImageFrame ... img){
         images = new ArrayList<>();
         for(ImageFrame image : img){
             images.add(image);
         }
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.zPos = zPos;
+        this.x = x;
+        this.y = y;
+        this.xPos = x * 32;
+        this.yPos = y * 32;
+        this.z = z;
     }
 
     public void Update(float deltaTime){

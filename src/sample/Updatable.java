@@ -15,7 +15,7 @@ public class Updatable {
 
     public void setActive(boolean active){
         this.active = active;
-        if(active == true){
+        if(active){
             if(!updatableList.contains(this)){
                 updatableList.add(this);
             }

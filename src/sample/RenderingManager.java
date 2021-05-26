@@ -24,8 +24,9 @@ public class RenderingManager extends Updatable {
     public void LateUpdate(float deltaTime){
         ArrayList<Pair<Integer,GameObject>> T = new ArrayList<>();
         for(GameObject obj : renderQueue){
-            T.add(new Pair<>(obj.zPos,obj));
+            T.add(new Pair<>(obj.z,obj));
         }
+        renderQueue.clear();
         Collections.sort(T, new Comparator<Pair<Integer, GameObject>>() {
             @Override
             public int compare(Pair<Integer, GameObject> o1, Pair<Integer, GameObject> o2) {

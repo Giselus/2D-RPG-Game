@@ -21,12 +21,14 @@ public class mainGameController {
             mapHandler.Init();
             new RenderingManager();
             new Camera(mapCanvas);
+            new EnemyManager();
             mapHandler.setCurrentMap("main");
         }
         instance = this;
         gc = mapCanvas.getGraphicsContext2D();
         RenderingManager.instance.setActive(true);
         CharacterManager.instance.setActive(true);
+        EnemyManager.instance.setActive(true);
     }
 
     GraphicsContext gc;

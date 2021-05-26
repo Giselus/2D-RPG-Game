@@ -1,6 +1,8 @@
 package sample;
 
 
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.util.Pair;
 import sample.controllers.mainGameController;
 
@@ -41,11 +43,15 @@ public class Map {
     }
 
     private void mainEvents(){
-        events.put("ladderUp", new Pair<>(EventType.STEP,() -> CharacterManager.instance.zPos = 4));
-        events.put("ladderDown", new Pair<>(EventType.STEP,() -> CharacterManager.instance.zPos = 3));
+        EnemyObject test = new EnemyObject(30,11,4,new ImageFrame(new Image(
+                getClass().getResource("/resources/textures/Enemies/Boss1.png").toString()),
+                0,0, 96,96));
+
+        events.put("ladderUp", new Pair<>(EventType.STEP,() -> CharacterManager.instance.z = 4));
+        events.put("ladderDown", new Pair<>(EventType.STEP,() -> CharacterManager.instance.z = 3));
         events.put("secondScene", new Pair<>(EventType.PICK,() -> {
             mapHandler.setCurrentMap("main2");
-            CharacterManager.instance.zPos = 4;
+            CharacterManager.instance.z = 4;
             CharacterManager.instance.x = 14;
             CharacterManager.instance.y = 15;
             CharacterManager.instance.lastX = 14;
@@ -57,13 +63,16 @@ public class Map {
                 CharacterManager.instance.animation.Stop();
         }));
         events.put("caveEntrance", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
-        events.put("grave", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
+        events.put("grave", new Pair<>(EventType.DISTANCE_PICK,() -> {
+            Main.clearUptadables();
+            Main.setScene("/resources/fxml/sceneContainer.fxml","/resources/style/styleInventory.css");
+        }));
     }
 
     private void main2Events(){
         events.put("firstScene", new Pair<>(EventType.PICK,() -> {
             mapHandler.setCurrentMap("main");
-            CharacterManager.instance.zPos = 3;
+            CharacterManager.instance.z = 3;
             CharacterManager.instance.x = 34;
             CharacterManager.instance.y = 0;
             CharacterManager.instance.lastX = 34;

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class CharacterManager extends GameObject{
 
     public static CharacterManager instance;
-    int x, y;
     public String name;
     public int attack;
     public int defense;
@@ -201,6 +200,14 @@ public class CharacterManager extends GameObject{
         Camera.instance.setPosition(xPos-Camera.instance.getWidth()/2/zoom,yPos-Camera.instance.getHeight()/2/zoom);
     }
 
+    private boolean occupied(int x, int y, int z){
+        if(mapHandler.getCurrentMap().getLayer(z).getCollisionAtPos(x,y))
+            return true;
+        if(EnemyManager.instance.getEnemy(x,y,z) != null)
+            return true;
+        return false;
+    }
+
     @Override
     public void Update(float deltaTime){
         super.Update(deltaTime);
@@ -211,8 +218,8 @@ public class CharacterManager extends GameObject{
             String eventCode = null;
             String tmp = null;
             if(lastX != x || lastY != y){
-                if(map.getLayer(zPos).getEvent(x,y) != null) {
-                    tmp = map.getLayer(zPos).getEvent(x, y);
+                if(map.getLayer(z).getEvent(x,y) != null) {
+                    tmp = map.getLayer(z).getEvent(x, y);
                     if(map.events.get(tmp).getKey() == Map.EventType.STEP)
                         eventCode = tmp;
                 }
@@ -220,36 +227,48 @@ public class CharacterManager extends GameObject{
                 lastY = y;
             }else {
                 if(KeyPolling.pressedDown(KeyCode.SPACE)){
-                    if(map.getLayer(zPos).getEvent(x,y) != null) {
-                        tmp = map.getLayer(zPos).getEvent(x, y);
+                    if(map.getLayer(z).getEvent(x,y) != null) {
+                        tmp = map.getLayer(z).getEvent(x, y);
                         if(map.events.get(tmp).getKey() == Map.EventType.PICK)
                             eventCode = tmp;
                     }
                     switch(lookingDirection){
                         case LEFT:
-                            if(map.getLayer(zPos).getEvent(x-1,y) != null) {
-                                tmp = map.getLayer(zPos).getEvent(x-1, y);
+                            if(EnemyManager.instance.getEnemy(x-1,y,z) != null){
+                                EnemyManager.instance.getEnemy(x-1,y,z).Fight();
+                            }
+                            if(map.getLayer(z).getEvent(x-1,y) != null) {
+                                tmp = map.getLayer(z).getEvent(x-1, y);
                                 if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
                                     eventCode = tmp;
                             }
                             break;
                         case RIGHT:
-                            if(map.getLayer(zPos).getEvent(x+1,y) != null) {
-                                tmp = map.getLayer(zPos).getEvent(x+1, y);
+                            if(EnemyManager.instance.getEnemy(x+1,y,z) != null){
+                                EnemyManager.instance.getEnemy(x+1,y,z).Fight();
+                            }
+                            if(map.getLayer(z).getEvent(x+1,y) != null) {
+                                tmp = map.getLayer(z).getEvent(x+1, y);
                                 if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
                                     eventCode = tmp;
                             }
                             break;
                         case UP:
-                            if(map.getLayer(zPos).getEvent(x,y-1) != null) {
-                                tmp = map.getLayer(zPos).getEvent(x, y-1);
+                            if(EnemyManager.instance.getEnemy(x,y-1,z) != null){
+                                EnemyManager.instance.getEnemy(x,y-1,z).Fight();
+                            }
+                            if(map.getLayer(z).getEvent(x,y-1) != null) {
+                                tmp = map.getLayer(z).getEvent(x, y-1);
                                 if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
                                     eventCode = tmp;
                             }
                             break;
                         case DOWN:
-                            if(map.getLayer(zPos).getEvent(x,y+1) != null) {
-                                tmp = map.getLayer(zPos).getEvent(x, y+1);
+                            if(EnemyManager.instance.getEnemy(x,y+1,z) != null){
+                                EnemyManager.instance.getEnemy(x,y+1,z).Fight();
+                            }
+                            if(map.getLayer(z).getEvent(x,y+1) != null) {
+                                tmp = map.getLayer(z).getEvent(x, y+1);
                                 if(map.events.get(tmp).getKey() == Map.EventType.DISTANCE_PICK)
                                     eventCode = tmp;
                             }
@@ -266,19 +285,9 @@ public class CharacterManager extends GameObject{
                 Main.setScene("/resources/fxml/sceneInventory.fxml","/resources/style/styleInventory.css");
                 return;
             }
-            if(KeyPolling.isDown(KeyCode.F)){
-                Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneContainer.fxml","/resources/style/styleInventory.css");
-                return;
-            }
-            if(KeyPolling.isDown(KeyCode.G)){
-                Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
-                return;
-            }
             float duration = 3f;
             if (KeyPolling.isDown(KeyCode.A)) {
-                if(!map.getLayer(zPos).getCollisionAtPos(x-1,y)) {
+                if(!occupied(x-1,y,z)) {
                     animation = left;
                     ResetExcept(animation);
                     animation.Play(this);
@@ -289,7 +298,7 @@ public class CharacterManager extends GameObject{
                     DrawBasicPosition();
                 }
             } else if (KeyPolling.isDown(KeyCode.D)) {
-                if(!map.getLayer(zPos).getCollisionAtPos(x+1,y)) {
+                if(!occupied(x+1,y,z)) {
                     animation = right;
                     ResetExcept(animation);
                     animation.Play(this);
@@ -300,7 +309,7 @@ public class CharacterManager extends GameObject{
                     DrawBasicPosition();
                 }
             } else if (KeyPolling.isDown(KeyCode.S)) {
-                if(!map.getLayer(zPos).getCollisionAtPos(x,y+1)) {
+                if(!occupied(x,y+1,z)) {
                     animation = down;
                     ResetExcept(animation);
                     animation.Play(this);
@@ -311,7 +320,7 @@ public class CharacterManager extends GameObject{
                     DrawBasicPosition();
                 }
             } else if (KeyPolling.isDown(KeyCode.W)) {
-                if(!map.getLayer(zPos).getCollisionAtPos(x,y-1)) {
+                if(!occupied(x,y-1,z)) {
                     animation = up;
                     ResetExcept(animation);
                     animation.Play(this);
