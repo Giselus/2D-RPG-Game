@@ -1,0 +1,87 @@
+#anchorPane{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%,#279130,#912727);
+}
+.button{
+    -fx-background-color:#d4a039;
+    -fx-font-size:12pt;
+    -fx-border-color: #000;
+    -fx-border-size:2;
+    -fx-border-width:1;
+    -fx-cursor:hand;
+}
+#hiddenOne{
+    -fx-background-color:transparent;
+    -fx-border-width:0;
+    -fx-cursor:hand;
+}
+#hiddenOne:pressed{
+    -fx-border-color: red;
+    -fx-border-size:5;
+    -fx-border-width:3;
+}
+#hiddenTwo{
+    -fx-background-color:transparent;
+    -fx-border-width:0;
+    -fx-cursor:hand;
+}
+#hiddenTwo:pressed{
+    -fx-border-color: red;
+    -fx-border-size:5;
+    -fx-border-width:3;
+}
+#hiddenThree{
+    -fx-background-color:transparent;
+    -fx-border-width:0;
+    -fx-cursor:hand;
+}
+#hiddenThree:pressed{
+    -fx-border-color: red;
+    -fx-border-size:5;
+    -fx-border-width:3;
+}
+#hiddenFour{
+    -fx-background-color:transparent;
+    -fx-border-width:0;
+    -fx-cursor:hand;
+}
+#hiddenFour:pressed{
+    -fx-border-color: red;
+    -fx-border-size:5;
+    -fx-border-width:3;
+}
+#hiddenFive{
+    -fx-background-color:transparent;
+    -fx-border-width:0;
+    -fx-cursor:hand;
+}
+#hiddenFive:pressed{
+    -fx-border-color: red;
+    -fx-border-size:5;
+    -fx-border-width:3;
+}
+#staminaBar{
+    -fx-font-size:19px;
+    -fx-font-family:'Apple Chancery';
+}
+#manaBar{
+    -fx-font-size:19px;
+        -fx-font-family:'Apple Chancery';
+}
+#attackBar{
+    -fx-font-size:19px;
+    -fx-font-family:'Apple Chancery';
+}
+#defenseBar{
+    -fx-font-size:19px;
+    -fx-font-family:'Apple Chancery';
+}
+.text-area{
+     -fx-font-family: 'Consolas';
+      -fx-highlight-fill: #00ff00;
+      -fx-highlight-text-fill: #000000;
+      -fx-text-fill: #00ff00;
+      -fx-background-color: #000000;
+}
+ .text-area .content{
+      -fx-background-color: black;
+  }

@@ -9,3 +9,22 @@
 .button:hover{
     -fx-background-color:#eccc92;
 }
+#exitButton{
+    -fx-background-color:#e36668;
+    -fx-background-radius:50px;
+    -fx-border-radius:50px;
+}
+#exitButton:hover{
+    -fx-background-color:#f47779;
+}
+.tooltip{
+    -fx-width:50px;
+    -fx-height:50px;
+    -fx-background-color:#32801f;
+    -fx-font-size:12pt;
+    -fx-border-color: black;
+    -fx-border-radius:10px;
+    -fx-background-radius:10px;
+    -fx-cursor:hand;
+    -fx-font-style:"Lucida Console";
+}

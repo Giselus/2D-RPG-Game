@@ -22,13 +22,18 @@
    <Text fx:id="mobHP" layoutX="802.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP" />
    <Button fx:id="useSkill" layoutX="88.0" layoutY="387.0" mnemonicParsing="false" onAction="#useSkillNow" text="Use" />
    <ImageView fx:id="skill_one" fitHeight="48.0" fitWidth="48.0" layoutX="61.0" layoutY="210.0" onMouseClicked="#one" pickOnBounds="true" preserveRatio="true" />
-   <ImageView fx:id="skill_two" fitHeight="48.0" fitWidth="48.0" layoutX="109.0" layoutY="210.0" onMouseClicked="#two" pickOnBounds="true" preserveRatio="true" />
-   <ImageView fx:id="skill_three" fitHeight="48.0" fitWidth="48.0" layoutX="61.0" layoutY="258.0" onMouseClicked="#three" pickOnBounds="true" preserveRatio="true" />
-   <ImageView fx:id="skill_four" fitHeight="48.0" fitWidth="48.0" layoutX="109.0" layoutY="258.0" onMouseClicked="#four" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="skill_two" fitHeight="48.0" fitWidth="48.0" layoutX="118.0" layoutY="210.0" onMouseClicked="#two" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="skill_three" fitHeight="48.0" fitWidth="48.0" layoutX="61.0" layoutY="264.0" onMouseClicked="#three" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="skill_four" fitHeight="48.0" fitWidth="48.0" layoutX="118.0" layoutY="264.0" onMouseClicked="#four" pickOnBounds="true" preserveRatio="true" />
    <Button fx:id="exitButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="24.0" prefWidth="18.0" text="X" />
-   <ImageView fx:id="skill_rest" fitHeight="48.0" fitWidth="48.0" layoutX="85.0" layoutY="306.0" onMouseClicked="#five" pickOnBounds="true" preserveRatio="true" />
-   <Text fx:id="staminaBar" layoutX="1057.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina" wrappingWidth="136.7294921875" />
-   <Text fx:id="manaBar" layoutX="1057.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" wrappingWidth="155.7294921875" />
-   <Text fx:id="attackBar" layoutX="1057.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack" wrappingWidth="155.7294921875" />
-   <Text fx:id="defenseBar" layoutX="1057.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defense" wrappingWidth="155.7294921875" />
+   <ImageView fx:id="skill_rest" fitHeight="48.0" fitWidth="48.0" layoutX="85.0" layoutY="315.0" onMouseClicked="#five" pickOnBounds="true" preserveRatio="true" />
+   <Text fx:id="staminaBar" layoutX="1028.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina" wrappingWidth="181.7294921875" />
+   <Text fx:id="manaBar" layoutX="1028.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" wrappingWidth="181.7294921875" />
+   <Text fx:id="attackBar" layoutX="1028.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack" wrappingWidth="181.7294921875" />
+   <Text fx:id="defenseBar" layoutX="1028.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defense" wrappingWidth="181.7294921875" />
+   <Button fx:id="hiddenOne" layoutX="59.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#one" prefHeight="52.0" prefWidth="52.0" />
+   <Button fx:id="hiddenTwo" layoutX="115.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#two" prefHeight="52.0" prefWidth="52.0" />
+   <Button fx:id="hiddenThree" layoutX="59.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#three" prefHeight="52.0" prefWidth="52.0" />
+   <Button fx:id="hiddenFour" layoutX="115.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#four" prefHeight="52.0" prefWidth="52.0" />
+   <Button fx:id="hiddenFive" layoutX="85.0" layoutY="313.0" mnemonicParsing="false" onMouseClicked="#five" prefHeight="52.0" prefWidth="52.0" />
 </AnchorPane>

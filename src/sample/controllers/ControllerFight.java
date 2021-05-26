@@ -18,6 +18,11 @@ import java.util.Objects;
 
 public class ControllerFight {
 
+    @FXML public Button hiddenOne;
+    @FXML public Button hiddenTwo;
+    @FXML public Button hiddenThree;
+    @FXML public Button hiddenFour;
+    @FXML public Button hiddenFive;
     int roundCounter = 1;
     boolean endOfFight = false;
     boolean wonFight;
@@ -42,7 +47,6 @@ public class ControllerFight {
     @FXML public Text manaBar;
     @FXML public Text attackBar;
     @FXML public Text defenseBar;
-
     public ArrayList<Skills> skillsList;
     public static Skills tmpSkill;
 
@@ -197,6 +201,11 @@ public class ControllerFight {
         skill_rest.setDisable(true);
         player.saveStats();
         exitButton.setDisable(false);
+        hiddenOne.setDisable(true);
+        hiddenTwo.setDisable(true);
+        hiddenThree.setDisable(true);
+        hiddenFour.setDisable(true);
+        hiddenFive.setDisable(true);
     }
     public void one() {
         takeSkill(skillsList.get(0));

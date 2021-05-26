@@ -63,6 +63,7 @@ public class ControllerMenu {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        System.out.println("TEST");
     }
     public void exitGame(ActionEvent event){
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -273,7 +273,7 @@ public class CharacterManager extends GameObject{
             }
             if(KeyPolling.isDown(KeyCode.G)){
                 Main.clearUptadables();
-                Main.setScene("/resources/fxml/sceneFight.fxml","");
+                Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
                 return;
             }
             float duration = 3f;

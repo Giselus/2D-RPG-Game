@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerInventory">
-    <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="-10.0" layoutY="3.0">
+    <ImageView fitHeight="728.0" fitWidth="1286.0" layoutX="-2.0" layoutY="-2.0">
         <Image url="@../textures/bg4.png" />
     </ImageView>
     <Button fx:id="aa" layoutX="868.0" layoutY="333.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolaa" />
       </tooltip></Button>
-    <Button layoutX="28.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="12.0" prefWidth="21.0" text="X" />
+    <Button fx:id="exitButton" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="12.0" prefWidth="21.0" text="X" />
     <Button fx:id="ab" layoutX="958.0" layoutY="333.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
       <tooltip>
          <Tooltip fx:id="toolab" text="Empty Tooltip" />
