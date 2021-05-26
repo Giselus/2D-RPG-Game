@@ -57,7 +57,8 @@ public class Main extends Application {
     private void tick(float deltaTime){
         //Input -> logic -> rendering
 
-
+        Updatable.updatableList.addAll(Updatable.newObjects);
+        Updatable.newObjects.clear();
         for(Updatable obj: Updatable.updatableList){
             obj.Update(deltaTime);
             if(toClear){

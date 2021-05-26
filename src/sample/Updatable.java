@@ -1,28 +1,26 @@
 package sample;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Updatable {
 
-    public static ArrayList<Updatable> updatableList = new ArrayList<>();
+    public static HashSet<Updatable> updatableList = new HashSet<>();
+    public static HashSet<Updatable> newObjects = new HashSet<>();
 
     private boolean active;
 
     public Updatable(){
         active = true;
-        updatableList.add(this);
+        newObjects.add(this);
     }
 
     public void setActive(boolean active){
         this.active = active;
         if(active){
-            if(!updatableList.contains(this)){
-                updatableList.add(this);
-            }
+            newObjects.add(this);
         }else{
-            if(updatableList.contains(this)){
-                updatableList.remove(this);
-            }
+            updatableList.remove(this);
         }
     }
     public void Update(float deltaTime){
