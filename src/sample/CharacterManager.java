@@ -150,6 +150,22 @@ public class CharacterManager extends GameObject{
         if(boots != null)
             basicImages.add(boots);
         GenerateAnimations();
+        DrawBasicPosition();
+    }
+
+    public void DrawBasicPosition(){
+        images.clear();
+        for(Image img: basicImages){
+            if(lookingDirection == Direction.LEFT){
+                images.add(new ImageFrame(img,0,9*64,64,64));
+            }else if(lookingDirection == Direction.RIGHT){
+                images.add(new ImageFrame(img,0,11*64,64,64));
+            }else if(lookingDirection == Direction.UP){
+                images.add(new ImageFrame(img,0,8*64,64,64));
+            }else{
+                images.add(new ImageFrame(img,0,10*64,64,64));
+            }
+        }
     }
 
     public ArrayList<ImageFrame>[] CreateAnimation(int row){
@@ -176,14 +192,17 @@ public class CharacterManager extends GameObject{
             up.Reset();
     }
     int lastX, lastY;
+    public void setCameraPosition(){
+        float zoom = Camera.instance.zoom;
+        Camera.instance.setPosition(xPos-Camera.instance.getWidth()/2/zoom,yPos-Camera.instance.getHeight()/2/zoom);
+    }
+
     @Override
     public void Update(float deltaTime){
         super.Update(deltaTime);
-        float zoom = Camera.instance.zoom;
-        Camera.instance.setPosition(xPos-Camera.instance.getWidth()/2/zoom,yPos-Camera.instance.getHeight()/2/zoom);
+        setCameraPosition();
         if(animation == null || !animation.isRunning()) {
             Map map = mapHandler.getCurrentMap();
-
             //Handling events
             String eventCode = null;
             String tmp = null;
@@ -196,7 +215,7 @@ public class CharacterManager extends GameObject{
                 lastX = x;
                 lastY = y;
             }else {
-                if(KeyPolling.isDown(KeyCode.SPACE)){
+                if(KeyPolling.pressedDown(KeyCode.SPACE)){
                     if(map.getLayer(zPos).getEvent(x,y) != null) {
                         tmp = map.getLayer(zPos).getEvent(x, y);
                         if(map.events.get(tmp).getKey() == Map.EventType.PICK)
@@ -261,6 +280,9 @@ public class CharacterManager extends GameObject{
                     animation.Play(this);
                     x--;
                     lookingDirection = Direction.LEFT;
+                }else{
+                    lookingDirection = Direction.LEFT;
+                    DrawBasicPosition();
                 }
             } else if (KeyPolling.isDown(KeyCode.D)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x+1,y)) {
@@ -269,6 +291,9 @@ public class CharacterManager extends GameObject{
                     animation.Play(this);
                     x++;
                     lookingDirection = Direction.RIGHT;
+                }else{
+                    lookingDirection = Direction.RIGHT;
+                    DrawBasicPosition();
                 }
             } else if (KeyPolling.isDown(KeyCode.S)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x,y+1)) {
@@ -277,6 +302,9 @@ public class CharacterManager extends GameObject{
                     animation.Play(this);
                     y++;
                     lookingDirection = Direction.DOWN;
+                }else{
+                    lookingDirection = Direction.DOWN;
+                    DrawBasicPosition();
                 }
             } else if (KeyPolling.isDown(KeyCode.W)) {
                 if(!map.getLayer(zPos).getCollisionAtPos(x,y-1)) {
@@ -285,6 +313,9 @@ public class CharacterManager extends GameObject{
                     animation.Play(this);
                     y--;
                     lookingDirection = Direction.UP;
+                }else{
+                    lookingDirection = Direction.UP;
+                    DrawBasicPosition();
                 }
             }
         }

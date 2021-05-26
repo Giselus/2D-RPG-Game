@@ -28,10 +28,11 @@ public class Map {
     private static HashMap<String, Event> eventsMethods;
 
     public Map(File source){
-        if(eventsMethods == null){
-            eventsMethods = new HashMap<>();
-            eventsMethods.put("main", this::mainEvents);
-        }
+
+        eventsMethods = new HashMap<>();
+        eventsMethods.put("main", this::mainEvents);
+        eventsMethods.put("main2", this::main2Events);
+
         this.source = source;
         layers = new ArrayList<>();
         events = new HashMap<>();
@@ -40,12 +41,40 @@ public class Map {
     }
 
     private void mainEvents(){
-        events = new HashMap<>();
-
         events.put("ladderUp", new Pair<>(EventType.STEP,() -> CharacterManager.instance.zPos = 4));
         events.put("ladderDown", new Pair<>(EventType.STEP,() -> CharacterManager.instance.zPos = 3));
+        events.put("secondScene", new Pair<>(EventType.PICK,() -> {
+            mapHandler.setCurrentMap("main2");
+            CharacterManager.instance.zPos = 4;
+            CharacterManager.instance.x = 14;
+            CharacterManager.instance.y = 15;
+            CharacterManager.instance.lastX = 14;
+            CharacterManager.instance.lastY = 15;
+            CharacterManager.instance.xPos = 14 * 32;
+            CharacterManager.instance.yPos = 15 * 32;
+            CharacterManager.instance.setCameraPosition();
+            if(CharacterManager.instance.animation != null)
+                CharacterManager.instance.animation.Stop();
+        }));
         events.put("caveEntrance", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
         events.put("grave", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
+    }
+
+    private void main2Events(){
+        events.put("firstScene", new Pair<>(EventType.PICK,() -> {
+            mapHandler.setCurrentMap("main");
+            CharacterManager.instance.zPos = 3;
+            CharacterManager.instance.x = 34;
+            CharacterManager.instance.y = 0;
+            CharacterManager.instance.lastX = 34;
+            CharacterManager.instance.lastY = 0;
+            CharacterManager.instance.xPos = 34 * 32;
+            CharacterManager.instance.yPos = 0;
+            CharacterManager.instance.setCameraPosition();
+            if(CharacterManager.instance.animation != null)
+                CharacterManager.instance.animation.Stop();
+        }));
+        events.put("note", new Pair<>(EventType.DISTANCE_PICK, () -> System.out.println("Przejście zamnknięte!")));
     }
 
     private void loadFromFile(){

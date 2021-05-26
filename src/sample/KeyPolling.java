@@ -10,6 +10,7 @@ public class KeyPolling {
 
     private static Scene scene;
     private static final Set<KeyCode> keysCurrentlyDown = new HashSet<>();
+    private static final Set<KeyCode> keysLastlyDown = new HashSet<>();
 
     public KeyPolling(){
 
@@ -22,6 +23,7 @@ public class KeyPolling {
 
     private static void clearKeys(){
         keysCurrentlyDown.clear();
+        keysLastlyDown.clear();
     }
 
     private static void removeCurrentKeyHandlers(){
@@ -41,7 +43,17 @@ public class KeyPolling {
         }));
     }
 
+    public static void refreshInput(){
+        keysLastlyDown.clear();
+        for(KeyCode code:keysCurrentlyDown)
+            keysLastlyDown.add(code);
+    }
+
     public static boolean isDown(KeyCode keyCode){
         return keysCurrentlyDown.contains(keyCode);
+    }
+
+    public static boolean pressedDown(KeyCode keyCode){
+        return keysCurrentlyDown.contains(keyCode) && !keysLastlyDown.contains(keyCode);
     }
 }

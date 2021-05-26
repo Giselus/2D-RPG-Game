@@ -324,6 +324,10 @@ public class ControllerInventory {
         addImageHelemet(helmetImg);
         addImageArmor(armorImg);
         addImageBoots(bootsImg);
+        CharacterManager.instance.boots = bootsImg;
+        CharacterManager.instance.armor = armorImg;
+        CharacterManager.instance.helmet = helmetImg;
+        CharacterManager.instance.RefreshImages();
         System.out.println(CharacterManager.instance.helmetOn.getPath());
     }
     private void checkWhatIsWearing(){

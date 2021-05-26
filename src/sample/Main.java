@@ -57,21 +57,28 @@ public class Main extends Application {
 
     private void tick(float deltaTime){
         //Input -> logic -> rendering
+
+
         for(Updatable obj: Updatable.updatableList){
-            if(toClear){
-                Updatable.updatableList.clear();
-                toClear = false;
-                break;
-            }
             obj.Update(deltaTime);
-        }
-        for(Updatable obj: Updatable.updatableList){
             if(toClear){
-                Updatable.updatableList.clear();
-                toClear = false;
                 break;
             }
-            obj.LateUpdate(deltaTime);
         }
+        if(toClear){
+            Updatable.updatableList.clear();
+            toClear = false;
+        }
+        for(Updatable obj: Updatable.updatableList){
+            obj.LateUpdate(deltaTime);
+            if(toClear){
+                break;
+            }
+        }
+        if(toClear){
+            Updatable.updatableList.clear();
+            toClear = false;
+        }
+        KeyPolling.refreshInput();
     }
 }
