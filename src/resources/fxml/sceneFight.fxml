@@ -8,29 +8,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerFight">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="125.0" layoutX="370.0" layoutY="295.0" stroke="BLACK" strokeType="INSIDE" width="103.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff491f" height="125.0" layoutX="765.0" layoutY="294.0" stroke="BLACK" strokeType="INSIDE" width="103.0" />
-      <Text layoutX="406.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hero" />
-      <Text layoutX="794.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" />
-      <TextArea fx:id="fightHistory" layoutX="115.0" layoutY="475.0" prefHeight="200.0" prefWidth="1050.0" text="Round 1 - Player turn&#10;">
-         <font>
-            <Font size="20.0" />
-         </font></TextArea>
-      <Rectangle fx:id="hpBar" arcHeight="5.0" arcWidth="5.0" fill="#831504" height="27.0" layoutX="322.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Rectangle fx:id="hpBarFill" arcHeight="5.0" arcWidth="5.0" fill="#00FF00" height="27.0" layoutX="322.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Rectangle fx:id="hpBarEnemy" arcHeight="5.0" arcWidth="5.0" fill="#831504" height="27.0" layoutX="716.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Rectangle fx:id="hpBarFillEnemy" arcHeight="5.0" arcWidth="5.0" fill="#00FF00" height="27.0" layoutX="716.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Text fx:id="heroHP" layoutX="408.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP" />
-      <Text fx:id="mobHP" layoutX="802.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP" />
-      <Button fx:id="chosenSkill" layoutX="1102.0" layoutY="78.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="63.0" text="1" />
-      <TextArea fx:id="skillDesc" layoutX="1033.0" layoutY="157.0" prefHeight="229.0" prefWidth="200.0" />
-      <Button fx:id="useSkill" layoutX="1112.0" layoutY="408.0" mnemonicParsing="false" onAction="#useSkillNow" text="Use" />
-      <ImageView fx:id="skill_one" fitHeight="48.0" fitWidth="48.0" layoutX="60.0" layoutY="270.0" onMouseClicked="#one" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="skill_two" fitHeight="48.0" fitWidth="48.0" layoutX="108.0" layoutY="270.0" onMouseClicked="#two" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="skill_three" fitHeight="48.0" fitWidth="48.0" layoutX="60.0" layoutY="318.0" onMouseClicked="#three" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="skill_four" fitHeight="48.0" fitWidth="48.0" layoutX="108.0" layoutY="318.0" onMouseClicked="#four" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="exitButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="24.0" prefWidth="18.0" text="X" />
-   </children>
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerFight">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff491f" height="125.0" layoutX="765.0" layoutY="294.0" stroke="BLACK" strokeType="INSIDE" width="103.0" />
+   <Text layoutX="794.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" />
+   <TextArea fx:id="fightHistory" layoutX="115.0" layoutY="453.0" prefHeight="222.0" prefWidth="1050.0" text="Round 1 - Player turn&#10;">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </TextArea>
+   <Rectangle fx:id="hpBar" arcHeight="5.0" arcWidth="5.0" fill="#831504" height="27.0" layoutX="322.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   <Rectangle fx:id="hpBarFill" arcHeight="5.0" arcWidth="5.0" fill="#00FF00" height="27.0" layoutX="322.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   <Rectangle fx:id="hpBarEnemy" arcHeight="5.0" arcWidth="5.0" fill="#831504" height="27.0" layoutX="716.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   <Rectangle fx:id="hpBarFillEnemy" arcHeight="5.0" arcWidth="5.0" fill="#00FF00" height="27.0" layoutX="716.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   <Text fx:id="heroHP" layoutX="408.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP" />
+   <Text fx:id="mobHP" layoutX="802.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HP" />
+   <Button fx:id="useSkill" layoutX="88.0" layoutY="387.0" mnemonicParsing="false" onAction="#useSkillNow" text="Use" />
+   <ImageView fx:id="skill_one" fitHeight="48.0" fitWidth="48.0" layoutX="61.0" layoutY="210.0" onMouseClicked="#one" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="skill_two" fitHeight="48.0" fitWidth="48.0" layoutX="109.0" layoutY="210.0" onMouseClicked="#two" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="skill_three" fitHeight="48.0" fitWidth="48.0" layoutX="61.0" layoutY="258.0" onMouseClicked="#three" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="skill_four" fitHeight="48.0" fitWidth="48.0" layoutX="109.0" layoutY="258.0" onMouseClicked="#four" pickOnBounds="true" preserveRatio="true" />
+   <Button fx:id="exitButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSceneMenu" prefHeight="24.0" prefWidth="18.0" text="X" />
+   <ImageView fx:id="skill_rest" fitHeight="48.0" fitWidth="48.0" layoutX="85.0" layoutY="306.0" onMouseClicked="#five" pickOnBounds="true" preserveRatio="true" />
+   <Text fx:id="staminaBar" layoutX="1057.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina" wrappingWidth="136.7294921875" />
+   <Text fx:id="manaBar" layoutX="1057.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mana" wrappingWidth="155.7294921875" />
+   <Text fx:id="attackBar" layoutX="1057.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack" wrappingWidth="155.7294921875" />
+   <Text fx:id="defenseBar" layoutX="1057.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defense" wrappingWidth="155.7294921875" />
 </AnchorPane>

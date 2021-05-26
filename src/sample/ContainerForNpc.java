@@ -1,7 +1,6 @@
 package sample;
 
 public class ContainerForNpc extends InteractiveObject{
-
     public Inventory inventory;
     ContainerForNpc(int x_coordinate, int y_coordinate, int sizeX, int sizeY){
         super(x_coordinate, y_coordinate);

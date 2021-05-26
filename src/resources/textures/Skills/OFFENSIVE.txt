@@ -1,4 +1,4 @@
 id/name/dmg/mod/stamina-/mana-
-1:Quick Attack:30:0.2:10:0
+1:Quick Attack:30:0.2:0:0
 2:Strong Attack:50:0.4:20:0
 3:Focused Attack:15:1:20:0
