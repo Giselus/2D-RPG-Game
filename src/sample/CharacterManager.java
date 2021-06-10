@@ -22,6 +22,7 @@ public class CharacterManager extends GameObject{
     public int current_mana;
     public int stamina;
     public int current_stamina;
+    public int gold;
     public ArrayList<Image> basicImages;
     //addValue
     public int attackItems;
@@ -47,6 +48,7 @@ public class CharacterManager extends GameObject{
     public boolean hasArmor;
     public boolean hasBoots;
     public int newSkill=0;
+    public boolean enteringShop;
     enum Direction{
         LEFT,
         RIGHT,
@@ -91,6 +93,7 @@ public class CharacterManager extends GameObject{
         this.body=body;
         this.hair=hair;
         this.current_hp=hp;
+        this.gold = 200;
         inventory = new InventoryPlayer(4, 4);
         skills = new ArrayList<>(4);
         hasArmor = false;
@@ -106,7 +109,8 @@ public class CharacterManager extends GameObject{
         GenerateAnimations();
 
         //testing lines, this functions are essential for testing inventory and battle
-        interactiveChest = new ContainerForNpc(0, 0, 4, 4);
+        enteringShop = true;
+        interactiveChest = new ContainerForNpc(0, 0, 4, 4, true);
         interactiveChest.inventory.addItem(new Items(2, 0));
         interactiveChest.inventory.addItem(new Items(3, 1));
         interactiveChest.inventory.addItem(new Items(1, 3));
