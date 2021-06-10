@@ -65,7 +65,7 @@ public class Map {
         events.put("caveEntrance", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
         events.put("grave", new Pair<>(EventType.DISTANCE_PICK,() -> {
             Main.clearUptadables();
-            Main.setScene("/resources/fxml/sceneContainer.fxml","/resources/style/styleInventory.css");
+            Main.setScene("/resources/fxml/sceneContainer.fxml","/resources/style/styleContainer.css");
         }));
     }
 

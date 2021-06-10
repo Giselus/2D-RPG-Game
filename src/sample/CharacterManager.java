@@ -14,6 +14,9 @@ public class CharacterManager extends GameObject{
     public int luck;
     public int agility;
     public int hp;
+    public int lvl;
+    public int maxExp;
+    public int actualExp;
     public int current_hp;
     public int mana;
     public int current_mana;
@@ -43,7 +46,7 @@ public class CharacterManager extends GameObject{
     public boolean hasHelmet;
     public boolean hasArmor;
     public boolean hasBoots;
-
+    public int newSkill=0;
     enum Direction{
         LEFT,
         RIGHT,
@@ -60,7 +63,7 @@ public class CharacterManager extends GameObject{
     }
 
     public CharacterManager(String name,int attack,int defense,int luck,
-            int agility,int mana,int stamina,int hp,Image skin,Image legs,Image body,Image hair,
+            int agility,int mana,int stamina,int hp,int lvl,Image skin,Image legs,Image body,Image hair,
                             int xPos, int yPos, int zPos){
         super(xPos * 32,yPos * 32,zPos,new ImageFrame(skin,0,640,64,64),
                 new ImageFrame(legs,0,640,64,64),
@@ -78,6 +81,9 @@ public class CharacterManager extends GameObject{
         this.luck=luck;
         this.agility=agility;
         this.hp=hp;
+        this.lvl=1;
+        this.maxExp=100;
+        this.actualExp=0;
         this.mana=mana;
         this.stamina=stamina;
         this.skin=skin;

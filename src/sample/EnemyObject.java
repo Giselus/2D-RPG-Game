@@ -13,15 +13,12 @@ public class EnemyObject extends GameObject{
 
     public void Update(float deltaTime){
         super.Update(deltaTime);
-
     }
-
     public void Fight(){
         Main.clearUptadables();
         Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
         Defeat();
     }
-
     public void Defeat(){
         setActive(false);
         EnemyManager.instance.enemies.remove(this);
