@@ -1,11 +1,11 @@
 package sample.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import sample.*;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ControllerContainer {
@@ -43,15 +43,41 @@ public class ControllerContainer {
     @FXML public Button DC;
     @FXML public Button DD;
     @FXML public Button exitButton;
-
+    @FXML public AnchorPane anchorPane;
+    public Text amountOfGold;
+    @FXML public Button buyButton;
+    @FXML public Button sellButton;
+    @FXML public Button tmpChosen;
+    @FXML public Text priceText;
     int inventoryWidth = 8;
     int inventoryHeight = 4;
+    int player_items;
+    int shop_items;
+    boolean first;
     InventoryPlayer playerInventory;
     ArrayList<ArrayList<Items>> allItems;
     ArrayList<ArrayList<Button>> buttonInventory;
+    Items[][] copyShop;
     Inventory chestInventory;
     Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
     public void initialize(){
+        first = true;
+        if(CharacterManager.instance.enteringShop){
+            setGoldText();
+            player_items = CharacterManager.instance.inventory.countItems();
+            shop_items = CharacterManager.instance.interactiveChest.inventory.countItems();
+            copyShop = new Items[4][4];
+            for(int i=0; i<4; i++){
+                for(int j=0; j<4; j++){
+                    copyShop[i][j] = CharacterManager.instance.interactiveChest.inventory.getItem(i, j);
+                }
+            }
+        } else {
+            anchorPane.getChildren().remove(buyButton);
+            anchorPane.getChildren().remove(sellButton);
+            anchorPane.getChildren().remove(tmpChosen);
+            anchorPane.getChildren().remove(priceText);
+        }
         playerInventory = CharacterManager.instance.inventory;
         chestInventory = CharacterManager.instance.interactiveChest.inventory;
         allItems = new ArrayList<>(8);
@@ -77,6 +103,76 @@ public class ControllerContainer {
         setupButtons();
         updateButtons();
     }
+
+    @FXML private void buyItem(){
+        if(player_items >= 16){
+            return;
+        }
+        if(!temporaryChosen.fromShop){
+            return;
+        }
+        if(temporaryChosen.item.myStatistics.gold > CharacterManager.instance.gold){
+            return;
+        }
+        CharacterManager.instance.gold -= temporaryChosen.item.myStatistics.gold;
+        player_items++;
+        shop_items--;
+        for(int i=0; i<4; i++){
+            for(int j=0; j<4; j++) {
+                if(allItems.get(i).get(j).myType == Items.type.EMPTY){
+                    allItems.get(i).set(j, temporaryChosen.item);
+                    allItems.get(temporaryChosen.cordX).set(temporaryChosen.cordY, new Items(0, 0));
+                    temporaryChosen.clearHolder();
+                    updateButtons();
+                    System.out.println("Kupione");
+                    return;
+                }
+            }
+        }
+    }
+    @FXML private void sellItem(){
+        if(shop_items >= 16){
+            return;
+        }
+        if(temporaryChosen.fromShop){
+            return;
+        }
+        CharacterManager.instance.gold += temporaryChosen.item.myStatistics.gold;
+        player_items--;
+        shop_items++;
+        for(int i=0; i<4; i++){
+            for(int j=0; j<4; j++) {
+                if(allItems.get(i+4).get(j).myType == Items.type.EMPTY){
+                    allItems.get(i+4).set(j, temporaryChosen.item);
+                    allItems.get(temporaryChosen.cordX).set(temporaryChosen.cordY, new Items(0, 0));
+                    temporaryChosen.clearHolder();
+                    updateButtons();
+                    System.out.println("Sprzedane");
+                    return;
+                }
+            }
+        }
+    }
+    private void setGoldText(){
+        if(first){
+            amountOfGold = new Text();
+        }
+        amountOfGold.setText("Gold: " + CharacterManager.instance.gold);
+        amountOfGold.setFont(Font.font("Times New Roman", 30));
+        double text_width = amountOfGold.getLayoutBounds().getWidth();
+        amountOfGold.setX((1280 - text_width)/2);
+        amountOfGold.setY(80);
+        if(first){
+            anchorPane.getChildren().add(amountOfGold);
+            first = false;
+        }
+        if(temporaryChosen.hasItems){
+            priceText.setText("Price: " + temporaryChosen.item.myStatistics.gold);
+        } else {
+            priceText.setText("");
+        }
+        priceText.setFont(Font.font("Times New Roman", 20));
+    }
     private void setGraphicButton(Button tmpButton, Items tmpItem){
         tmpButton.setGraphic(tmpItem.getImageView());
     }
@@ -85,6 +181,10 @@ public class ControllerContainer {
             for(int j=0; j<inventoryHeight; j++){
                 setGraphicButton(buttonInventory.get(i).get(j), allItems.get(i).get(j));
             }
+        }
+        if(CharacterManager.instance.enteringShop){
+            setGraphicButton(tmpChosen, temporaryChosen.item);
+            setGoldText();
         }
     }
     public void beforeExiting(){
@@ -104,6 +204,13 @@ public class ControllerContainer {
             for(int j=0; j<4; j++){
                 tmpA.get(i).set(j, allItems.get(i).get(j));
                 tmpB.get(i).set(j, allItems.get(i+4).get(j));
+            }
+        }
+        if(CharacterManager.instance.enteringShop){
+            for(int i=0; i<4; i++){
+                for(int j=0; j<4; j++){
+                    tmpB.get(i).set(j, copyShop[i][j]);
+                }
             }
         }
         CharacterManager.instance.inventory.setAllItemsList(tmpA);

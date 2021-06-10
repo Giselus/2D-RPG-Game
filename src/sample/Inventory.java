@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.Parent;
+
 import java.util.ArrayList;
 
 public class Inventory {
@@ -66,13 +68,35 @@ public class Inventory {
         firstInv.setItem(itemsTwo, x1, y1);
         secondInv.setItem(itemsOne, x2, y2);
     }
-
+    public int countItems(){
+        int result = 0;
+        for(int i=0; i<invSizeX*invSizeY; i++){
+            if(itemsList.get(i).myType != Items.type.EMPTY){
+                result += 1;
+            }
+        }
+        return result;
+    }
     public static void checkSlotProperties(int x, int y, ArrayList<ArrayList<Items>> itemsView, TemporaryChosenContainer temporaryChosen){
         if(!temporaryChosen.hasItems){
             if(itemsView.get(x).get(y).myType != Items.type.EMPTY){
-                temporaryChosen.pickEquipment(x, y, itemsView);
+                if(x >= 4){
+                    temporaryChosen.pickFromShop(x, y, itemsView);
+                } else {
+                    temporaryChosen.pickEquipment(x, y, itemsView);
+                }
             }
             return;
+        }
+        if(CharacterManager.instance.enteringShop){
+            if(temporaryChosen.fromShop && x < 4){
+                temporaryChosen.clearHolder();
+                return;
+            }
+            if(!temporaryChosen.fromShop && x >= 4){
+                temporaryChosen.clearHolder();
+                return;
+            }
         }
         if (itemsView.get(x).get(y).myType != Items.type.EMPTY) {
             itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, itemsView.get(x).get(y));
@@ -89,6 +113,7 @@ public class Inventory {
         public boolean isWearing;
         public Integer equipmentId;
         public Items item;
+        public boolean fromShop;
         public TemporaryChosenContainer(){
             hasItems = false;
             isWearing = false;
@@ -106,6 +131,15 @@ public class Inventory {
             cordX = x;
             cordY = y;
             item = arg.get(x).get(y);
+            fromShop = false;
+        }
+        public void pickFromShop(int x, int y, ArrayList<ArrayList<Items>> arg){
+            hasItems = true;
+            isWearing = false;
+            cordX = x;
+            cordY = y;
+            item = arg.get(x).get(y);
+            fromShop = true;
         }
         public void clearHolder(){
             hasItems = false;

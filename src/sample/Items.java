@@ -66,12 +66,13 @@ public class Items {
         public int hp;
         public int mana;
         public int stamina;
+        public int gold;
         public itemStats(int x, int y){
             String data = findLine(x, y);
             if (data.equals("")){
                 return;
             }
-            String[] tab_data = data.split(":", 11);
+            String[] tab_data = data.split(":", 13);
             this.name = tab_data[2];
             this.attack = Integer.parseInt(tab_data[3]);
             this.defense = Integer.parseInt(tab_data[4]);
@@ -80,6 +81,8 @@ public class Items {
             this.hp = Integer.parseInt(tab_data[7]);
             this.mana = Integer.parseInt(tab_data[8]);
             this.stamina = Integer.parseInt(tab_data[9]);
+            this.gold = Integer.parseInt(tab_data[10]);
+            System.out.println("GOLD " + gold );
         }
 
         String findLine(int x, int y){
@@ -95,7 +98,7 @@ public class Items {
                     }
                 }
             } catch (Exception e){
-                System.out.println("File has not been found - "+ this.toString() + ".txt");
+                System.out.println("File has not been found - "+ this + ".txt");
                 e.printStackTrace();
             }
             return "";
@@ -128,6 +131,7 @@ public class Items {
             if(stamina!=0){
                 result.append("Stamina: ").append(stamina).append("\n");
             }
+            result.append("Price: ").append(gold).append("\n");
             return result.toString();
 
         }
