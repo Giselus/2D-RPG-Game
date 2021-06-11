@@ -48,7 +48,7 @@ public class ControllerFight {
     @FXML public Text defenseBar;
     public ArrayList<Skills> skillsList;
     public static Skills tmpSkill;
-    public Enemy opponent;
+    public static Enemy opponent;
     //tooltip
     @FXML public Tooltip tooltipOne;
     @FXML public Tooltip tooltipTwo;
