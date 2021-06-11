@@ -64,6 +64,14 @@ public class ControllerInventory {
     @FXML public Tooltip tooldb;
     @FXML public Tooltip tooldc;
     @FXML public Tooltip tooldd;
+    //tootltipEQ
+    @FXML public Tooltip bootstooltip;
+    @FXML public Tooltip armortooltip;
+    @FXML public Tooltip helmettooltip;
+    @FXML public Tooltip weapon1tooltip;
+    @FXML public Tooltip weapon2tooltip;
+    @FXML public Tooltip trinket1tooltip;
+    @FXML public Tooltip trinket2tooltip;
     //skilsLabel:
      @FXML public Text attackLabel;
      @FXML public Text defenseLabel;
@@ -88,6 +96,7 @@ public class ControllerInventory {
      public Button addMana;
      boolean flag=false;
     //endSkillAfterNewLvl
+
     //Image
     Image helmetImg;
     Image armorImg;
@@ -110,7 +119,8 @@ public class ControllerInventory {
     private static final Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
     //this function is not essential for inventory, it can be changed
     public void addSkils(){
-        CharacterManager.instance.actualExp+=20;
+        //CharacterManager.instance.actualExp+=20;
+        runEq();
         checkExp();
         attackLabel.setText(String.valueOf(CharacterManager.instance.attack+CharacterManager.instance.attackItems));
         defenseLabel.setText(String.valueOf(CharacterManager.instance.defense+CharacterManager.instance.defenseItems));
@@ -121,12 +131,13 @@ public class ControllerInventory {
         hpLabel.setText(String.valueOf(CharacterManager.instance.current_hp+"/"+(CharacterManager.instance.hp+CharacterManager.instance.hpItems)));
         expLabel.setText(String.valueOf(CharacterManager.instance.actualExp+"/"+(CharacterManager.instance.maxExp)));
         lvlLabel.setText(String.valueOf(CharacterManager.instance.lvl));
+        goldLabel.setText(String.valueOf(CharacterManager.instance.gold));
         //nameLabel.setText(String.valueOf(CharacterManager.instance.name));
     }
     public void checkExp(){
         //new lvl
-        if(CharacterManager.instance.actualExp>=CharacterManager.instance.maxExp){
-            CharacterManager.instance.actualExp=0;
+        while(CharacterManager.instance.actualExp>=CharacterManager.instance.maxExp){
+            CharacterManager.instance.actualExp=CharacterManager.instance.actualExp-CharacterManager.instance.maxExp;
             CharacterManager.instance.lvl++;
             int x=CharacterManager.instance.lvl;
             CharacterManager.instance.maxExp=50*(x*x*x-3*x*x+8*x)/3;
@@ -145,7 +156,8 @@ public class ControllerInventory {
                 CharacterManager.instance.attack+=1;
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
-                attackLabel.setText(String.valueOf(CharacterManager.instance.attack));
+                //attackLabel.setText(String.valueOf(CharacterManager.instance.attack+Cha));
+                addSkils();
                 if(newSkill<=0){
                     deleteAddNewSkill();
                 }
@@ -158,8 +170,9 @@ public class ControllerInventory {
                 CharacterManager.instance.defense+=1;
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
-                defenseLabel.setText(String.valueOf(CharacterManager.instance.defense));
+                //defenseLabel.setText(String.valueOf(CharacterManager.instance.defense));
                 if(newSkill<=0){
+                    addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -171,8 +184,9 @@ public class ControllerInventory {
                 CharacterManager.instance.agility+=1;
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
-                agilityLabel.setText(String.valueOf(CharacterManager.instance.agility));
+                //agilityLabel.setText(String.valueOf(CharacterManager.instance.agility));
                 if(newSkill<=0){
+                    addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -184,8 +198,9 @@ public class ControllerInventory {
                 CharacterManager.instance.luck+=1;
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
-                luckLabel.setText(String.valueOf(CharacterManager.instance.luck));
+                //luckLabel.setText(String.valueOf(CharacterManager.instance.luck));
                 if(newSkill<=0){
+                    addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -197,8 +212,9 @@ public class ControllerInventory {
                 CharacterManager.instance.stamina+=1;
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
-                staminaLabel.setText(String.valueOf(CharacterManager.instance.stamina));
+                //staminaLabel.setText(String.valueOf(CharacterManager.instance.stamina));
                 if(newSkill<=0){
+                    addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -210,8 +226,9 @@ public class ControllerInventory {
                 CharacterManager.instance.mana+=1;
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
-                manaLabel.setText(String.valueOf(CharacterManager.instance.mana));
+                //manaLabel.setText(String.valueOf(CharacterManager.instance.mana));
                 if(newSkill<=0){
+                    addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -334,9 +351,12 @@ public void addPlayer(){
         tooldc.setText(itemsView.get(3).get(2).myStatistics.toString());
         tooldd.setText(itemsView.get(3).get(3).myStatistics.toString());
     }
-
+    public void tooltipEqAdd(){
+        bootstooltip.setText(Items.type.BOOTS.toString());
+    }
     @FXML public void initialize(){
         checkExp();
+        temporaryChosen.clearHolder();
         nameLabel.setText(String.valueOf(CharacterManager.instance.name));
         hpLabel.setText(String.valueOf(CharacterManager.instance.current_hp+"/"+(CharacterManager.instance.hp+CharacterManager.instance.hpItems)));
         hairImageView=new ImageView(CharacterManager.instance.hair);
@@ -515,6 +535,7 @@ public void addPlayer(){
         CharacterManager.instance.armor = armorImg;
         CharacterManager.instance.helmet = helmetImg;
         CharacterManager.instance.RefreshImages();
+        //addToCharacterMeneger
         System.out.println(CharacterManager.instance.helmetOn.getPath());
 
     }
@@ -526,6 +547,7 @@ public void addPlayer(){
         CharacterManager.instance.hasHelmet = equipmentView.get(2).myType != Items.type.EMPTY;
         CharacterManager.instance.helmetOn = equipmentView.get(2);
         tooltipAdd();
+        tooltipEqAdd();
         wearItems();
         if(CharacterManager.instance.hasHelmet){
 
@@ -551,6 +573,7 @@ public void addPlayer(){
             CharacterManager.instance.staminaItems+=item.myStatistics.stamina;
             CharacterManager.instance.hpItems+=item.myStatistics.hp;
         }
+        //CharacterManager.instance.attack+=CharacterManager.instance.attackItems;
     }
     private void initializeButtons(){
         buttonInventory.get(0).set(0, aa);

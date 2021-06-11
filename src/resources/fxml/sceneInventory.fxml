@@ -79,13 +79,34 @@
          <Tooltip fx:id="tooldd" text="Empty Tooltip" />
       </tooltip></Button>
     <Button fx:id="chosenButton" layoutX="600.0" layoutY="477.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-    <Button fx:id="bootsButton" layoutX="1008.0" layoutY="235.0" mnemonicParsing="false" onAction="#isBoot" prefHeight="80.0" prefWidth="80.0" />
-    <Button fx:id="armorButton" layoutX="1008.0" layoutY="155.0" mnemonicParsing="false" onAction="#isArmor" prefHeight="80.0" prefWidth="80.0" />
-    <Button fx:id="helmetButton" layoutX="1008.0" layoutY="75.0" mnemonicParsing="false" onAction="#isHelmet" prefHeight="80.0" prefWidth="80.0" />
-    <Button fx:id="weapon1Button" layoutX="928.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponOne" prefHeight="80.0" prefWidth="80.0" />
-    <Button fx:id="weapon2Button" layoutX="1088.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponTwo" prefHeight="80.0" prefWidth="80.0" />
-    <Button fx:id="trinket1Button" layoutX="928.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketOne" prefHeight="80.0" prefWidth="80.0" />
-    <Button fx:id="trinket2Button" layoutX="1088.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketTwo" prefHeight="80.0" prefWidth="80.0" />
+    <Button fx:id="bootsButton" layoutX="1008.0" layoutY="235.0" mnemonicParsing="false" onAction="#isBoot" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="bootstooltip" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="armorButton" layoutX="1008.0" layoutY="155.0" mnemonicParsing="false" onAction="#isArmor" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="armortooltip" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="helmetButton" layoutX="1008.0" layoutY="75.0" mnemonicParsing="false" onAction="#isHelmet" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="helmettooltip" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="weapon1Button" layoutX="928.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponOne" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="weapon1tooltip" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="weapon2Button" layoutX="1088.0" layoutY="155.0" mnemonicParsing="false" onAction="#isWeaponTwo" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="weapon2tooltip" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="trinket1Button" layoutX="928.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketOne" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="trinket1tooltip" text="Empty Tooltip" />
+      </tooltip></Button>
+    <Button fx:id="trinket2Button" layoutX="1088.0" layoutY="75.0" mnemonicParsing="false" onAction="#isTrinketTwo" prefHeight="80.0" prefWidth="80.0">
+      <tooltip>
+         <Tooltip fx:id="trinket2tooltip" text="Empty Tooltip" />
+      </tooltip></Button>
     <Rectangle fx:id="characterBackground" arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="162.0" layoutX="576.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="128.0" />
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ab7d5d" height="198.0" layoutX="471.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" width="348.0" />
     <Text layoutX="493.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="86.07197570800781">

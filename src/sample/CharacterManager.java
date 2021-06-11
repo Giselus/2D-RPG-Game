@@ -110,7 +110,7 @@ public class CharacterManager extends GameObject{
 
         //testing lines, this functions are essential for testing inventory and battle
         enteringShop = true;
-        interactiveChest = new ContainerForNpc(0, 0, 4, 4, true);
+        interactiveChest = new ContainerForNpc(0, 0, 4, 4,true);
         interactiveChest.inventory.addItem(new Items(2, 0));
         interactiveChest.inventory.addItem(new Items(3, 1));
         interactiveChest.inventory.addItem(new Items(1, 3));
@@ -214,7 +214,6 @@ public class CharacterManager extends GameObject{
         float zoom = Camera.instance.zoom;
         Camera.instance.setPosition(xPos-Camera.instance.getWidth()/2/zoom,yPos-Camera.instance.getHeight()/2/zoom);
     }
-
     private boolean occupied(int x, int y, int z){
         if(mapHandler.getCurrentMap().getLayer(z).getCollisionAtPos(x,y))
             return true;

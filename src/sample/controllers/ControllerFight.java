@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -48,7 +49,13 @@ public class ControllerFight {
     public ArrayList<Skills> skillsList;
     public static Skills tmpSkill;
     public Enemy opponent;
-
+    //tooltip
+    @FXML public Tooltip tooltipOne;
+    @FXML public Tooltip tooltipTwo;
+    @FXML public Tooltip tooltipThree;
+    @FXML public Tooltip tooltipFour;
+    @FXML public Tooltip tooltipFive;
+    //end
     @FXML public void initialize(){
         exitButton.setDisable(true);
         skillsList = new ArrayList<>(4);
@@ -71,9 +78,21 @@ public class ControllerFight {
         updateStats();
         addPlayer();
         addEnemy();
+        addToolTip();
         fightHistory.setEditable(false);
     }
-
+    public void addToolTip(){
+        String one=skillsList.get(0).toString();
+        String two=skillsList.get(1).toString();
+        String three=skillsList.get(2).toString();
+        String four=skillsList.get(3).toString();
+        String five=new Skills(2,1).toString();
+        tooltipOne.setText(one);
+        tooltipTwo.setText(two);
+        tooltipThree.setText(three);
+        tooltipFour.setText(four);
+        tooltipFive.setText(five);
+    }
     public void updateStats(){
         staminaBar.setText("Stamina: "+ player.stamina + "/" + player.maxStamina);
         manaBar.setText("Mana: "+player.mana + "/" + player.maxMana);
@@ -267,4 +286,5 @@ public class ControllerFight {
     public void switchToSceneMenu() throws IOException {
         Main.setScene("/resources/fxml/mainGameScene.fxml","");
     }
+
 }
