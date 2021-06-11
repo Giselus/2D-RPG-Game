@@ -14,9 +14,12 @@ public class TileDatabase {
 
     public static void Init(){
         tiles = new HashMap<Integer, Tile>();
-        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/tilesets/BaseChip.png").toString()));
-        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/tilesets/Dirt.png").toString()));
-        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/tilesets/Flower.png").toString()));
+        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/BaseChip_pipo.png").toString()));
+        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/Dirt_pipo.png").toString()));
+        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/Flower_pipo.png").toString()));
+        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/[A]Water_pipo.png").toString()));
+        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/[A]WaterFall_pipo.png").toString()));
+        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/[A]Wall-Up_pipo.png").toString()));
     }
 
 }

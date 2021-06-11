@@ -1,0 +1,2 @@
+id/name/attack/defense/agility/luck/HP/stamina/mana/skill/exp/gold
+1:Vampire servant:0:5:5:0:40:10:10:4:1000:30

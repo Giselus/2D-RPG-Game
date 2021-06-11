@@ -10,11 +10,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import sample.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ControllerFight {
 
@@ -49,6 +47,7 @@ public class ControllerFight {
     @FXML public Text defenseBar;
     public ArrayList<Skills> skillsList;
     public static Skills tmpSkill;
+    public Enemy opponent;
 
     @FXML public void initialize(){
         exitButton.setDisable(true);
@@ -61,13 +60,17 @@ public class ControllerFight {
         skill_three.setImage(Skills.getImageForSkill(skillsList.get(2)));
         skill_four.setImage(Skills.getImageForSkill(skillsList.get(3)));
         skill_rest.setImage(Skills.getImageForSkill(new Skills(2, 1)));
-        addPlayer();
-        addEnemy();
         player = new Combat.combatStats(true);
-        enemy = new Combat.combatStats();
+
+        //this line has to change depending on enemy
+        opponent = new Enemy(1, 1);
+
+        enemy = new Combat.combatStats(opponent);
         checkEnemyHP(0);
         checkPlayerHP(0);
         updateStats();
+        addPlayer();
+        addEnemy();
         fightHistory.setEditable(false);
     }
 
@@ -112,8 +115,10 @@ public class ControllerFight {
         imageViewSkin.setY(300);
         anchorPane.getChildren().add(imageViewSkin);
     }
+
+    //TODO chose proper image
     public ImageView getEnemyImage(){
-        String path = "src/resources/textures/Enemies/Boss1.png";
+        String path = opponent.getPathImage();
         File file = new File(path);
         Image abc = new Image(file.toURI().toString());
         ImageView imageView= new ImageView(abc);
@@ -143,7 +148,7 @@ public class ControllerFight {
                 endOfFight = true;
                 wonFight = true;
                 endBattle();
-                fightHistory.appendText(Combat.winningMessage());
+                fightHistory.appendText(Combat.winningMessage(opponent));
             }
         } else {
             fightHistory.appendText("You missed!\n");
@@ -206,6 +211,11 @@ public class ControllerFight {
         hiddenThree.setDisable(true);
         hiddenFour.setDisable(true);
         hiddenFive.setDisable(true);
+        if(wonFight){
+            System.out.println("Wygrana");
+            CharacterManager.instance.actualExp += opponent.exp;
+            CharacterManager.instance.gold += opponent.gold;
+        }
     }
     public void one() {
         takeSkill(skillsList.get(0));
@@ -245,7 +255,7 @@ public class ControllerFight {
     public void endRound() {
         fightHistory.appendText("\n");
         fightHistory.appendText("Round " + roundCounter + " - Enemy turn\n");
-        enemyOffensiveSkill(skillsList.get(0), enemy, player);
+        enemyOffensiveSkill(opponent.enemySkill, enemy, player);
         if(endOfFight){
             return;
         }

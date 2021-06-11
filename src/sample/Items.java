@@ -82,7 +82,6 @@ public class Items {
             this.mana = Integer.parseInt(tab_data[8]);
             this.stamina = Integer.parseInt(tab_data[9]);
             this.gold = Integer.parseInt(tab_data[10]);
-            System.out.println("GOLD " + gold );
         }
 
         String findLine(int x, int y){

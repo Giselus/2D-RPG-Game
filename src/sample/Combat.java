@@ -46,8 +46,10 @@ public class Combat {
     public static String showPlayerHp(int playerHP){
         return "You have " + playerHP + " HP left.\n";
     }
-    public static String winningMessage(){
-        return "You won! Your enemy is dead.\n";
+    public static String winningMessage(Enemy enemy){
+
+        return "You won! Your enemy is dead.\n" +
+                "You gained "+ enemy.exp + " experience points and " + enemy.gold+" gold.\n";
     }
     public static String losingMessage(){
         return "You lost! You are dead.\n";
@@ -65,17 +67,21 @@ public class Combat {
         public int maxMana;
         public int maxStamina;
         public boolean isUser;
-        public combatStats(){
-            this.agility = 0;
-            this.attack = 0;
-            this.defense = 0;
-            this.stamina = 0;
-            this.luck = 0;
-            this.mana = 0;
-            this.HP = 100;
-            this.maxHP = 100;
-            this.maxMana = 0;
-            this.maxStamina = 0;
+        public int exp;
+        public int gold;
+        public combatStats(Enemy enemy){
+            this.agility = enemy.agility;
+            this.attack = enemy.attack;
+            this.defense = enemy.defense;
+            this.stamina = enemy.stamina;
+            this.luck = enemy.luck;
+            this.mana = enemy.mana;
+            this.HP = enemy.maxHP;
+            this.maxHP = enemy.maxHP;
+            this.maxMana = enemy.maxMana;
+            this.maxStamina = enemy.maxStamina;
+            this.exp = enemy.exp;
+            this.gold = enemy.gold;
             this.isUser = false;
         }
         public combatStats(boolean tmp){
@@ -89,6 +95,8 @@ public class Combat {
             this.maxHP = CharacterManager.instance.hp+CharacterManager.instance.hpItems;
             this.maxMana = CharacterManager.instance.mana*10+CharacterManager.instance.manaItems*10 + 100;
             this.maxStamina = CharacterManager.instance.stamina*10 + CharacterManager.instance.staminaItems*10 + 100;
+            this.gold = 0;
+            this.exp = 0;
             this.isUser = true;
         }
 

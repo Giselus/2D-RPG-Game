@@ -2,7 +2,6 @@ package sample;
 
 
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.util.Pair;
 import sample.controllers.mainGameController;
 
@@ -44,7 +43,7 @@ public class Map {
 
     private void mainEvents(){
         EnemyObject test = new EnemyObject(30,11,4,new ImageFrame(new Image(
-                getClass().getResource("/resources/textures/Enemies/Boss1.png").toString()),
+                getClass().getResource("/resources/textures/Enemies/NORMAL1.png").toString()),
                 0,0, 96,96));
 
         events.put("ladderUp", new Pair<>(EventType.STEP,() -> CharacterManager.instance.z = 4));
