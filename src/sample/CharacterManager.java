@@ -226,6 +226,8 @@ public class CharacterManager extends GameObject{
     public void Update(float deltaTime){
         super.Update(deltaTime);
         setCameraPosition();
+        if(DialogueManager.instance.opened)
+            return;
         if(animation == null || !animation.isRunning()) {
             Map map = mapHandler.getCurrentMap();
             //Handling events

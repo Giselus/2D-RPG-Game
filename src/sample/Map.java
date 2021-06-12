@@ -17,16 +17,13 @@ public class Map {
         PICK,
         DISTANCE_PICK
     }
-    public interface Event{
-        void apply();
-    }
 
     private ArrayList<Layer> layers;
     private File source;
     private String name;
-    public HashMap<String, Pair<EventType,Event>> events;
+    public HashMap<String, Pair<EventType,Action>> events;
 
-    private static HashMap<String, Event> eventsMethods;
+    private static HashMap<String, Action> eventsMethods;
 
     public Map(File source){
 
