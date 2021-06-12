@@ -70,7 +70,7 @@ public class ControllerFight {
         player = new Combat.combatStats(true);
 
         //this line has to change depending on enemy
-        opponent = new Enemy(1, 1);
+        opponent = new Enemy(1, 3);
 
         enemy = new Combat.combatStats(opponent);
         checkEnemyHP(0);
@@ -141,7 +141,7 @@ public class ControllerFight {
         File file = new File(path);
         Image abc = new Image(file.toURI().toString());
         ImageView imageView= new ImageView(abc);
-        imageView.setViewport(new Rectangle2D(0,0,96,96));
+        imageView.setViewport(new Rectangle2D(64,64*10,64,64));
         return imageView;
     }
     void actionDependsOnSkillType(Skills s){

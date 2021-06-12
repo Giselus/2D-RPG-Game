@@ -41,6 +41,7 @@ public class Enemy {
     }
     public String getPathImage(){
         return "src/resources/textures/Enemies/" + level.toString() + id+ ".png";
+        //return "src/resources/textures/Enemies/BOSS1.png";
     }
     public void readStats(int id){
         String path = getPathStats();
