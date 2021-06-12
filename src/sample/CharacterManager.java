@@ -67,7 +67,7 @@ public class CharacterManager extends GameObject{
     public CharacterManager(String name,int attack,int defense,int luck,
             int agility,int mana,int stamina,int hp,int lvl,Image skin,Image legs,Image body,Image hair,
                             int xPos, int yPos, int zPos){
-        super(xPos * 32,yPos * 32,zPos,new ImageFrame(skin,0,640,64,64),
+        super(xPos,yPos,zPos,new ImageFrame(skin,0,640,64,64),
                 new ImageFrame(legs,0,640,64,64),
                 new ImageFrame(body,0,640,64,64),
                 new ImageFrame(hair,0,640,64,64));

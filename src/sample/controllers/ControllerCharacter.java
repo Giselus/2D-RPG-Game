@@ -163,7 +163,7 @@ public class ControllerCharacter extends Updatable {
         //position=10;
         if((name!="" && skillPoint==0)||(true)){
             new CharacterManager(name,attack,defense,luck,agility,mana,stamina,100,1,imgSkin,imgPants,
-                    imgShirt,imgHair,0,0,3);
+                    imgShirt,imgHair,5,5,2);
             Main.setScene("/resources/fxml/mainGameScene.fxml","");
             this.setActive(false);
         }else{

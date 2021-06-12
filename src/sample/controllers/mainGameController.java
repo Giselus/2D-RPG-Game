@@ -22,7 +22,7 @@ public class mainGameController {
             new RenderingManager();
             new Camera(mapCanvas);
             new EnemyManager();
-            mapHandler.setCurrentMap("main");
+            mapHandler.setCurrentMap("hatka_farmera");
         }
         instance = this;
         gc = mapCanvas.getGraphicsContext2D();

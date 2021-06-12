@@ -31,14 +31,30 @@ public class Map {
     public Map(File source){
 
         eventsMethods = new HashMap<>();
-        eventsMethods.put("main", this::mainEvents);
-        eventsMethods.put("main2", this::main2Events);
+        eventsMethods.put("hatka_farmera", this::farmerHouse);
+        eventsMethods.put("expowisko_jeden", this::farm);
+        eventsMethods.put("maincity", this::city);
+
 
         this.source = source;
         layers = new ArrayList<>();
         events = new HashMap<>();
         loadFromFile();
         eventsMethods.get(name).apply();
+    }
+
+    private void moveToScene(String name, int x, int y, int z){
+        mapHandler.setCurrentMap(name);
+        CharacterManager.instance.x = x;
+        CharacterManager.instance.lastX = x;
+        CharacterManager.instance.xPos = x * 32;
+        CharacterManager.instance.y = y;
+        CharacterManager.instance.lastY = y;
+        CharacterManager.instance.yPos = y*32;
+        CharacterManager.instance.z = z;
+        CharacterManager.instance.setCameraPosition();
+        if(CharacterManager.instance.animation != null)
+            CharacterManager.instance.animation.Stop();
     }
 
     private void mainEvents(){
@@ -83,6 +99,29 @@ public class Map {
                 CharacterManager.instance.animation.Stop();
         }));
         events.put("note", new Pair<>(EventType.DISTANCE_PICK, () -> System.out.println("Przejście zamnknięte!")));
+    }
+
+    private void farmerHouse(){
+        events.put("goOut",  new Pair<>(EventType.PICK,()-> moveToScene(
+                "expowisko_jeden",43,38,3)
+        ));
+    }
+
+    private void farm(){
+        events.put("toTown", new Pair<>(EventType.PICK,()->moveToScene(
+                "maincity", 12,21,1)
+        ));
+        events.put("goInside", new Pair<>(EventType.DISTANCE_PICK, ()-> moveToScene(
+                "hatka_farmera", 5,8,2)
+        ));
+        events.put("ladderUp", new Pair<>(EventType.STEP,()->CharacterManager.instance.z = 4));
+        events.put("ladderDown", new Pair<>(EventType.STEP,()->CharacterManager.instance.z = 3));
+    }
+
+    private void city(){
+        events.put("toFarm", new Pair<>(EventType.PICK, ()-> moveToScene(
+                "expowisko_jeden",23,0,3)
+        ));
     }
 
     private void loadFromFile(){
