@@ -1,0 +1,3 @@
+id||name||enemy1-amount,enemy2,..,enemy||goldReward||expReward
+1:Chasing out monsters:1-1-4:50:200:0
+2:Helping villagers:2-1-5:100:500:0
