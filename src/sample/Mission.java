@@ -32,12 +32,14 @@ public class Mission {
             x = Integer.parseInt(enemyString[i]);
             y = Integer.parseInt(enemyString[i+1]);
             z = Integer.parseInt(enemyString[i+2]);
-            enemiesToKillArrayList.add(new enemiesToKill(x, y, z));
+            //enemiesToKillArrayList.add(new enemiesToKill(x, y, z));
         }
     }
     private String readLineStats(int id, String path){
         try {
-            File myObj = new File("resources/TextFiles/" + path);
+            System.out.println("resources/TextFiles/" + path);
+            //System.out.println("resources/TextFiles/missionStats.txt");
+            File myObj = new File("src/resources/TextFiles/" + path);
             Scanner myReader = new Scanner(myObj);
             int counter = 0;
             String data = "";
@@ -55,10 +57,10 @@ public class Mission {
         }
         return "";
     }
-    private class enemiesToKill{
-        private Enemy enemy;
-        private int amountOfEnemies;
-        private int enemiesLeft;
+    public class enemiesToKill{
+        public Enemy enemy;
+        public int amountOfEnemies;
+        public int enemiesLeft;
 
         private enemiesToKill(int id, int difficulty, int amountOfEnemies){
             enemy = new Enemy(id, difficulty);
@@ -71,7 +73,7 @@ public class Mission {
         public boolean sameEnemy(Enemy e){
             return e.id == enemy.id && e.level.equals(enemy.level);
         }
-        private String getName(){
+        public String getName(){
             return enemy.name;
         }
     }

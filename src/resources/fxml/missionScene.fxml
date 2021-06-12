@@ -24,7 +24,7 @@
       <Line endX="100.0" endY="-204.0" layoutX="542.0" layoutY="204.0" startX="100.0" startY="516.0" strokeWidth="12.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e5b36" height="642.0" layoutX="53.0" layoutY="46.0" stroke="BLACK" strokeType="INSIDE" width="532.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e5b36" height="642.0" layoutX="719.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="532.0" />
-      <Text fx:id="missionContent" layoutX="759.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula lorem non libero interdum, id dapibus nulla ultrices. Ut nisi massa, malesuada eu ex sed, eleifend fermentum orci. Aliquam ac bibendum lectus, non tincidunt ligula. Donec massa nisl, vehicula id tellus non, finibus fringilla lorem. Duis mollis tortor ante. Proin lobortis nisl sed ipsum dapibus ultrices. Suspendisse maximus et purus in egestas. Morbi tristique tristique elementum. Duis ultricies metus et auctor accumsan. Aenean bibendum orci a pulvinar vehicula." textAlignment="CENTER" wrappingWidth="465.12078857421875">
+      <Text fx:id="missionContent" layoutX="759.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="465.12078857421875">
          <font>
             <Font name="Big Caslon Medium" size="20.0" />
          </font>
@@ -45,19 +45,29 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <Button layoutX="439.0" layoutY="168.0" mnemonicParsing="false" text="Read more" />
-      <Button layoutX="908.0" layoutY="545.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="185.0" text="Accept" />
-      <Text layoutX="948.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward">
+      <Button layoutX="439.0" layoutY="168.0" mnemonicParsing="false" style="-fx-background-color: #AC7C4AAC7C4A;" text="Read more" />
+      <Button layoutX="912.0" layoutY="594.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="185.0" text="Accept" />
+      <Text layoutX="948.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward">
          <font>
             <Font size="27.0" />
          </font>
       </Text>
-      <Text fx:id="missionContent1" layoutX="664.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100 exp" textAlignment="CENTER" wrappingWidth="264.84130859375">
+      <Text fx:id="reward" layoutX="664.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.84130859375">
          <font>
             <Font name="Arial Unicode MS" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="missionContent11" layoutX="661.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="150 gold" textAlignment="CENTER" wrappingWidth="264.84130859375">
+      <Text layoutX="948.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Text layoutX="959.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do it">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Text fx:id="doIt" layoutX="683.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="264.84130859375">
          <font>
             <Font name="Arial Unicode MS" size="20.0" />
          </font>
