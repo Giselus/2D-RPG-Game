@@ -296,6 +296,11 @@ public class CharacterManager extends GameObject{
                 map.events.get(eventCode).getValue().apply();
                 return;
             }
+            if(KeyPolling.isDown(KeyCode.J)){
+                Main.clearUptadables();
+                Main.setScene("/resources/fxml/missionScene.fxml","/resources/style/styleMission.css");
+                return;
+            }
             if(KeyPolling.isDown(KeyCode.I)){
                 Main.clearUptadables();
                 Main.setScene("/resources/fxml/sceneInventory.fxml","/resources/style/styleInventory.css");

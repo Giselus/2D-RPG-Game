@@ -18,7 +18,8 @@ import sample.Main;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ControllerInventory {
+public class
+ControllerInventory {
 
     private final int inventoryWidth = 4;
     private final int inventoryHeight = 4;

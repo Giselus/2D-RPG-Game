@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerMission">
+   <children>
+      <ImageView fitHeight="735.0" fitWidth="1043.0" layoutX="-15.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/bg4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="735.0" fitWidth="643.0" layoutX="640.0" layoutY="-9.0">
+         <image>
+            <Image url="@../textures/bg4.png" />
+         </image>
+      </ImageView>
+      <Line endX="100.0" endY="-204.0" layoutX="542.0" layoutY="204.0" startX="100.0" startY="516.0" strokeWidth="12.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e5b36" height="642.0" layoutX="53.0" layoutY="46.0" stroke="BLACK" strokeType="INSIDE" width="532.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e5b36" height="642.0" layoutX="719.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="532.0" />
+      <Text fx:id="missionContent" layoutX="759.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula lorem non libero interdum, id dapibus nulla ultrices. Ut nisi massa, malesuada eu ex sed, eleifend fermentum orci. Aliquam ac bibendum lectus, non tincidunt ligula. Donec massa nisl, vehicula id tellus non, finibus fringilla lorem. Duis mollis tortor ante. Proin lobortis nisl sed ipsum dapibus ultrices. Suspendisse maximus et purus in egestas. Morbi tristique tristique elementum. Duis ultricies metus et auctor accumsan. Aenean bibendum orci a pulvinar vehicula." textAlignment="CENTER" wrappingWidth="465.12078857421875">
+         <font>
+            <Font name="Big Caslon Medium" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="912.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Content main">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Text layoutX="233.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actual mission">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e5b36" height="55.0" layoutX="53.0" layoutY="153.0" stroke="BLACK" strokeType="INSIDE" width="532.0" />
+      <Text layoutX="80.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Button layoutX="439.0" layoutY="168.0" mnemonicParsing="false" text="Read more" />
+      <Button layoutX="908.0" layoutY="545.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="185.0" text="Accept" />
+      <Text layoutX="948.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Text fx:id="missionContent1" layoutX="664.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100 exp" textAlignment="CENTER" wrappingWidth="264.84130859375">
+         <font>
+            <Font name="Arial Unicode MS" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="missionContent11" layoutX="661.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="150 gold" textAlignment="CENTER" wrappingWidth="264.84130859375">
+         <font>
+            <Font name="Arial Unicode MS" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
