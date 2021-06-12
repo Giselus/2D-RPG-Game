@@ -3,3 +3,4 @@ id/name/dmg/mod/stamina-/mana-
 2:Strong Attack:50:0.4:20:0
 3:Focused Attack:15:1:20:0
 4:Slash:10:0:0:0
+5:Shoot:8:0:0:0

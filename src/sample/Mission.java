@@ -10,6 +10,8 @@ public class Mission {
     public int gold;
     public String name;
     public String description;
+    public int tasksToDo;
+    public int tasksDone;
     boolean canBeFinished;
     public ArrayList<enemiesToKill> enemiesToKillArrayList;
 
@@ -19,6 +21,8 @@ public class Mission {
         enemiesToKillArrayList = new ArrayList<>();
         readMissionStats(id);
         description = readLineStats(id, "missionDescription.txt");
+        tasksToDo = enemiesToKillArrayList.size();
+        tasksDone = 0;
     }
     private void readMissionStats(int id){
         String data = readLineStats(id, "missionStats.txt");
@@ -32,13 +36,12 @@ public class Mission {
             x = Integer.parseInt(enemyString[i]);
             y = Integer.parseInt(enemyString[i+1]);
             z = Integer.parseInt(enemyString[i+2]);
-            //enemiesToKillArrayList.add(new enemiesToKill(x, y, z));
+            enemiesToKillArrayList.add(new enemiesToKill(x, y, z));
         }
     }
     private String readLineStats(int id, String path){
         try {
             System.out.println("resources/TextFiles/" + path);
-            //System.out.println("resources/TextFiles/missionStats.txt");
             File myObj = new File("src/resources/TextFiles/" + path);
             Scanner myReader = new Scanner(myObj);
             int counter = 0;
@@ -68,7 +71,16 @@ public class Mission {
             enemiesLeft = 0;
         }
         public void enemyKilled(){
+            if(enemiesLeft == amountOfEnemies){
+                return;
+            }
             enemiesLeft++;
+            if(enemiesLeft == amountOfEnemies){
+                tasksDone++;
+                if(tasksDone == tasksToDo){
+                    canBeFinished = true;
+                }
+            }
         }
         public boolean sameEnemy(Enemy e){
             return e.id == enemy.id && e.level.equals(enemy.level);

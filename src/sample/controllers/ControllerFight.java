@@ -57,6 +57,7 @@ public class ControllerFight {
     @FXML public Tooltip tooltipFive;
     //end
     @FXML public void initialize(){
+
         exitButton.setDisable(true);
         skillsList = new ArrayList<>(4);
         for(int i=0; i<4; i++){
@@ -70,7 +71,7 @@ public class ControllerFight {
         player = new Combat.combatStats(true);
 
         //this line has to change depending on enemy
-        opponent = new Enemy(1, 3);
+        opponent = new Enemy(1, 1);
 
         enemy = new Combat.combatStats(opponent);
         checkEnemyHP(0);
@@ -234,6 +235,14 @@ public class ControllerFight {
             System.out.println("Wygrana");
             CharacterManager.instance.actualExp += opponent.exp;
             CharacterManager.instance.gold += opponent.gold;
+            for(int i=0; i<ControllerMission.missionList.size(); i++){
+                 for(int j=0; j<ControllerMission.missionList.get(i).enemiesToKillArrayList.size(); j++){
+                     System.out.println(ControllerMission.missionList.get(i).enemiesToKillArrayList.get(j).getName());
+                     if(ControllerMission.missionList.get(i).enemiesToKillArrayList.get(j).sameEnemy(opponent)){
+                         ControllerMission.missionList.get(i).enemiesToKillArrayList.get(j).enemyKilled();
+                     }
+                 }
+            }
         }
     }
     public void one() {

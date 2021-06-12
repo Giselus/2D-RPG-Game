@@ -23,10 +23,13 @@ public class ControllerMission {
         String descriptionM1="Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                 "Curabitur erat arcu, pharetra quis tortor vitae, tempus efficitur nisl. " +
                 "Sed at vulputate quam. Pellentesque tristique quam at turpis rutrum imperdiet.";
+
+        //TODO delete next four lines
         Mission M1=new Mission(1);
         Mission M2=new Mission(2);
         missionList.add(M1);
         missionList.add(M2);
+
         int iter=0;
         for(Mission i: missionList){
             Rectangle rectangle=new Rectangle();
@@ -48,9 +51,10 @@ public class ControllerMission {
             buttonReadMore.setLayoutY(165+73*iter);
             buttonReadMore.setOnMousePressed(e->{
                 missionContent.setText(i.description);
-                String doItMission=null;
+                String doItMission="";
+                System.out.println(i.enemiesToKillArrayList.size());
                 for(int j=0;j<i.enemiesToKillArrayList.size();j++){
-                    doItMission=i.enemiesToKillArrayList.get(j).getName();
+                    doItMission+=i.enemiesToKillArrayList.get(j).getName();
                     doItMission+=": "+i.enemiesToKillArrayList.get(j).enemiesLeft;
                     doItMission+="/"+i.enemiesToKillArrayList.get(j).amountOfEnemies;
                     doItMission+="\n";
