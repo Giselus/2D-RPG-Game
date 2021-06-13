@@ -25,7 +25,7 @@ public class ContainerForNpc{
     public static void Initialize(){
         new ContainerForNpc("AlchemistShop", 4,4,true);
         new ContainerForNpc("ArmourerShop", 4,4,true);
-        new ContainerForNpc("ChestInShop", 4,4,false);
+        new ContainerForNpc("ChestInFarm", 4,4,false);
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
