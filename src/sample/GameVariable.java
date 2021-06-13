@@ -22,7 +22,10 @@ public class GameVariable {
     }
 
     public static void Initialize(){
-        //TODO: Initialize some variables
         new GameVariable("AlchemistDealerTalk");
+        new GameVariable("FatherFirstTalk");
+        new GameVariable("SatoriDialogue");
+        new GameVariable("BossAlive");
+        new GameVariable("QuestAccepted");
     }
 }

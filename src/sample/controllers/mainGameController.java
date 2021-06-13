@@ -35,6 +35,7 @@ public class mainGameController {
             new DialogueManager();
             InteractiveObject.Initialize();
             ContainerForNpc.Initialize();
+            EnemySpawner.Initialize();
 
             mapHandler.setCurrentMap("hatka_farmera");
         }
@@ -44,8 +45,10 @@ public class mainGameController {
         CharacterManager.instance.setActive(true);
         DialogueManager.instance.setActive(true);
 
-        for(InteractiveObject interactive: InteractiveObject.activeInteractiveObjects){
-            interactive.setActive(true);
+        mapHandler.reloadMap();
+
+        if(GameVariable.FetchByName("SatoriDialogue").state == false){
+            DialogueManager.instance.OpenDialogue("Satori");
         }
     }
 

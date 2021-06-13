@@ -46,16 +46,26 @@ public class mapHandler {
         }
     }
 
+    private static String currentMapName;
     public static void setCurrentMap(String name){
-        InteractiveObject tmp[] = InteractiveObject.activeInteractiveObjects.toArray(new InteractiveObject[
-                InteractiveObject.activeInteractiveObjects.size()]);
-        for(InteractiveObject object:tmp){
+        currentMapName = name;
+
+        for(InteractiveObject object : InteractiveObject.activeInteractiveObjects){
             object.setActive(false);
         }
         InteractiveObject.activeInteractiveObjects.clear();
+
         currentMap = new Map(mapFiles.get(name));
     }
 
+    public static void reloadMap(){
+        for(InteractiveObject object : InteractiveObject.activeInteractiveObjects){
+            object.setActive(false);
+        }
+        InteractiveObject.activeInteractiveObjects.clear();
+
+        currentMap = new Map(mapFiles.get(currentMapName));
+    }
     public static Map getCurrentMap(){
         return currentMap;
     }

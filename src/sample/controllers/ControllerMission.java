@@ -30,13 +30,6 @@ public class ControllerMission {
                 "Curabitur erat arcu, pharetra quis tortor vitae, tempus efficitur nisl. " +
                 "Sed at vulputate quam. Pellentesque tristique quam at turpis rutrum imperdiet.";
 
-        //TODO delete next four lines
-        if(missionList==null || missionList.isEmpty()){
-            Mission M1=new Mission(1);
-            Mission M2=new Mission(2);
-            missionList.add(M1);
-            missionList.add(M2);
-        }
         int iter=0;
         for(Mission i: missionList){
             Rectangle rectangle=new Rectangle();

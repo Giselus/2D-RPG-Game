@@ -21,7 +21,7 @@ public class InteractiveObject extends GameObject{
         setActive(false);
         interactiveObjectsMap.put(name,this);
     }
-    private InteractiveObject(InteractiveObject toCopy){
+    public InteractiveObject(InteractiveObject toCopy){
         super(0,0,0,toCopy.images.toArray(new ImageFrame[toCopy.images.size()]));
         this.name = toCopy.name;
         this.action = toCopy.action;
@@ -57,14 +57,38 @@ public class InteractiveObject extends GameObject{
                 new ImageFrame(new Image(Main.class.getResource(
                         "/resources/textures/NPC/npc9.png").toString()),
                         0,384,64,64));
+        new InteractiveObject("Father",
+                ()->DialogueManager.instance.OpenDialogue("FatherStartPhase"), true,
+                new ImageFrame(new Image(Main.class.getResource(
+                        "/resources/textures/NPC/npc8.png").toString()),
+                        0,640,64,64));
+        new InteractiveObject("Boss",
+                ()->DialogueManager.instance.OpenDialogue("Boss1b"),true,
+                new ImageFrame(new Image(Main.class.getResource(
+                        "/resources/textures/Enemies/BOSS1.png").toString()),
+                        0,11*64,64,64));
+        new InteractiveObject("Skeleton archer",()->{},true,new ImageFrame(
+                new Image(Main.class.getResource("/resources/textures/Enemies/NORMAL1.png").toString()),
+                64,640,64,64));
+        new InteractiveObject("Werewolf",()->{},true,new ImageFrame(
+                new Image(Main.class.getResource("/resources/textures/Enemies/NORMAL2.png").toString()),
+                64,640,64,64));
+        new InteractiveObject("Orc miner",()->{},true,new ImageFrame(
+                new Image(Main.class.getResource("/resources/textures/Enemies/NORMAL3.png").toString()),
+                64,640,64,64));
+        new InteractiveObject("Zombie",()->{},true,new ImageFrame(
+                new Image(Main.class.getResource("/resources/textures/Enemies/NORMAL4.png").toString()),
+                64,640,64,64));
+        new InteractiveObject("Reptile",()->{},true,new ImageFrame(
+                new Image(Main.class.getResource("/resources/textures/Enemies/NORMAL5.png").toString()),
+                64,640,64,64));
     }
 
     public void setActive(boolean active){
         super.setActive(active);
         if(active)
             activeInteractiveObjects.add(this);
-        else
-            activeInteractiveObjects.remove(this);
+
     }
 
     public static InteractiveObject getObject(int x, int y, int z){
@@ -74,5 +98,4 @@ public class InteractiveObject extends GameObject{
         }
         return null;
     }
-
 }

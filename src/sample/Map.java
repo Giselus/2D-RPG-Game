@@ -3,6 +3,7 @@ package sample;
 
 import javafx.scene.image.Image;
 import javafx.util.Pair;
+import sample.controllers.ControllerContainer;
 import sample.controllers.mainGameController;
 
 import java.io.File;
@@ -32,6 +33,8 @@ public class Map {
         eventsMethods.put("expowisko_jeden", this::farm);
         eventsMethods.put("maincity", this::city);
         eventsMethods.put("miastoone", this::shop);
+        eventsMethods.put("przejscie", this::waterFall);
+        eventsMethods.put("wodna_mapa", this::island);
 
 
         this.source = source;
@@ -55,7 +58,7 @@ public class Map {
             CharacterManager.instance.animation.Stop();
     }
 
-    private void setPosition(GameObject object, int x, int y, int z){
+    public static void setPosition(GameObject object, int x, int y, int z){
         object.x = x;
         object.xPos = x*32;
         object.y = y;
@@ -67,6 +70,11 @@ public class Map {
         events.put("goOut",  new Pair<>(EventType.PICK,()-> moveToScene(
                 "expowisko_jeden",43,38,3)
         ));
+        events.put("openChest",new Pair<>(EventType.DISTANCE_PICK,()->{
+            ControllerContainer.swapChest = ContainerForNpc.FetchByName("ChestInFarm");
+            Updatable.clearUpdatables();
+            Main.setScene("/resources/fxml/sceneContainer.fxml",
+                    "/resources/style/styleContainer.css"); }));
     }
 
     private void farm(){
@@ -76,8 +84,33 @@ public class Map {
         events.put("goInside", new Pair<>(EventType.DISTANCE_PICK, ()-> moveToScene(
                 "hatka_farmera", 15,15,2)
         ));
+        events.put("goWaterfall", new Pair<>(EventType.PICK,()->moveToScene(
+                "przejscie",29,10,3
+        )));
         events.put("ladderUp", new Pair<>(EventType.STEP,()->CharacterManager.instance.z = 4));
         events.put("ladderDown", new Pair<>(EventType.STEP,()->CharacterManager.instance.z = 3));
+
+        InteractiveObject father = InteractiveObject.clone("Father");
+        setPosition(father,42,38,3);
+
+        EnemySpawner spawner1 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner2 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner3 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner4 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner5 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner6 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner7 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner8 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner9 = EnemySpawner.clone("spawner1");
+        setPosition(spawner1,30,41,3);
+        setPosition(spawner2,17,38,3);
+        setPosition(spawner3,7,27,3);
+        setPosition(spawner4,4,15,3);
+        setPosition(spawner5,11,11,4);
+        setPosition(spawner6,35,5,4);
+        setPosition(spawner7,23,9,3);
+        setPosition(spawner8,35,18,3);
+        setPosition(spawner9,39,26,3);
     }
 
     private void city(){
@@ -85,6 +118,8 @@ public class Map {
                 "expowisko_jeden",23,0,3)));
         events.put("goShop",new Pair<>(EventType.DISTANCE_PICK,()->moveToScene(
                 "miastoone",13,19,2)));
+        events.put("openQuests",new Pair<>(EventType.DISTANCE_PICK,()->
+                DialogueManager.instance.OpenDialogue("QuestsStart")));
         InteractiveObject guard1 = InteractiveObject.clone("CityGuard");
         InteractiveObject guard2 = InteractiveObject.clone("CityGuard");
         setPosition(guard1,14,17,1);
@@ -102,6 +137,30 @@ public class Map {
         setPosition(alchemist,19,9,2);
         InteractiveObject armourer = InteractiveObject.clone("Armourer");
         setPosition(armourer,6,9,2);
+    }
+
+    private void waterFall(){
+        events.put("goFarm",new Pair<>(EventType.PICK,()->moveToScene(
+                "expowisko_jeden",0,21,3)
+        ));
+        events.put("goBoss",new Pair<>(EventType.PICK,()->moveToScene(
+                "wodna_mapa",29,11,3)
+        ));
+    }
+
+    private void island(){
+        events.put("goWaterfall",new Pair<>(EventType.PICK,()->moveToScene(
+                "przejscie",0,10,3)));
+        events.put("openChest",new Pair<>(EventType.DISTANCE_PICK,()->{
+            ControllerContainer.swapChest = ContainerForNpc.FetchByName("ChestReward");
+            Updatable.clearUpdatables();
+            Main.setScene("/resources/fxml/sceneContainer.fxml",
+                    "/resources/style/styleContainer.css"); }));
+        if(!GameVariable.FetchByName("BossAlive").state) {
+            GameVariable.FetchByName("BossAlive").state = true;
+            InteractiveObject boss = InteractiveObject.clone("Boss");
+            setPosition(boss, 15, 11, 3);
+        }
     }
 
     private void loadFromFile(){

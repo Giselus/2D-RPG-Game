@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.input.KeyCode;
 import javafx.util.Pair;
 import sample.controllers.ControllerContainer;
+import sample.controllers.ControllerFight;
+import sample.controllers.ControllerMission;
 import sample.controllers.mainGameController;
 
 import java.util.ArrayList;
@@ -127,14 +129,83 @@ public class DialogueManager extends Updatable{
                 "ArmourerExit2");
 
         //endregion
+        //region Father
+        new Dialogue("TalkFirstTime","(Talk)",()->{
+            DialogueManager.instance.setState("Father1b");
+            ControllerMission.missionList.add(new Mission(1));
+            GameVariable.FetchByName("FatherFirstTalk").state = true;},
+                new Pair<>("FatherFirstTalk",false));
+        new Dialogue("TalkNextTime","(Talk)",()->
+                DialogueManager.instance.setState("Father1c"),
+                new Pair<>("FatherFirstTalk",true));
+        new Dialogue("ExitFather","(Leave him)",this::CloseDialogues);
+        new Dialogue("Father1a","(Continue)",()->
+                DialogueManager.instance.setState("Father2b"));
+        new Dialogue("Father2a","Okay dad, I’m going for an adventure!",()->
+                DialogueManager.instance.setState("Father3b"));
 
-        //new Dialogue("test","Chcę punkty!!", ()->DialogueManager.instance.setState("test2"));
-        //new Dialogue("test2","(Zamknij)", this::CloseDialogues);
 
-        //new DialogueState("test","Greetings adventurer!",Dialogue.fetchByName("test"));
-        //new DialogueState("test2","Jasna sprawa, masz tu 20 (you've got 20 points)!",
-          //      Dialogue.fetchByName("test2"));
+        new DialogueState("FatherStartPhase","","TalkFirstTime","TalkNextTime","ExitFather");
+        new DialogueState("Father1b","Oh son, it’s high time you left your room. " +
+                "I have a special mission for you. In the North there is a big city. " +
+                "You will find a real job and you will stop sitting in front of a PC all day long."
+                ,"Father1a");
+        new DialogueState("Father2b", "All the information will be available on a job board. " +
+                "Additionally, the monsters in our neighbourhood are destroying our crops. " +
+                "Take care of that as well.","Father2a");
 
+        new DialogueState("Father3b","Don’t forget to take some clothes from the wardrobe. " +
+                "You don’t want to catch a cold, do you?","ExitFather");
+        new DialogueState("Father1c","I already told you what to do! Go now!","ExitFather");
+        //endregion
+        //region Satori
+        new Dialogue("SatoriExit","(Exit)",()->
+        {
+            GameVariable.FetchByName("SatoriDialogue").state = true;
+            CloseDialogues();
+        });
+        new DialogueState("Satori",
+                "It’s happening again! Satori has been checking my solution for 30 minutes. " +
+                        "At least I have time to go outside. I’m gonna see what my dad’s doing.",
+                "SatoriExit");
+        //endregion
+        //region Boss
+        new Dialogue("Boss1a", "(Continue)",
+                () -> DialogueManager.instance.setState("Boss2b"));
+        new Dialogue("BossFight", "(Fight)",()->{
+            DialogueManager.instance.CloseDialogues();
+            ControllerFight.opponent = new Enemy(1,3);
+            Updatable.clearUpdatables();
+            Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
+        });
+        new DialogueState("Boss1b",
+                "It turned out that you’ve found me. " +
+                        "Now I can reveal my secret! I am the one slowing down Satori!!! " +
+                        "If you think you can defeat me, you are dead wrong.", "Boss1a");
+        new DialogueState("Boss2b",
+                "You will never get 20 points for this project. " +
+                        "I’ll do my best to stop you and I will defeat you right here and right now.",
+                "BossFight");
+        //endregion
+        //region Quests
+        new Dialogue("QuestsExit","(Exit)",this::CloseDialogues);
+        new Dialogue("Quests1a","(Search for job)",()->{
+            GameVariable.FetchByName("QuestAccepted").state = true;
+            ControllerMission.missionList.add(new Mission(2));
+            DialogueManager.instance.setState("Quests1b");
+        },
+        new Pair<>("QuestAccepted",false));
+        new Dialogue("Quests2a","(Search for job)",()->{
+            DialogueManager.instance.setState("Quests1c");
+        },
+        new Pair<>("QuestAccepted",true));
 
+        new DialogueState("QuestsStart","You see plenty of yellowed letters pinned to" +
+                " this old board.","Quests1a","Quests2a","QuestsExit");
+        new DialogueState("Quests1c","There's really nothing that suits you",
+                "QuestsExit");
+        new DialogueState("Quests1b","You found interesting order for few monsters's head. " +
+                "It should be easy!","QuestsExit");
+        //endregion
     }
 }
