@@ -8,8 +8,7 @@ public class GameObject extends Updatable{
 
     public ArrayList<ImageFrame> images;
     public float xPos, yPos;
-    int x,y;
-    int z;
+    public int x,y,z;
     public Animation animation;
 
     public GameObject(){

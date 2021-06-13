@@ -12,8 +12,8 @@ public class Dialogue {
 
     public String text;
     public Action action;
-    public ArrayList<Pair<GameVariable,Boolean>> conditions;
-    public Dialogue(String name,String text, Action action, Pair<GameVariable,Boolean> ... conditions){
+    public ArrayList<Pair<String,Boolean>> conditions;
+    public Dialogue(String name,String text, Action action, Pair<String,Boolean> ... conditions){
         this.text = text;
         this.action = action;
         this.conditions = new ArrayList<>();

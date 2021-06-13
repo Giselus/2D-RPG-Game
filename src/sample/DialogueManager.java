@@ -18,14 +18,14 @@ public class DialogueManager extends Updatable{
         }
     }
     private ArrayList<Dialogue> activeDialogues = new ArrayList<>();
-    public void setState(DialogueState state){
-        currentState = state;
+    public void setState(String state){
+        currentState = DialogueState.FetchByName(state);
         activeDialogues.clear();
         ArrayList<String> tmp = new ArrayList<>();
-        for(Dialogue dialogue: state.dialogueOptions){
+        for(Dialogue dialogue: currentState.dialogueOptions){
             boolean flag = true;
-            for(Pair<GameVariable,Boolean> condition:dialogue.conditions){
-                if(condition.getKey().state != condition.getValue())
+            for(Pair<String,Boolean> condition:dialogue.conditions){
+                if(!condition.getValue().equals(GameVariable.FetchByName(condition.getKey()).state))
                     flag = false;
             }
             if(flag){
@@ -33,10 +33,10 @@ public class DialogueManager extends Updatable{
                 tmp.add(dialogue.text);
             }
         }
-        mainGameController.instance.setDialogues(state.text,tmp);
+        mainGameController.instance.setDialogues(currentState.text,tmp);
     }
 
-    public void OpenDialogue(DialogueState state){
+    public void OpenDialogue(String state){
         opened = true;
         mainGameController.instance.openDialogueBox();
         setState(state);
@@ -48,34 +48,63 @@ public class DialogueManager extends Updatable{
     }
 
     public void Update(float deltaTime){
-        //TODO: check if any option is chosen
-        if(activeDialogues.size() >= 1 && KeyPolling.isDown(KeyCode.DIGIT1)){
+        if(activeDialogues.size() >= 1 && KeyPolling.pressedDown(KeyCode.DIGIT1)){
             activeDialogues.get(0).action.apply();
-        }else if(activeDialogues.size() >= 2 && KeyPolling.isDown(KeyCode.DIGIT2)){
+        }else if(activeDialogues.size() >= 2 && KeyPolling.pressedDown(KeyCode.DIGIT2)){
             activeDialogues.get(1).action.apply();
-        }else if(activeDialogues.size() >= 3 && KeyPolling.isDown(KeyCode.DIGIT3)){
+        }else if(activeDialogues.size() >= 3 && KeyPolling.pressedDown(KeyCode.DIGIT3)){
             activeDialogues.get(2).action.apply();
-        }else if(activeDialogues.size() >= 4 && KeyPolling.isDown(KeyCode.DIGIT4)){
+        }else if(activeDialogues.size() >= 4 && KeyPolling.pressedDown(KeyCode.DIGIT4)){
             activeDialogues.get(3).action.apply();
-        }else if(activeDialogues.size() >= 5 && KeyPolling.isDown(KeyCode.DIGIT5)){
+        }else if(activeDialogues.size() >= 5 && KeyPolling.pressedDown(KeyCode.DIGIT5)){
             activeDialogues.get(4).action.apply();
-        }else if(activeDialogues.size() >= 6 && KeyPolling.isDown(KeyCode.DIGIT6)){
+        }else if(activeDialogues.size() >= 6 && KeyPolling.pressedDown(KeyCode.DIGIT6)){
             activeDialogues.get(5).action.apply();
-        }else if(activeDialogues.size() >= 7 && KeyPolling.isDown(KeyCode.DIGIT7)){
+        }else if(activeDialogues.size() >= 7 && KeyPolling.pressedDown(KeyCode.DIGIT7)){
             activeDialogues.get(6).action.apply();
-        }else if(activeDialogues.size() >= 8 && KeyPolling.isDown(KeyCode.DIGIT8)){
+        }else if(activeDialogues.size() >= 8 && KeyPolling.pressedDown(KeyCode.DIGIT8)){
             activeDialogues.get(7).action.apply();
-        }else if(activeDialogues.size() >= 9 && KeyPolling.isDown(KeyCode.DIGIT9)){
+        }else if(activeDialogues.size() >= 9 && KeyPolling.pressedDown(KeyCode.DIGIT9)){
             activeDialogues.get(8).action.apply();
         }
     }
 
     public void Initialize(){
-        //Dialogues
-        new Dialogue("test","This is just test", this::CloseDialogues);
+        //Alchemist
+        new Dialogue("AlchemistDealer1a","Sure, show me what do you have",
+                () -> DialogueManager.instance.setState("AlchemistDealer2b"),
+                new Pair<>("AlchemistDealerTalk",false));
+        new Dialogue("AlchemistDealer2a","Uhh, I rather meant potions",
+                () -> {
+                    GameVariable.FetchByName("AlchemistDealerTalk").state = true;
+                    DialogueManager.instance.setState("AlchemistDealer3b"); }
+                );
+        new Dialogue("AlchemistDealerNo", "Leave me alone you freak",
+                this::CloseDialogues);
+        new Dialogue("AlchemistDealerTrade","(Trade)",
+                () -> {
+                    CloseDialogues();
+                    //TODO: Open some trading inventory
+                }, new Pair<>("AlchemistDealerTalk",true));
 
-        //States
-        new DialogueState("test","Greetings adventurer!",Dialogue.fetchByName("test"));
+        new DialogueState("AlchemistDealer1b",
+                "Psst, hey. Do you wanna buy some fancy alchemical stuff?",
+                "AlchemistDealer1a","AlchemistDealerTrade","AlchemistDealerNo");
+        new DialogueState("AlchemistDealer2b",
+                "Okay, I have cananbis, amphetamines, cocaine, heroine. " +
+                        "Of course everything is high quality",
+                "AlchemistDealer2a");
+        new DialogueState("AlchemistDealer3b",
+                "Sure... That's what I meant too...",
+                "AlchemistDealerTrade");
+
+
+        //new Dialogue("test","Chcę punkty!!", ()->DialogueManager.instance.setState("test2"));
+        //new Dialogue("test2","(Zamknij)", this::CloseDialogues);
+
+        //new DialogueState("test","Greetings adventurer!",Dialogue.fetchByName("test"));
+        //new DialogueState("test2","Jasna sprawa, masz tu 20 (you've got 20 points)!",
+          //      Dialogue.fetchByName("test2"));
 
 
     }

@@ -217,7 +217,7 @@ public class CharacterManager extends GameObject{
     private boolean occupied(int x, int y, int z){
         if(mapHandler.getCurrentMap().getLayer(z).getCollisionAtPos(x,y))
             return true;
-        if(EnemyManager.instance.getEnemy(x,y,z) != null)
+        if(InteractiveObject.getObject(x,y,z) != null && InteractiveObject.getObject(x,y,z).collision)
             return true;
         return false;
     }
@@ -250,8 +250,8 @@ public class CharacterManager extends GameObject{
                     }
                     switch(lookingDirection){
                         case LEFT:
-                            if(EnemyManager.instance.getEnemy(x-1,y,z) != null){
-                                EnemyManager.instance.getEnemy(x-1,y,z).Fight();
+                            if(InteractiveObject.getObject(x-1,y,z) != null){
+                                InteractiveObject.getObject(x-1,y,z).action.apply();
                             }
                             if(map.getLayer(z).getEvent(x-1,y) != null) {
                                 tmp = map.getLayer(z).getEvent(x-1, y);
@@ -260,8 +260,8 @@ public class CharacterManager extends GameObject{
                             }
                             break;
                         case RIGHT:
-                            if(EnemyManager.instance.getEnemy(x+1,y,z) != null){
-                                EnemyManager.instance.getEnemy(x+1,y,z).Fight();
+                            if(InteractiveObject.getObject(x+1,y,z) != null){
+                                InteractiveObject.getObject(x+1,y,z).action.apply();
                             }
                             if(map.getLayer(z).getEvent(x+1,y) != null) {
                                 tmp = map.getLayer(z).getEvent(x+1, y);
@@ -270,8 +270,8 @@ public class CharacterManager extends GameObject{
                             }
                             break;
                         case UP:
-                            if(EnemyManager.instance.getEnemy(x,y-1,z) != null){
-                                EnemyManager.instance.getEnemy(x,y-1,z).Fight();
+                            if(InteractiveObject.getObject(x,y-1,z) != null){
+                                InteractiveObject.getObject(x,y-1,z).action.apply();
                             }
                             if(map.getLayer(z).getEvent(x,y-1) != null) {
                                 tmp = map.getLayer(z).getEvent(x, y-1);
@@ -280,8 +280,8 @@ public class CharacterManager extends GameObject{
                             }
                             break;
                         case DOWN:
-                            if(EnemyManager.instance.getEnemy(x,y+1,z) != null){
-                                EnemyManager.instance.getEnemy(x,y+1,z).Fight();
+                            if(InteractiveObject.getObject(x,y+1,z) != null){
+                                InteractiveObject.getObject(x,y+1,z).action.apply();
                             }
                             if(map.getLayer(z).getEvent(x,y+1) != null) {
                                 tmp = map.getLayer(z).getEvent(x, y+1);

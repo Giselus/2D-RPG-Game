@@ -6,13 +6,13 @@ public class GameVariable {
 
     public boolean state;
 
-    public static HashMap<String, GameVariable> variables;
+    public static HashMap<String, GameVariable> variables = new HashMap<>();
 
     GameVariable(String name){
         variables.put(name,this);
     }
 
-    public GameVariable getVariable(String name){
+    public static GameVariable FetchByName(String name){
         if(variables.containsKey(name)){
             return variables.get(name);
         }else{
@@ -23,5 +23,6 @@ public class GameVariable {
 
     public static void Initialize(){
         //TODO: Initialize some variables
+        new GameVariable("AlchemistDealerTalk");
     }
 }

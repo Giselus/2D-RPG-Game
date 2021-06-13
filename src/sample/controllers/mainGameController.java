@@ -30,18 +30,22 @@ public class mainGameController {
             mapHandler.Init();
             new RenderingManager();
             new Camera(mapCanvas);
-            new EnemyManager();
             GameVariable.Initialize();
             new DialogueManager();
+            InteractiveObject.Initialize();
+
+
             mapHandler.setCurrentMap("hatka_farmera");
         }
         instance = this;
         gc = mapCanvas.getGraphicsContext2D();
         RenderingManager.instance.setActive(true);
         CharacterManager.instance.setActive(true);
-        EnemyManager.instance.setActive(true);
         DialogueManager.instance.setActive(true);
 
+        for(InteractiveObject interactive: InteractiveObject.activeInteractiveObjects){
+            interactive.setActive(true);
+        }
     }
 
     GraphicsContext gc;

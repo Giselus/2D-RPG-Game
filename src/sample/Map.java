@@ -54,6 +54,14 @@ public class Map {
             CharacterManager.instance.animation.Stop();
     }
 
+    private void setPosition(GameObject object, int x, int y, int z){
+        object.x = x;
+        object.xPos = x*32;
+        object.y = y;
+        object.yPos = y*32;
+        object.z = z;
+    }
+
     private void mainEvents(){
         EnemyObject test = new EnemyObject(30,11,4,new ImageFrame(new Image(
                 getClass().getResource("/resources/textures/Enemies/NORMAL1.png").toString()),
@@ -102,6 +110,10 @@ public class Map {
         events.put("goOut",  new Pair<>(EventType.PICK,()-> moveToScene(
                 "expowisko_jeden",43,38,3)
         ));
+
+        InteractiveObject alchemist = InteractiveObject.FetchByName("Alchemist");
+        alchemist.setActive(true);
+        setPosition(alchemist,7,3,2);
     }
 
     private void farm(){

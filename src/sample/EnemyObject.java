@@ -4,16 +4,12 @@ import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 
-public class EnemyObject extends GameObject{
+public class EnemyObject extends InteractiveObject{
 
     public EnemyObject(int x, int y, int z, ImageFrame ... img){
-        super(x,y,z,img);
-        EnemyManager.instance.enemies.add(this);
+        super("test",()->{},true,img);
     }
 
-    public void Update(float deltaTime){
-        super.Update(deltaTime);
-    }
     public void Fight(){
         Main.clearUptadables();
         Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
@@ -21,6 +17,5 @@ public class EnemyObject extends GameObject{
     }
     public void Defeat(){
         setActive(false);
-        EnemyManager.instance.enemies.remove(this);
     }
 }

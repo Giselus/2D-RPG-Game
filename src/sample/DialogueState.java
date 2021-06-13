@@ -12,10 +12,12 @@ public class DialogueState {
 
     public static HashMap<String,DialogueState> dialogueStates = new HashMap<>();
 
-    public DialogueState(String name, String text, Dialogue ... options){
+    public DialogueState(String name, String text, String ... options){
         this.text = text;
         dialogueOptions = new ArrayList<>();
-        dialogueOptions.addAll(Arrays.asList(options));
+        for(String string: options){
+            dialogueOptions.add(Dialogue.fetchByName(string));
+        }
         dialogueStates.put(name,this);
     }
 
