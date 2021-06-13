@@ -67,12 +67,21 @@ public class Items {
         public int mana;
         public int stamina;
         public int gold;
+        public int plusHealth;
+        public int plusMana;
+        public int plusStamina;
         public itemStats(int x, int y){
             String data = findLine(x, y);
             if (data.equals("")){
                 return;
             }
-            String[] tab_data = data.split(":", 13);
+            String[] tab_data = data.split(":");
+            int type = Integer.parseInt(tab_data[0]);
+            if(type == 7){
+                this.plusHealth = Integer.parseInt(tab_data[11]);
+                this.plusMana = Integer.parseInt(tab_data[12]);
+                this.plusStamina = Integer.parseInt(tab_data[13]);
+            }
             this.name = tab_data[2];
             this.attack = Integer.parseInt(tab_data[3]);
             this.defense = Integer.parseInt(tab_data[4]);
@@ -129,6 +138,15 @@ public class Items {
             }
             if(stamina!=0){
                 result.append("Stamina: ").append(stamina).append("\n");
+            }
+            if(plusHealth!=0){
+                result.append("Healing: ").append(plusHealth).append("\n");
+            }
+            if(plusMana!=0){
+                result.append("Mana: ").append(plusMana).append("\n");
+            }
+            if(plusStamina!=0){
+                result.append("Stamina: ").append(plusStamina).append("\n");
             }
             result.append("Price: ").append(gold).append("\n");
             return result.toString();

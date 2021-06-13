@@ -115,12 +115,6 @@ public class CharacterManager extends GameObject{
         interactiveChest.inventory.addItem(new Items(2, 0));
         interactiveChest.inventory.addItem(new Items(3, 1));
         interactiveChest.inventory.addItem(new Items(1, 3));
-//        inventory.addItem(new Items(1,0));
-//        inventory.addItem(new Items(2,0));
-//        inventory.addItem(new Items(3,2));
-//        inventory.addItem(new Items(4,2));
-//        inventory.addItem(new Items(1,0));
-//        inventory.addItem(new Items(7,0));
         inventory.addItem(new Items(1, 1));
         inventory.addItem(new Items(2, 3));
         inventory.addItem(new Items(3, 3));
