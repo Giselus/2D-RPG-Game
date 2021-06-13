@@ -66,21 +66,15 @@ public class mainGameController {
                 size,size,a*zoom,b*zoom,32* zoom,32 * zoom);
     }
 
-    private ScrollPane dialogueBox;
     private VBox vBox;
 
     public void openDialogueBox(){
-        dialogueBox = new ScrollPane();
-        dialogueBox.setMaxSize(1280,180);
-        dialogueBox.setMinSize(1280,180);
-        dialogueBox.setLayoutY(540);
-        dialogueBox.setStyle("-fx-background-color:red");
         vBox = new VBox();
+        vBox.setLayoutY(540);
         vBox.setMinSize(1280,180);
         vBox.setStyle("-fx-background-color:red");
-        dialogueBox.setContent(vBox);
         //vBox.setStyle("-fx-background-color:red");
-        mainPane.getChildren().add(dialogueBox);
+        mainPane.getChildren().add(vBox);
     }
 
     public void setDialogues(String mainDialogue, ArrayList<String> options){
@@ -104,7 +98,7 @@ public class mainGameController {
     }
 
     public void closeDialogueBox(){
-        mainPane.getChildren().remove(dialogueBox);
+        mainPane.getChildren().remove(vBox);
     }
 
     public void drawImage(ImageFrame frame, float xPos, float yPos){

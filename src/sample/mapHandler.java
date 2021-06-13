@@ -47,7 +47,9 @@ public class mapHandler {
     }
 
     public static void setCurrentMap(String name){
-        for(InteractiveObject object:InteractiveObject.activeInteractiveObjects){
+        InteractiveObject tmp[] = InteractiveObject.activeInteractiveObjects.toArray(new InteractiveObject[
+                InteractiveObject.activeInteractiveObjects.size()]);
+        for(InteractiveObject object:tmp){
             object.setActive(false);
         }
         InteractiveObject.activeInteractiveObjects.clear();
