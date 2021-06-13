@@ -122,7 +122,6 @@ ControllerInventory {
     public void addSkils(){
         //CharacterManager.instance.actualExp+=20;
         runEq();
-        checkExp();
         attackLabel.setText(String.valueOf(CharacterManager.instance.attack+CharacterManager.instance.attackItems));
         defenseLabel.setText(String.valueOf(CharacterManager.instance.defense+CharacterManager.instance.defenseItems));
         agilityLabel.setText(String.valueOf(CharacterManager.instance.agility+CharacterManager.instance.agilityItems));
@@ -134,6 +133,7 @@ ControllerInventory {
         lvlLabel.setText(String.valueOf(CharacterManager.instance.lvl));
         goldLabel.setText(String.valueOf(CharacterManager.instance.gold));
         //nameLabel.setText(String.valueOf(CharacterManager.instance.name));
+        checkExp();
     }
     public  void checkExp(){
         //new lvl
@@ -165,6 +165,7 @@ ControllerInventory {
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
                 //defenseLabel.setText(String.valueOf(CharacterManager.instance.defense));
+                addSkils();
                 if(newSkill<=0){
                     addSkils();
                     deleteAddNewSkill();
@@ -179,8 +180,9 @@ ControllerInventory {
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
                 //agilityLabel.setText(String.valueOf(CharacterManager.instance.agility));
+                addSkils();
                 if(newSkill<=0){
-                    addSkils();
+                    //addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -193,8 +195,9 @@ ControllerInventory {
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
                 //luckLabel.setText(String.valueOf(CharacterManager.instance.luck));
+                addSkils();
                 if(newSkill<=0){
-                    addSkils();
+                    //addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -207,8 +210,9 @@ ControllerInventory {
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
                 //staminaLabel.setText(String.valueOf(CharacterManager.instance.stamina));
+                addSkils();
                 if(newSkill<=0){
-                    addSkils();
+                    //addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -221,8 +225,9 @@ ControllerInventory {
                 newSkill--;
                 addSkilLabel.setText("Add skill:"+newSkill);
                 //manaLabel.setText(String.valueOf(CharacterManager.instance.mana));
+                addSkils();
                 if(newSkill<=0){
-                    addSkils();
+                    //addSkils();
                     deleteAddNewSkill();
                 }
             });
@@ -359,6 +364,12 @@ public void addPlayer(){
     }
     public void tooltipEqAdd(){
         bootstooltip.setText(Items.type.BOOTS.toString());
+        helmettooltip.setText(Items.type.HELMET.toString());
+        armortooltip.setText(Items.type.ARMOR.toString());
+        trinket1tooltip.setText(Items.type.TRINKET.toString());
+        trinket2tooltip.setText(Items.type.TRINKET.toString());
+        weapon1tooltip.setText(Items.type.WEAPON_ONE.toString());
+        weapon2tooltip.setText(Items.type.WEAPON_TWO.toString());
     }
     @FXML public void initialize(){
         checkExp();

@@ -39,13 +39,6 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e5b36" height="55.0" layoutX="53.0" layoutY="153.0" stroke="BLACK" strokeType="INSIDE" width="532.0" />
-      <Text layoutX="80.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Text>
-      <Button layoutX="439.0" layoutY="168.0" mnemonicParsing="false" style="-fx-background-color: #AC7C4AAC7C4A;" text="Read more" />
       <Button fx:id="GetReward" layoutX="912.0" layoutY="594.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="185.0" text="Get Reward" />
       <Text layoutX="948.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward">
          <font>

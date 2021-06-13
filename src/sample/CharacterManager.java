@@ -300,7 +300,8 @@ public class CharacterManager extends GameObject{
             if(KeyPolling.isDown(KeyCode.Q)){
                 int x= (int) (Math.random()*20);
                 x%=2;
-                ControllerFight.opponent=new Enemy(++x,1);
+                x=0;
+                ControllerFight.opponent=new Enemy(++x,3);
                 Updatable.clearUpdatables();
                 Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
                 return;

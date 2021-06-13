@@ -2,6 +2,7 @@ package sample.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -55,6 +56,41 @@ public class ControllerContainer {
     int shop_items;
     boolean first;
     boolean isShop;
+    //tootlip
+    @FXML public Tooltip tooltip1;
+    @FXML public Tooltip tooltip2;
+    @FXML public Tooltip tooltip3;
+    @FXML public Tooltip tooltip4;
+    @FXML public Tooltip tooltip5;
+    @FXML public Tooltip tooltip6;
+    @FXML public Tooltip tooltip7;
+    @FXML public Tooltip tooltip8;
+    @FXML public Tooltip tooltip9;
+    @FXML public Tooltip tooltip10;
+    @FXML public Tooltip tooltip11;
+    @FXML public Tooltip tooltip12;
+    @FXML public Tooltip tooltip13;
+    @FXML public Tooltip tooltip14;
+    @FXML public Tooltip tooltip15;
+    @FXML public Tooltip tooltip16;
+    //next
+    @FXML public Tooltip tool1;
+    @FXML public Tooltip tool2;
+    @FXML public Tooltip tool3;
+    @FXML public Tooltip tool4;
+    @FXML public Tooltip tool5;
+    @FXML public Tooltip tool6;
+    @FXML public Tooltip tool7;
+    @FXML public Tooltip tool8;
+    @FXML public Tooltip tool9;
+    @FXML public Tooltip tool10;
+    @FXML public Tooltip tool11;
+    @FXML public Tooltip tool12;
+    @FXML public Tooltip tool13;
+    @FXML public Tooltip tool14;
+    @FXML public Tooltip tool15;
+    @FXML public Tooltip tool16;
+    //end tooltip
     InventoryPlayer playerInventory;
     ArrayList<ArrayList<Items>> allItems;
     ArrayList<ArrayList<Button>> buttonInventory;
@@ -104,8 +140,43 @@ public class ControllerContainer {
         }
         setupButtons();
         updateButtons();
+        tooltipAdd();
     }
-
+    public void tooltipAdd() {
+        //tooltip1.setText(itemsView.get(0).get(0).myStatistics.toString());
+        tool1.setText(allItems.get(0).get(0).myStatistics.toString());
+        tool2.setText(allItems.get(0).get(1).myStatistics.toString());
+        tool3.setText(allItems.get(0).get(2).myStatistics.toString());
+        tool4.setText(allItems.get(0).get(3).myStatistics.toString());
+        tool5.setText(allItems.get(1).get(0).myStatistics.toString());
+        tool6.setText(allItems.get(1).get(1).myStatistics.toString());
+        tool7.setText(allItems.get(1).get(2).myStatistics.toString());
+        tool8.setText(allItems.get(1).get(3).myStatistics.toString());
+        tool9.setText(allItems.get(2).get(0).myStatistics.toString());
+        tool10.setText(allItems.get(2).get(1).myStatistics.toString());
+        tool11.setText(allItems.get(2).get(2).myStatistics.toString());
+        tool12.setText(allItems.get(2).get(3).myStatistics.toString());
+        tool13.setText(allItems.get(3).get(0).myStatistics.toString());
+        tool14.setText(allItems.get(3).get(1).myStatistics.toString());
+        tool15.setText(allItems.get(3).get(2).myStatistics.toString());
+        tool16.setText(allItems.get(3).get(3).myStatistics.toString());
+        tooltip1.setText(allItems.get(4).get(0).myStatistics.toString());
+        tooltip2.setText(allItems.get(4).get(1).myStatistics.toString());
+        tooltip3.setText(allItems.get(4).get(2).myStatistics.toString());
+        tooltip4.setText(allItems.get(4).get(3).myStatistics.toString());
+        tooltip5.setText(allItems.get(5).get(0).myStatistics.toString());
+        tooltip6.setText(allItems.get(5).get(1).myStatistics.toString());
+        tooltip7.setText(allItems.get(5).get(2).myStatistics.toString());
+        tooltip8.setText(allItems.get(5).get(3).myStatistics.toString());
+        tooltip9.setText(allItems.get(6).get(0).myStatistics.toString());
+        tooltip10.setText(allItems.get(6).get(1).myStatistics.toString());
+        tooltip11.setText(allItems.get(6).get(2).myStatistics.toString());
+        tooltip12.setText(allItems.get(6).get(3).myStatistics.toString());
+        tooltip13.setText(allItems.get(7).get(0).myStatistics.toString());
+        tooltip14.setText(allItems.get(7).get(1).myStatistics.toString());
+        tooltip15.setText(allItems.get(7).get(2).myStatistics.toString());
+        tooltip16.setText(allItems.get(7).get(3).myStatistics.toString());
+    }
     @FXML private void buyItem(){
         if(player_items >= 16){
             return;
