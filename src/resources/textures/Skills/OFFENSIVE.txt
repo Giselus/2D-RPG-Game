@@ -7,3 +7,4 @@ id/name/dmg/mod/stamina-/mana-
 6:Axe smash:30:0.2:0:0
 7:Fury punches:20:0.3:0:0
 8:Fire ball:40:0.1:0:0
+9:Shield bash:15:0.1:0:0
