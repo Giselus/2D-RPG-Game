@@ -16,3 +16,11 @@
 .button:hover{
     -fx-background-color: #BD8D5B;
 }
+#exitButton{
+     -fx-background-color:#e36668;
+     -fx-background-radius:50px;
+     -fx-border-radius:50px;
+}
+#exitButton:hover{
+    -fx-background-color:#f47779;
+}

@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import sample.controllers.ControllerFight;
 
 import java.util.ArrayList;
 
@@ -304,6 +305,14 @@ public class CharacterManager extends GameObject{
             if(KeyPolling.isDown(KeyCode.I)){
                 Main.clearUptadables();
                 Main.setScene("/resources/fxml/sceneInventory.fxml","/resources/style/styleInventory.css");
+                return;
+            }
+            if(KeyPolling.isDown(KeyCode.Q)){
+                int x= (int) (Math.random()*20);
+                x%=2;
+                ControllerFight.opponent=new Enemy(++x,1);
+                Main.clearUptadables();
+                Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
                 return;
             }
             float duration = 3f;

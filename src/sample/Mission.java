@@ -12,7 +12,7 @@ public class Mission {
     public String description;
     public int tasksToDo;
     public int tasksDone;
-    boolean canBeFinished;
+    public boolean canBeFinished;
     public ArrayList<enemiesToKill> enemiesToKillArrayList;
 
     public Mission(int id){
