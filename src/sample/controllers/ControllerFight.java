@@ -71,7 +71,7 @@ public class ControllerFight {
         player = new Combat.combatStats(true);
 
         //this line has to change depending on enemy
-        //opponent = new Enemy(1, 1);
+        //opponent = new Enemy(1, 3);
 
         enemy = new Combat.combatStats(opponent);
         checkEnemyHP(0);

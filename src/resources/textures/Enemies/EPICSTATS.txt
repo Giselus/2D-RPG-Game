@@ -1,0 +1,4 @@
+id/name/attack/defense/agility/luck/HP/stamina/mana/skill/exp/gold
+1:Minotaur:30:30:0:0:250:10:10:6:400:150
+2:Reptile dragon:80:20:0:0:300:10:10:4:400:400
+3:Berserk:40:0:30:30:150:30:10:7:400:200
