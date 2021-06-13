@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class EnemySpawner extends InteractiveObject{
 
-    private static float speed = 5f;
+    private static float speed = 2f;
 
     public ArrayList<Integer> enemies;
 
