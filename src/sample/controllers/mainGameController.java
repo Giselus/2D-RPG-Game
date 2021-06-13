@@ -74,8 +74,12 @@ public class mainGameController {
         dialogueBox.setMaxSize(1280,180);
         dialogueBox.setMinSize(1280,180);
         dialogueBox.setLayoutY(540);
+        dialogueBox.setStyle("-fx-background-color:red");
         vBox = new VBox();
+        vBox.setMinSize(1280,180);
+        vBox.setStyle("-fx-background-color:red");
         dialogueBox.setContent(vBox);
+        //vBox.setStyle("-fx-background-color:red");
         mainPane.getChildren().add(dialogueBox);
     }
 
@@ -84,6 +88,10 @@ public class mainGameController {
         Text npcText = new Text();
         npcText.setWrappingWidth(800);
         npcText.setText(mainDialogue);
+        npcText.setStyle("-fx-background-color:#d99c4c;\n" +
+                "    -fx-font-size: 20px;\n" +
+                "    -fx-border-color: black;\n" +
+                "    -fx-background-radius: 10px;");
         vBox.getChildren().add(npcText);
         int id = 0;
         for(String option: options){

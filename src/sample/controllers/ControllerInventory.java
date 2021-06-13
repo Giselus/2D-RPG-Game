@@ -88,7 +88,7 @@ ControllerInventory {
      //endskillsLabel
     //addSkilAfterNewLvl
     @FXML public Text addSkilLabel;
-    int newSkill=CharacterManager.instance.newSkill;
+     public static int newSkill=CharacterManager.instance.newSkill;
      public Button addAttack;
      public Button addDefense;
      public Button addAgility;
@@ -135,16 +135,9 @@ ControllerInventory {
         goldLabel.setText(String.valueOf(CharacterManager.instance.gold));
         //nameLabel.setText(String.valueOf(CharacterManager.instance.name));
     }
-    public void checkExp(){
+    public  void checkExp(){
         //new lvl
-        while(CharacterManager.instance.actualExp>=CharacterManager.instance.maxExp){
-            CharacterManager.instance.actualExp=CharacterManager.instance.actualExp-CharacterManager.instance.maxExp;
-            CharacterManager.instance.lvl++;
-            int x=CharacterManager.instance.lvl;
-            CharacterManager.instance.maxExp=50*(x*x*x-3*x*x+8*x)/3;
-            //points
-            newSkill+=5;
-        }
+        changeExp();
         if(newSkill>0 && !flag){
             flag=true;
             System.out.println(newSkill);
@@ -244,6 +237,18 @@ ControllerInventory {
         }
         if(newSkill<=0){
             //anchorPane.getChildren().add(addAttack);
+        }
+    }
+    public static void changeExp(){
+        while(CharacterManager.instance.actualExp>=CharacterManager.instance.maxExp){
+            CharacterManager.instance.actualExp=CharacterManager.instance.actualExp-CharacterManager.instance.maxExp;
+            CharacterManager.instance.lvl++;
+            CharacterManager.instance.hp+=5;
+            CharacterManager.instance.current_hp=CharacterManager.instance.hp;
+            int x=CharacterManager.instance.lvl;
+            CharacterManager.instance.maxExp=50*(x*x*x-3*x*x+8*x)/3;
+            //points
+            newSkill+=5;
         }
     }
     public void deleteAddNewSkill(){

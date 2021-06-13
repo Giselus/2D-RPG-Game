@@ -231,6 +231,7 @@ public class ControllerFight {
         hiddenThree.setDisable(true);
         hiddenFour.setDisable(true);
         hiddenFive.setDisable(true);
+        ControllerInventory.changeExp();
         if(wonFight){
             System.out.println("Wygrana");
             CharacterManager.instance.actualExp += opponent.exp;
