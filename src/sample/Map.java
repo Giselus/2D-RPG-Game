@@ -104,7 +104,7 @@ public class Map {
         EnemySpawner spawner9 = EnemySpawner.clone("spawner1");
         EnemySpawner spawner10 = EnemySpawner.clone("spawner2");
         EnemySpawner spawner11 = EnemySpawner.clone("spawner2");
-        EnemySpawner spawner12 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner12 = EnemySpawner.clone("spawner2");
         EnemySpawner spawner13 = EnemySpawner.clone("spawner1");
         EnemySpawner spawner14 = EnemySpawner.clone("spawner1");
         EnemySpawner spawner15 = EnemySpawner.clone("spawner1");
@@ -127,8 +127,8 @@ public class Map {
         setPosition(spawner14,7,36,3);
         setPosition(spawner15,5,38,3);
         setPosition(spawner16,8,7,4);
-        setPosition(spawner17,32,8,4);
-        setPosition(spawner18,37,9,4);
+//        setPosition(spawner17,32,8,4);
+//        setPosition(spawner18,37,9,4);
     }
 
     private void city(){

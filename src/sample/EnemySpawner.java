@@ -36,7 +36,8 @@ public class EnemySpawner extends InteractiveObject{
 
     public static void Initialize(){
         new EnemySpawner("spawner1",1,2,3,4,5);
-        new EnemySpawner("spawner2", 2, 3);
+        new EnemySpawner("spawner2", 2, 4);
+        new EnemySpawner("spawner2", 3);
     }
 
     public void Update(float deltaTime){
