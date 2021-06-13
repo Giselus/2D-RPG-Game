@@ -19,10 +19,10 @@ public class Updatable {
         this.active = active;
         if(active){
             newObjects.add(this);
-        }else{
-            updatableList.remove(this);
-            newObjects.remove(this);
         }
+    }
+    public boolean isActive(){
+        return  active;
     }
     public void Update(float deltaTime){
 
@@ -30,4 +30,10 @@ public class Updatable {
 
     public void LateUpdate(float deltaTime){}
 
+    public static void clearUpdatables(){
+        for(Updatable object: newObjects)
+            object.setActive(false);
+        for(Updatable object :updatableList)
+            object.setActive(false);
+    }
 }

@@ -20,6 +20,7 @@ public class TileDatabase {
         tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/tilesets/[A]Water_pipo.png").toString()));
         tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/tilesets/[A]WaterFall_pipo.png").toString()));
         tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/tilesets/[A]Wall-Up_pipo.png").toString()));
+        tileSets.add(new TileSet(TileDatabase.class.getResource("/resources/textures/tilesets/LightShadow_pipo.png").toString()));
     }
 
 }

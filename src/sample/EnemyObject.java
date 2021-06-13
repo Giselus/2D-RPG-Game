@@ -11,7 +11,7 @@ public class EnemyObject extends InteractiveObject{
     }
 
     public void Fight(){
-        Main.clearUptadables();
+        Updatable.clearUpdatables();
         Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
         Defeat();
     }

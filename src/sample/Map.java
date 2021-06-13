@@ -74,7 +74,7 @@ public class Map {
                 "maincity", 12,21,1)
         ));
         events.put("goInside", new Pair<>(EventType.DISTANCE_PICK, ()-> moveToScene(
-                "hatka_farmera", 5,8,2)
+                "hatka_farmera", 15,15,2)
         ));
         events.put("ladderUp", new Pair<>(EventType.STEP,()->CharacterManager.instance.z = 4));
         events.put("ladderDown", new Pair<>(EventType.STEP,()->CharacterManager.instance.z = 3));
@@ -84,7 +84,7 @@ public class Map {
         events.put("toFarm", new Pair<>(EventType.PICK, ()-> moveToScene(
                 "expowisko_jeden",23,0,3)));
         events.put("goShop",new Pair<>(EventType.DISTANCE_PICK,()->moveToScene(
-                "miastoone",9,13,2)));
+                "miastoone",13,19,2)));
         InteractiveObject guard1 = InteractiveObject.clone("CityGuard");
         InteractiveObject guard2 = InteractiveObject.clone("CityGuard");
         setPosition(guard1,14,17,1);
@@ -93,15 +93,15 @@ public class Map {
 
     private void shop(){
         events.put("goOut",new Pair<>(EventType.PICK,()->moveToScene(
-                "maincity",4,8,1)));
+                "maincity",3,6,1)));
         events.put("alchemistTalk",new Pair<>(EventType.DISTANCE_PICK,()->
             InteractiveObject.FetchByName("Alchemist").action.apply()));
         events.put("armourerTalk", new Pair<>(EventType.DISTANCE_PICK,()->
             InteractiveObject.FetchByName("Armourer").action.apply()));
         InteractiveObject alchemist = InteractiveObject.clone("Alchemist");
-        setPosition(alchemist,14,2,2);
+        setPosition(alchemist,19,9,2);
         InteractiveObject armourer = InteractiveObject.clone("Armourer");
-        setPosition(armourer,1,2,2);
+        setPosition(armourer,6,9,2);
     }
 
     private void loadFromFile(){

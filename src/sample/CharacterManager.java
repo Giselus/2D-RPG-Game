@@ -111,16 +111,6 @@ public class CharacterManager extends GameObject{
 
         //testing lines, this functions are essential for testing inventory and battle
         enteringShop = true;
-        interactiveChest = new ContainerForNpc(0, 0, 4, 4,true);
-        interactiveChest.inventory.addItem(new Items(2, 0));
-        interactiveChest.inventory.addItem(new Items(3, 1));
-        interactiveChest.inventory.addItem(new Items(1, 3));
-//        inventory.addItem(new Items(1,0));
-//        inventory.addItem(new Items(2,0));
-//        inventory.addItem(new Items(3,2));
-//        inventory.addItem(new Items(4,2));
-//        inventory.addItem(new Items(1,0));
-//        inventory.addItem(new Items(7,0));
         inventory.addItem(new Items(1, 1));
         inventory.addItem(new Items(2, 3));
         inventory.addItem(new Items(3, 3));
@@ -298,12 +288,12 @@ public class CharacterManager extends GameObject{
                 return;
             }
             if(KeyPolling.isDown(KeyCode.J)){
-                Main.clearUptadables();
+                Updatable.clearUpdatables();
                 Main.setScene("/resources/fxml/missionScene.fxml","/resources/style/styleMission.css");
                 return;
             }
             if(KeyPolling.isDown(KeyCode.I)){
-                Main.clearUptadables();
+                Updatable.clearUpdatables();
                 Main.setScene("/resources/fxml/sceneInventory.fxml","/resources/style/styleInventory.css");
                 return;
             }
@@ -311,7 +301,7 @@ public class CharacterManager extends GameObject{
                 int x= (int) (Math.random()*20);
                 x%=2;
                 ControllerFight.opponent=new Enemy(++x,1);
-                Main.clearUptadables();
+                Updatable.clearUpdatables();
                 Main.setScene("/resources/fxml/sceneFight.fxml","/resources/style/styleFight.css");
                 return;
             }

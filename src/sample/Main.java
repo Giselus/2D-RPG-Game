@@ -33,10 +33,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    static boolean toClear = false;
-    public static void clearUptadables(){
-        toClear = true;
-    }
     @Override
     public void start(Stage stage) throws Exception {
         mainStage=stage;
@@ -57,28 +53,30 @@ public class Main extends Application {
     private void tick(float deltaTime){
         //Input -> logic -> rendering
 
-        Updatable.updatableList.addAll(Updatable.newObjects);
+        Updatable tmp[] = Updatable.updatableList.toArray(new Updatable[Updatable.updatableList.size()]);
+
+        for(Updatable object: tmp){
+            if(object.isActive()){
+                object.Update(deltaTime);
+            }
+        }
+        for(Updatable object: tmp){
+            if(object.isActive()){
+                object.LateUpdate(deltaTime);
+            }
+        }
+        Updatable.updatableList.clear();
+        for(Updatable object: tmp){
+            if(object.isActive()){
+                Updatable.updatableList.add(object);
+            }
+        }
+        for(Updatable object: Updatable.newObjects){
+            if(object.isActive()){
+                Updatable.updatableList.add(object);
+            }
+        }
         Updatable.newObjects.clear();
-        for(Updatable obj: Updatable.updatableList){
-            obj.Update(deltaTime);
-            if(toClear){
-                break;
-            }
-        }
-        if(toClear){
-            Updatable.updatableList.clear();
-            toClear = false;
-        }
-        for(Updatable obj: Updatable.updatableList){
-            obj.LateUpdate(deltaTime);
-            if(toClear){
-                break;
-            }
-        }
-        if(toClear){
-            Updatable.updatableList.clear();
-            toClear = false;
-        }
         KeyPolling.refreshInput();
     }
 }
