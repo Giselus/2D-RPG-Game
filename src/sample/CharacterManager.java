@@ -110,20 +110,13 @@ public class CharacterManager extends GameObject{
         GenerateAnimations();
 
         //testing lines, this functions are essential for testing inventory and battle
-        enteringShop = true;
-        inventory.addItem(new Items(1, 1));
-        inventory.addItem(new Items(2, 3));
-        inventory.addItem(new Items(3, 3));
-        inventory.addItem(new Items(4, 0));
         skills.add(new Skills(1, 0));
         skills.add(new Skills(2, 0));
         skills.add(new Skills(1, 1));
         skills.add(new Skills(1, 2));
         this.hp=150;
         current_hp=150;
-        //this.stamina=100;
         current_stamina=this.stamina*10 + 100;
-        //this.mana = 100;
         current_mana=this.mana*10 + 100;
         //end of testing lines
     }

@@ -26,6 +26,7 @@ public class ContainerForNpc{
         new ContainerForNpc("AlchemistShop", 4,4,true);
         new ContainerForNpc("ArmourerShop", 4,4,true);
         new ContainerForNpc("ChestInFarm", 4,4,false);
+        new ContainerForNpc("ChestReward", 4, 4,false);
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
@@ -39,10 +40,26 @@ public class ContainerForNpc{
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 2));
         npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 2));
 
-        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(1, 0));
-        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(2, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(1, 2));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(2, 1));
         npcsInventories.get("ArmourerShop").inventory.addItem(new Items(3, 0));
-        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(4, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(4, 1));
         npcsInventories.get("ArmourerShop").inventory.addItem(new Items(5, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(6, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(6, 1));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(1, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(2, 2));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(3, 2));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(5, 2));
+
+        npcsInventories.get("ChestReward").inventory.addItem(new Items(1, 3));
+        npcsInventories.get("ChestReward").inventory.addItem(new Items(2, 0));
+        npcsInventories.get("ChestReward").inventory.addItem(new Items(3, 1));
+        npcsInventories.get("ChestReward").inventory.addItem(new Items(5, 1));
+
+        npcsInventories.get("ChestInFarm").inventory.addItem(new Items(1, 1));
+        npcsInventories.get("ChestInFarm").inventory.addItem(new Items(2, 3));
+        npcsInventories.get("ChestInFarm").inventory.addItem(new Items(3, 3));
+        npcsInventories.get("ChestInFarm").inventory.addItem(new Items(4, 0));
     }
 }

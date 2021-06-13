@@ -67,7 +67,7 @@ public class InventoryPlayer extends Inventory{
             CharacterManager.instance.current_hp += tempItem.myStatistics.plusHealth;
             CharacterManager.instance.current_mana += tempItem.myStatistics.plusMana;
             CharacterManager.instance.current_stamina += tempItem.myStatistics.plusStamina;
-            CharacterManager.instance.current_hp = Math.min(CharacterManager.instance.current_hp, CharacterManager.instance.hp);
+            CharacterManager.instance.current_hp = Math.min(CharacterManager.instance.current_hp, CharacterManager.instance.hp + CharacterManager.instance.hpItems);
             CharacterManager.instance.current_mana = Math.min(CharacterManager.instance.current_mana, CharacterManager.instance.mana*10+100);
             CharacterManager.instance.current_stamina = Math.min(CharacterManager.instance.current_stamina, CharacterManager.instance.stamina*10+100);
             itemsView.get(x).set(y, new Items(0, 0));

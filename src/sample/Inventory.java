@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.Parent;
+import sample.controllers.ControllerContainer;
 
 import java.util.ArrayList;
 
@@ -78,7 +79,7 @@ public class Inventory {
         return result;
     }
     public static void checkSlotProperties(int x, int y, ArrayList<ArrayList<Items>> itemsView, TemporaryChosenContainer temporaryChosen){
-        if(!temporaryChosen.hasItems){
+        if(!temporaryChosen.hasItems || ControllerContainer.swapChest.isShop){
             if(itemsView.get(x).get(y).myType != Items.type.EMPTY){
                 if(x >= 4){
                     temporaryChosen.pickFromShop(x, y, itemsView);
@@ -88,16 +89,6 @@ public class Inventory {
             }
             return;
         }
-        if(CharacterManager.instance.enteringShop){
-            if(temporaryChosen.fromShop && x < 4){
-                temporaryChosen.clearHolder();
-                return;
-            }
-            if(!temporaryChosen.fromShop && x >= 4){
-                temporaryChosen.clearHolder();
-                return;
-            }
-        }
         if (itemsView.get(x).get(y).myType != Items.type.EMPTY) {
             itemsView.get(temporaryChosen.cordX).set(temporaryChosen.cordY, itemsView.get(x).get(y));
         } else {
@@ -105,6 +96,7 @@ public class Inventory {
         }
         itemsView.get(x).set(y, temporaryChosen.item);
         temporaryChosen.clearHolder();
+        System.out.println("C");
     }
     public static class TemporaryChosenContainer{
         public Integer cordX;

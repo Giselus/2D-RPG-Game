@@ -101,6 +101,7 @@ public class ControllerContainer {
     public void initialize(){
         first = true;
         isShop = swapChest.isShop;
+        System.out.println(isShop);
         if(isShop){
             setGoldText();
             player_items = CharacterManager.instance.inventory.countItems();
@@ -197,7 +198,6 @@ public class ControllerContainer {
                     allItems.get(temporaryChosen.cordX).set(temporaryChosen.cordY, new Items(0, 0));
                     temporaryChosen.clearHolder();
                     updateButtons();
-                    System.out.println("Kupione");
                     return;
                 }
             }
