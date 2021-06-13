@@ -94,7 +94,7 @@ public class CharacterManager extends GameObject{
         this.body=body;
         this.hair=hair;
         this.current_hp=hp;
-        this.gold = 200;
+        this.gold = 0;
         inventory = new InventoryPlayer(4, 4);
         skills = new ArrayList<>(4);
         hasArmor = false;

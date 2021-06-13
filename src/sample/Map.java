@@ -102,6 +102,15 @@ public class Map {
         EnemySpawner spawner7 = EnemySpawner.clone("spawner1");
         EnemySpawner spawner8 = EnemySpawner.clone("spawner1");
         EnemySpawner spawner9 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner10 = EnemySpawner.clone("spawner2");
+        EnemySpawner spawner11 = EnemySpawner.clone("spawner2");
+        EnemySpawner spawner12 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner13 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner14 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner15 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner16 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner17 = EnemySpawner.clone("spawner1");
+        EnemySpawner spawner18 = EnemySpawner.clone("spawner1");
         setPosition(spawner1,30,41,3);
         setPosition(spawner2,17,38,3);
         setPosition(spawner3,7,27,3);
@@ -111,6 +120,15 @@ public class Map {
         setPosition(spawner7,23,9,3);
         setPosition(spawner8,35,18,3);
         setPosition(spawner9,39,26,3);
+        setPosition(spawner10,21,26,3);
+        setPosition(spawner11,28,28,3);
+        setPosition(spawner12,19,32,3);
+        setPosition(spawner13,10,44,3);
+        setPosition(spawner14,7,36,3);
+        setPosition(spawner15,5,38,3);
+        setPosition(spawner16,8,7,4);
+        setPosition(spawner17,32,8,4);
+        setPosition(spawner18,37,9,4);
     }
 
     private void city(){
