@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import sample.*;
 
@@ -77,22 +78,25 @@ public class mainGameController {
                 "-fx-border-width: 3;");
         mainPane.getChildren().add(vBox);
     }
-
     public void setDialogues(String mainDialogue, ArrayList<String> options){
         vBox.getChildren().clear();
         Text npcText = new Text();
         npcText.setWrappingWidth(800);
         npcText.setText(mainDialogue);
-        npcText.setStyle("-fx-font-size: 20px;\n" +
-                "    -fx-border-color: black;\n   -fx-font-style:\"Asap\";");
+//        npcText.setStyle("-fx-font-size: 20px;\n" +
+//                "    -fx-border-color: black;\n");
+        Font font = new Font("Papyrus", 27);
+        npcText.setFont(font);
         vBox.getChildren().add(npcText);
         int id = 0;
         for(String option: options){
             id++;
             Text dialogueOption = new Text();
-            dialogueOption.setStyle("-fx-background-color:#d99c4c;\n" +
-                    "    -fx-font-size: 20px;\n" +
-                    "    -fx-border-color: black;\n");
+//            dialogueOption.setStyle("-fx-background-color:#d99c4c;\n" +
+//                    "    -fx-font-size: 17px;\n" +
+//                    "    -fx-border-color: black;\n");
+            Font font2 = new Font("Papyrus", 22);
+            dialogueOption.setFont(font2);
             dialogueOption.setText(String.format("(%d)%s",id,option));
             dialogueOption.setWrappingWidth(800);
             vBox.getChildren().add(dialogueOption);
