@@ -85,6 +85,10 @@ public class Map {
                 "expowisko_jeden",23,0,3)));
         events.put("goShop",new Pair<>(EventType.DISTANCE_PICK,()->moveToScene(
                 "miastoone",9,13,2)));
+        InteractiveObject guard1 = InteractiveObject.clone("CityGuard");
+        InteractiveObject guard2 = InteractiveObject.clone("CityGuard");
+        setPosition(guard1,14,17,1);
+        setPosition(guard2,14,8,1);
     }
 
     private void shop(){
@@ -92,9 +96,12 @@ public class Map {
                 "maincity",4,8,1)));
         events.put("alchemistTalk",new Pair<>(EventType.DISTANCE_PICK,()->
             InteractiveObject.FetchByName("Alchemist").action.apply()));
-        InteractiveObject alchemist = InteractiveObject.FetchByName("Alchemist");
-        alchemist.setActive(true);
+        events.put("armourerTalk", new Pair<>(EventType.DISTANCE_PICK,()->
+            InteractiveObject.FetchByName("Armourer").action.apply()));
+        InteractiveObject alchemist = InteractiveObject.clone("Alchemist");
         setPosition(alchemist,14,2,2);
+        InteractiveObject armourer = InteractiveObject.clone("Armourer");
+        setPosition(armourer,1,2,2);
     }
 
     private void loadFromFile(){

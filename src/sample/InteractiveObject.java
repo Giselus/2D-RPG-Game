@@ -21,6 +21,21 @@ public class InteractiveObject extends GameObject{
         setActive(false);
         interactiveObjectsMap.put(name,this);
     }
+    private InteractiveObject(InteractiveObject toCopy){
+        super(0,0,0,toCopy.images.toArray(new ImageFrame[toCopy.images.size()]));
+        this.name = toCopy.name;
+        this.action = toCopy.action;
+        this.collision = toCopy.collision;
+        setActive(true);
+    }
+    public static InteractiveObject clone(String name){
+        if(interactiveObjectsMap.containsKey(name)){
+            InteractiveObject toCopy = FetchByName(name);
+            InteractiveObject tmp = new InteractiveObject(toCopy);
+            return tmp;
+        }
+        return null;
+    }
     public static InteractiveObject FetchByName(String name){
         if(interactiveObjectsMap.containsKey(name))
             return interactiveObjectsMap.get(name);
@@ -32,6 +47,16 @@ public class InteractiveObject extends GameObject{
                 new ImageFrame(new Image(Main.class.getResource(
                         "/resources/textures/NPC/npc2.png").toString()),
                         320,128,64,64));
+        new InteractiveObject("CityGuard",
+                ()->DialogueManager.instance.OpenDialogue("CityGuard1b"), true,
+                new ImageFrame(new Image(Main.class.getResource(
+                        "/resources/textures/NPC/npc7.png").toString()),
+                        0,640,64,64));
+        new InteractiveObject("Armourer",
+                ()->DialogueManager.instance.OpenDialogue("Armourer1b"), true,
+                new ImageFrame(new Image(Main.class.getResource(
+                        "/resources/textures/NPC/npc9.png").toString()),
+                        0,384,64,64));
     }
 
     public void setActive(boolean active){

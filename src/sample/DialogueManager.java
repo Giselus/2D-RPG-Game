@@ -70,7 +70,7 @@ public class DialogueManager extends Updatable{
     }
 
     public void Initialize(){
-        //Alchemist
+        //region Alchemist
         new Dialogue("AlchemistDealer1a","Sure, show me what do you have",
                 () -> DialogueManager.instance.setState("AlchemistDealer2b"),
                 new Pair<>("AlchemistDealerTalk",false));
@@ -97,7 +97,29 @@ public class DialogueManager extends Updatable{
         new DialogueState("AlchemistDealer3b",
                 "Sure... That's what I meant too...",
                 "AlchemistDealerTrade");
+        //endregion
+        //region CityGuard
+        new Dialogue("CityGuard1a","(Exit)",this::CloseDialogues);
 
+        new DialogueState("CityGuard1b","Don't bother me, don't you see I'm busy?!",
+                "CityGuard1a");
+        //endregion
+        //region Armourer
+        new Dialogue("ArmourerTrade","Let me take a look at you wares",()->
+            {
+                this.CloseDialogues();
+                //TODO: Open shop
+            });
+        new Dialogue("ArmourerExit","I cannot afford anything right now",()->
+                DialogueManager.instance.setState("Armourer2b"));
+        new Dialogue("ArmourerExit2","(Exit)",this::CloseDialogues);
+        new DialogueState("Armourer1b","You should know that we have best equipment in this city",
+                "ArmourerTrade","ArmourerExit");
+        new DialogueState("Armourer2b","So don't bother me, come back when you have some coins," +
+                " I'm not charity organisation",
+                "ArmourerExit2");
+
+        //endregion
 
         //new Dialogue("test","Chcę punkty!!", ()->DialogueManager.instance.setState("test2"));
         //new Dialogue("test2","(Zamknij)", this::CloseDialogues);
