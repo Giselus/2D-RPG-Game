@@ -169,11 +169,9 @@ public class Map {
     private void island(){
         events.put("goWaterfall",new Pair<>(EventType.PICK,()->moveToScene(
                 "przejscie",0,10,3)));
-        events.put("openChest",new Pair<>(EventType.DISTANCE_PICK,()->{
-            ControllerContainer.swapChest = ContainerForNpc.FetchByName("ChestReward");
-            Updatable.clearUpdatables();
-            Main.setScene("/resources/fxml/sceneContainer.fxml",
-                    "/resources/style/styleContainer.css"); }));
+        events.put("openChest",new Pair<>(EventType.DISTANCE_PICK,()-> {
+            DialogueManager.instance.OpenDialogue("BossChest1b");
+        }));
         if(!GameVariable.FetchByName("BossAlive").state) {
             GameVariable.FetchByName("BossAlive").state = true;
             InteractiveObject boss = InteractiveObject.clone("Boss");

@@ -207,5 +207,23 @@ public class DialogueManager extends Updatable{
         new DialogueState("Quests1b","You found interesting order for few monsters's head. " +
                 "It should be easy!","QuestsExit");
         //endregion
+        //region BossChest
+        new Dialogue("BossChest1a","(Continue)",()->
+                DialogueManager.instance.setState("BossChest2b"));
+        new Dialogue("BossChest2a","(Open chest)",()->{
+            ControllerContainer.swapChest = ContainerForNpc.FetchByName("ChestReward");
+            Updatable.clearUpdatables();
+            CloseDialogues();
+            Main.setScene("/resources/fxml/sceneContainer.fxml",
+                    "/resources/style/styleContainer.css");
+        });
+        new DialogueState("BossChest1b",
+                "Yeah! I’ve managed to overcome my biggest fear and I’ve scored 20 out of 20 points. " +
+                        "Besides that, the submit on Satori got “OK”.", "BossChest1a");
+        new DialogueState("BossChest2b",
+                "What a crazy day! I have to come back home and tell my father about everything!",
+                "BossChest2a");
+
+        //endregion
     }
 }
