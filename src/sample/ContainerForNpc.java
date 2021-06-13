@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class ContainerForNpc{
     public String name;
     public Inventory inventory;
-    boolean isShop;
+    public boolean isShop;
 
     public static HashMap<String, ContainerForNpc> npcsInventories = new HashMap<>();
 
@@ -25,5 +25,24 @@ public class ContainerForNpc{
     public static void Initialize(){
         new ContainerForNpc("AlchemistShop", 4,4,true);
         new ContainerForNpc("ArmourerShop", 4,4,true);
+        new ContainerForNpc("ChestInShop", 4,4,false);
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 0));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 1));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 1));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 1));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 1));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 2));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 2));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 2));
+        npcsInventories.get("AlchemistShop").inventory.addItem(new Items(7, 2));
+
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(1, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(2, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(3, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(4, 0));
+        npcsInventories.get("ArmourerShop").inventory.addItem(new Items(5, 0));
     }
 }

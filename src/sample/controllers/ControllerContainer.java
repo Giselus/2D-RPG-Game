@@ -54,24 +54,25 @@ public class ControllerContainer {
     int player_items;
     int shop_items;
     boolean first;
+    boolean isShop;
     InventoryPlayer playerInventory;
     ArrayList<ArrayList<Items>> allItems;
     ArrayList<ArrayList<Button>> buttonInventory;
     Items[][] copyShop;
-    Inventory chestInventory;
     Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
 
     public static ContainerForNpc swapChest = null;
     public void initialize(){
         first = true;
-        if(CharacterManager.instance.enteringShop){
+        isShop = swapChest.isShop;
+        if(isShop){
             setGoldText();
             player_items = CharacterManager.instance.inventory.countItems();
-            shop_items = CharacterManager.instance.interactiveChest.inventory.countItems();
+            shop_items = swapChest.inventory.countItems();
             copyShop = new Items[4][4];
             for(int i=0; i<4; i++){
                 for(int j=0; j<4; j++){
-                    copyShop[i][j] = CharacterManager.instance.interactiveChest.inventory.getItem(i, j);
+                    copyShop[i][j] = swapChest.inventory.getItem(i, j);
                 }
             }
         } else {
@@ -81,7 +82,6 @@ public class ControllerContainer {
             anchorPane.getChildren().remove(priceText);
         }
         playerInventory = CharacterManager.instance.inventory;
-        chestInventory = CharacterManager.instance.interactiveChest.inventory;
         allItems = new ArrayList<>(8);
         buttonInventory = new ArrayList<>(8);
         for(int i=0; i<8; i++){
@@ -95,7 +95,7 @@ public class ControllerContainer {
             buttonInventory.add(tmpB);
         }
         ArrayList<Items> tmpItems = playerInventory.getAllItems();
-        ArrayList<Items> tmpChest = chestInventory.getAllItems();
+        ArrayList<Items> tmpChest = swapChest.inventory.getAllItems();
         for(int i=0; i<4; i++){
             for(int j=0; j<4; j++){
                 allItems.get(i).set(j, tmpItems.get(4*i+j));
@@ -184,7 +184,7 @@ public class ControllerContainer {
                 setGraphicButton(buttonInventory.get(i).get(j), allItems.get(i).get(j));
             }
         }
-        if(CharacterManager.instance.enteringShop){
+        if(isShop){
             setGraphicButton(tmpChosen, temporaryChosen.item);
             setGoldText();
         }
@@ -208,7 +208,7 @@ public class ControllerContainer {
                 tmpB.get(i).set(j, allItems.get(i+4).get(j));
             }
         }
-        if(CharacterManager.instance.enteringShop){
+        if(isShop){
             for(int i=0; i<4; i++){
                 for(int j=0; j<4; j++){
                     tmpB.get(i).set(j, copyShop[i][j]);
@@ -216,7 +216,7 @@ public class ControllerContainer {
             }
         }
         CharacterManager.instance.inventory.setAllItemsList(tmpA);
-        CharacterManager.instance.interactiveChest.inventory.setAllItemsList(tmpB);
+        swapChest.inventory.setAllItemsList(tmpB);
     }
     public void switchToSceneMenu(){
         beforeExiting();

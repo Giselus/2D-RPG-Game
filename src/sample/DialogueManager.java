@@ -88,7 +88,7 @@ public class DialogueManager extends Updatable{
                     ControllerContainer.swapChest = ContainerForNpc.FetchByName("AlchemistShop");
                     Updatable.clearUpdatables();
                     Main.setScene("/resources/fxml/sceneContainer.fxml",
-                            "/resources/style/styleContainer");
+                            "/resources/style/styleContainer.css");
                 }, new Pair<>("AlchemistDealerTalk",true));
 
         new DialogueState("AlchemistDealer1b",
@@ -115,7 +115,7 @@ public class DialogueManager extends Updatable{
                 ControllerContainer.swapChest = ContainerForNpc.FetchByName("ArmourerShop");
                 Updatable.clearUpdatables();
                 Main.setScene("/resources/fxml/sceneContainer.fxml",
-                        "/resources/style/styleContainer");
+                        "/resources/style/styleContainer.css");
             });
         new Dialogue("ArmourerExit","I cannot afford anything right now",()->
                 DialogueManager.instance.setState("Armourer2b"));
