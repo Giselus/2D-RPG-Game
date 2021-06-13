@@ -31,6 +31,7 @@ public class Map {
         eventsMethods.put("hatka_farmera", this::farmerHouse);
         eventsMethods.put("expowisko_jeden", this::farm);
         eventsMethods.put("maincity", this::city);
+        eventsMethods.put("miastoone", this::shop);
 
 
         this.source = source;
@@ -62,58 +63,10 @@ public class Map {
         object.z = z;
     }
 
-    private void mainEvents(){
-        EnemyObject test = new EnemyObject(30,11,4,new ImageFrame(new Image(
-                getClass().getResource("/resources/textures/Enemies/NORMAL1.png").toString()),
-                0,0, 96,96));
-
-        events.put("ladderUp", new Pair<>(EventType.STEP,() -> CharacterManager.instance.z = 4));
-        events.put("ladderDown", new Pair<>(EventType.STEP,() -> CharacterManager.instance.z = 3));
-        events.put("secondScene", new Pair<>(EventType.PICK,() -> {
-            mapHandler.setCurrentMap("main2");
-            CharacterManager.instance.z = 4;
-            CharacterManager.instance.x = 14;
-            CharacterManager.instance.y = 15;
-            CharacterManager.instance.lastX = 14;
-            CharacterManager.instance.lastY = 15;
-            CharacterManager.instance.xPos = 14 * 32;
-            CharacterManager.instance.yPos = 15 * 32;
-            CharacterManager.instance.setCameraPosition();
-            if(CharacterManager.instance.animation != null)
-                CharacterManager.instance.animation.Stop();
-        }));
-        events.put("caveEntrance", new Pair<>(EventType.DISTANCE_PICK,() -> System.out.println("Not implemented yet")));
-        events.put("grave", new Pair<>(EventType.DISTANCE_PICK,() -> {
-            Main.clearUptadables();
-            Main.setScene("/resources/fxml/sceneContainer.fxml","/resources/style/styleContainer.css");
-        }));
-    }
-
-    private void main2Events(){
-        events.put("firstScene", new Pair<>(EventType.PICK,() -> {
-            mapHandler.setCurrentMap("main");
-            CharacterManager.instance.z = 3;
-            CharacterManager.instance.x = 34;
-            CharacterManager.instance.y = 0;
-            CharacterManager.instance.lastX = 34;
-            CharacterManager.instance.lastY = 0;
-            CharacterManager.instance.xPos = 34 * 32;
-            CharacterManager.instance.yPos = 0;
-            CharacterManager.instance.setCameraPosition();
-            if(CharacterManager.instance.animation != null)
-                CharacterManager.instance.animation.Stop();
-        }));
-        events.put("note", new Pair<>(EventType.DISTANCE_PICK, () -> System.out.println("Przejście zamnknięte!")));
-    }
-
     private void farmerHouse(){
         events.put("goOut",  new Pair<>(EventType.PICK,()-> moveToScene(
                 "expowisko_jeden",43,38,3)
         ));
-
-        InteractiveObject alchemist = InteractiveObject.FetchByName("Alchemist");
-        alchemist.setActive(true);
-        setPosition(alchemist,7,3,2);
     }
 
     private void farm(){
@@ -129,8 +82,19 @@ public class Map {
 
     private void city(){
         events.put("toFarm", new Pair<>(EventType.PICK, ()-> moveToScene(
-                "expowisko_jeden",23,0,3)
-        ));
+                "expowisko_jeden",23,0,3)));
+        events.put("goShop",new Pair<>(EventType.DISTANCE_PICK,()->moveToScene(
+                "miastoone",9,13,2)));
+    }
+
+    private void shop(){
+        events.put("goOut",new Pair<>(EventType.PICK,()->moveToScene(
+                "maincity",4,8,1)));
+        events.put("alchemistTalk",new Pair<>(EventType.DISTANCE_PICK,()->
+            InteractiveObject.FetchByName("Alchemist").action.apply()));
+        InteractiveObject alchemist = InteractiveObject.FetchByName("Alchemist");
+        alchemist.setActive(true);
+        setPosition(alchemist,14,2,2);
     }
 
     private void loadFromFile(){

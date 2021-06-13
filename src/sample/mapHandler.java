@@ -47,6 +47,9 @@ public class mapHandler {
     }
 
     public static void setCurrentMap(String name){
+        for(InteractiveObject object:InteractiveObject.activeInteractiveObjects){
+            object.setActive(false);
+        }
         InteractiveObject.activeInteractiveObjects.clear();
         currentMap = new Map(mapFiles.get(name));
     }

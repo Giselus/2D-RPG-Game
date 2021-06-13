@@ -13,7 +13,7 @@ public class Camera{
     public double maxX = 32000;
     public double maxY = 32000;
     public float speed = 90;
-    public float zoom = 1.5f;
+    public float zoom = 1.8f;
     public Camera(Canvas can){
         instance = this;
         width = can.getWidth();

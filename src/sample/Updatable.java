@@ -21,6 +21,7 @@ public class Updatable {
             newObjects.add(this);
         }else{
             updatableList.remove(this);
+            newObjects.remove(this);
         }
     }
     public void Update(float deltaTime){
