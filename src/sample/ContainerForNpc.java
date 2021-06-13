@@ -16,7 +16,7 @@ public class ContainerForNpc{
         npcsInventories.put(name,this);
     }
 
-    public ContainerForNpc FetchByName(String name){
+    public static ContainerForNpc FetchByName(String name){
         if(npcsInventories.containsKey(name))
             return npcsInventories.get(name);
         return null;

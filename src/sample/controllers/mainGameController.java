@@ -33,7 +33,7 @@ public class mainGameController {
             GameVariable.Initialize();
             new DialogueManager();
             InteractiveObject.Initialize();
-
+            ContainerForNpc.Initialize();
 
             mapHandler.setCurrentMap("hatka_farmera");
         }

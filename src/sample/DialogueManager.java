@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.input.KeyCode;
 import javafx.util.Pair;
+import sample.controllers.ControllerContainer;
 import sample.controllers.mainGameController;
 
 import java.util.ArrayList;
@@ -84,7 +85,10 @@ public class DialogueManager extends Updatable{
         new Dialogue("AlchemistDealerTrade","(Trade)",
                 () -> {
                     CloseDialogues();
-                    //TODO: Open some trading inventory
+                    ControllerContainer.swapChest = ContainerForNpc.FetchByName("AlchemistShop");
+                    Updatable.clearUpdatables();
+                    Main.setScene("/resources/fxml/sceneContainer.fxml",
+                            "/resources/style/styleContainer");
                 }, new Pair<>("AlchemistDealerTalk",true));
 
         new DialogueState("AlchemistDealer1b",
@@ -108,7 +112,10 @@ public class DialogueManager extends Updatable{
         new Dialogue("ArmourerTrade","Let me take a look at you wares",()->
             {
                 this.CloseDialogues();
-                //TODO: Open shop
+                ControllerContainer.swapChest = ContainerForNpc.FetchByName("ArmourerShop");
+                Updatable.clearUpdatables();
+                Main.setScene("/resources/fxml/sceneContainer.fxml",
+                        "/resources/style/styleContainer");
             });
         new Dialogue("ArmourerExit","I cannot afford anything right now",()->
                 DialogueManager.instance.setState("Armourer2b"));

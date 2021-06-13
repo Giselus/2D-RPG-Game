@@ -61,8 +61,7 @@ public class ControllerContainer {
     Inventory chestInventory;
     Inventory.TemporaryChosenContainer temporaryChosen = new Inventory.TemporaryChosenContainer();
 
-    public static Inventory swapChest = new Inventory(4, 4);
-    public static boolean isShop = false;
+    public static ContainerForNpc swapChest = null;
     public void initialize(){
         first = true;
         if(CharacterManager.instance.enteringShop){
