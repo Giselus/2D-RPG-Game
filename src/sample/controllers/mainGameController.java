@@ -72,8 +72,9 @@ public class mainGameController {
         vBox = new VBox();
         vBox.setLayoutY(540);
         vBox.setMinSize(1280,180);
-        vBox.setStyle("-fx-background-color:red");
-        //vBox.setStyle("-fx-background-color:red");
+        vBox.setStyle("-fx-background-color:#7e5b36;" +
+                "-fx-border-color: black;"+
+                "-fx-border-width: 3;");
         mainPane.getChildren().add(vBox);
     }
 
@@ -82,15 +83,16 @@ public class mainGameController {
         Text npcText = new Text();
         npcText.setWrappingWidth(800);
         npcText.setText(mainDialogue);
-        npcText.setStyle("-fx-background-color:#d99c4c;\n" +
-                "    -fx-font-size: 20px;\n" +
-                "    -fx-border-color: black;\n" +
-                "    -fx-background-radius: 10px;");
+        npcText.setStyle("-fx-font-size: 20px;\n" +
+                "    -fx-border-color: black;\n   -fx-font-style:\"Asap\";");
         vBox.getChildren().add(npcText);
         int id = 0;
         for(String option: options){
             id++;
             Text dialogueOption = new Text();
+            dialogueOption.setStyle("-fx-background-color:#d99c4c;\n" +
+                    "    -fx-font-size: 20px;\n" +
+                    "    -fx-border-color: black;\n");
             dialogueOption.setText(String.format("(%d)%s",id,option));
             dialogueOption.setWrappingWidth(800);
             vBox.getChildren().add(dialogueOption);
