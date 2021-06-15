@@ -270,36 +270,6 @@ ControllerInventory {
         //System.out.println("TEDST");
         //block;
     }
-//    public void addImage(Image image){
-//        ImageView imageViewSkin=new ImageView(image);
-//        imageViewSkin.setViewport(new Rectangle2D(64,64*10,64,64));
-//        imageViewSkin.setX(608);
-//        imageViewSkin.setY(294);
-//        anchorPane.getChildren().add(imageViewSkin);
-//    }
-//    public void addImageHelemet(Image image){
-//        helmetImageView=new ImageView(image);
-//        helmetImageView.setViewport(new Rectangle2D(64,64*10,64,64));
-//        helmetImageView.setX(608);
-//        helmetImageView.setY(294);
-//        anchorPane.getChildren().add(helmetImageView);
-//        //usuwanie fryzury
-//        anchorPane.getChildren().remove(hairImageView);
-//    }
-//    public void addImageArmor(Image image){
-//        armorImageView=new ImageView(image);
-//        armorImageView.setViewport(new Rectangle2D(64,64*10,64,64));
-//        armorImageView.setX(608);
-//        armorImageView.setY(294);
-//        anchorPane.getChildren().add(armorImageView);
-//    }
-//    public void addImageBoots(Image image){
-//        bootsImageView=new ImageView(image);
-//        bootsImageView.setViewport(new Rectangle2D(64,64*10,64,64));
-//        bootsImageView.setX(608);
-//        bootsImageView.setY(294);
-//        anchorPane.getChildren().add(bootsImageView);
-//    }
 public void addPlayer(){
         deleteItems();
         deleteBody();
@@ -363,13 +333,13 @@ public void addPlayer(){
         tooldd.setText(itemsView.get(3).get(3).myStatistics.toString());
     }
     public void tooltipEqAdd(){
-        bootstooltip.setText(Items.type.BOOTS.toString());
-        helmettooltip.setText(Items.type.HELMET.toString());
-        armortooltip.setText(Items.type.ARMOR.toString());
-        trinket1tooltip.setText(Items.type.TRINKET.toString());
-        trinket2tooltip.setText(Items.type.TRINKET.toString());
-        weapon1tooltip.setText(Items.type.WEAPON_ONE.toString());
-        weapon2tooltip.setText(Items.type.WEAPON_TWO.toString());
+        bootstooltip.setText(equipmentView.get(0).myStatistics.toString());
+        helmettooltip.setText(equipmentView.get(2).myStatistics.toString());
+        armortooltip.setText(equipmentView.get(1).myStatistics.toString());
+        trinket1tooltip.setText(equipmentView.get(5).myStatistics.toString());
+        trinket2tooltip.setText(equipmentView.get(6).myStatistics.toString());
+        weapon1tooltip.setText(equipmentView.get(3).myStatistics.toString());
+        weapon2tooltip.setText(equipmentView.get(4).myStatistics.toString());
     }
     @FXML public void initialize(){
         checkExp();
